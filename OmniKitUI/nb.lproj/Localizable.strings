@@ -54,7 +54,7 @@
 "Basal Delivery" = "Basalleveranse";
 
 /* The title text for the basal rate schedule */
-"Basal Rates" = "Basal-satser";
+"Basal Rates" = "Basal-program";
 
 /* The title of the cell showing pod bolus status */
 "Bolus Delivery" = "Bolus-leveranse";
@@ -66,7 +66,7 @@
 "Change Time Zone" = "Endre tidssone";
 
 /* Progress message for changing pod time. */
-"Changing time…" = "Endrer tid...";
+"Changing time…" = "Endrer tid…";
 
 /* The title of the configuration section in settings */
 "Configuration" = "Konfigurasjon";
