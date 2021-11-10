@@ -1,0 +1,7 @@
+files:
+  - source: /RileyLinkKitUI/Base.lproj/Localizable.strings
+    translation: /RileyLinkKitUI/%osx_locale%.lproj/Localizable.strings
+  - source: /OmniKitUI/en.lproj/OmnipodPumpManager.strings
+    translation: /OmniKitUI/%osx_locale%.lproj/OmnipodPumpManager.strings
+  - source: /OmniKitUI/en.lproj/Localizable.strings
+    translation: /OmniKitUI/%osx_locale%.lproj/Localizable.strings
