@@ -259,3 +259,6 @@
 
 /* The title of the pod details section in settings */
 "Pod Details" = "Pod Details";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
