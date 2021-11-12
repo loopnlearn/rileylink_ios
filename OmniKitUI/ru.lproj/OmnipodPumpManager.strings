@@ -1,5 +1,5 @@
 /* Class = "UITableViewSection"; headerTitle = "Remove POD"; ObjectID = "1LF-te-Bdd"; */
-"1LF-te-Bdd.headerTitle" = "Снимите POD";
+"1LF-te-Bdd.headerTitle" = "Отключить POD";
 
 /* Class = "UINavigationItem"; title = "RileyLink Setup"; ObjectID = "3HH-eJ-lRh"; */
 "3HH-eJ-lRh.title" = "Настройка RileyLink";
@@ -41,7 +41,7 @@
 "ePA-6p-q8C.text" = "Напоминание";
 
 /* Class = "UINavigationItem"; title = "Pod Pairing"; ObjectID = "jVO-Ut-MhL"; */
-"jVO-Ut-MhL.title" = "Pod Pairing";
+"jVO-Ut-MhL.title" = "Cопряжение с Pod-ом";
 
 /* Class = "UITableViewController"; title = "Pump Setup"; ObjectID = "k1Y-x4-m0a"; */
 "k1Y-x4-m0a.title" = "Настройка помпы";
