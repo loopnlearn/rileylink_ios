@@ -196,7 +196,7 @@
 "Priming…" = "Fyller…";
 
 /* Label describing time remaining view */
-"Remaining" = "Gjenstående";
+"Remaining" = "Gjenstår";
 
 /* Label indicating pod replacement necessary
    The title of the command to replace pod */
