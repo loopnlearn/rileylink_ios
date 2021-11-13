@@ -29,46 +29,46 @@
 "Nwf-TJ-KmJ.title" = "Inställning klar";
 
 /* Class = "UITableViewController"; title = "Pump Setup"; ObjectID = "OZk-Db-KCs"; */
-"OZk-Db-KCs.title" = "Pump Setup";
+"OZk-Db-KCs.title" = "Pumpinställning";
 
 /* Class = "UINavigationItem"; title = "Pump Setup"; ObjectID = "V47-Nq-7ew"; */
-"V47-Nq-7ew.title" = "Pump Setup";
+"V47-Nq-7ew.title" = "Pumpinställning";
 
 /* Class = "UITableViewSection"; headerTitle = "Main Menu"; ObjectID = "ZnF-zy-5gR"; */
-"ZnF-zy-5gR.headerTitle" = "Main Menu";
+"ZnF-zy-5gR.headerTitle" = "Huvudmeny";
 
 /* Class = "UILabel"; text = "Utilities"; ObjectID = "c7t-pZ-WqY"; */
-"c7t-pZ-WqY.text" = "Utilities";
+"c7t-pZ-WqY.text" = "Tillbehör";
 
 /* Class = "UILabel"; text = "Connect Devices"; ObjectID = "erq-yb-anx"; */
-"erq-yb-anx.text" = "Connect Devices";
+"erq-yb-anx.text" = "Anslut enheter";
 
 /* Class = "UITableViewSection"; footerTitle = "The pump ID is the 6-digit numerical portion of the serial number (labeled as SN or S/N)."; ObjectID = "fVG-pl-jT9"; */
-"fVG-pl-jT9.footerTitle" = "The pump ID is the 6-digit numerical portion of the serial number (labeled as SN or S/N).";
+"fVG-pl-jT9.footerTitle" = "Ditt pump-ID är den 6-siffriga numeriska delen av serienumret (markerat med SN eller S/N).";
 
 /* Class = "UITableViewSection"; headerTitle = "Pump ID"; ObjectID = "fVG-pl-jT9"; */
-"fVG-pl-jT9.headerTitle" = "Pump ID";
+"fVG-pl-jT9.headerTitle" = "Pump-ID";
 
 /* Class = "UILabel"; text = "Your pump is ready for use."; ObjectID = "g1m-3k-XI3"; */
-"g1m-3k-XI3.text" = "Your pump is ready for use.";
+"g1m-3k-XI3.text" = "Din pump är redo att användas.";
 
 /* Class = "UITableViewController"; title = "Pump Settings"; ObjectID = "iQZ-kT-QUm"; */
-"iQZ-kT-QUm.title" = "Pump Settings";
+"iQZ-kT-QUm.title" = "Pumpinställningar";
 
 /* Class = "UITableViewSection"; footerTitle = "The pump region and color are denoted as the last 3 letters of the the model number (labeled as REF)."; ObjectID = "lGI-LD-xR7"; */
-"lGI-LD-xR7.footerTitle" = "The pump region and color are denoted as the last 3 letters of the the model number (labeled as REF).";
+"lGI-LD-xR7.footerTitle" = "Pumpregion och färg är märkta som de 3 sista siffrorna i modellnumret (markerad som REF).";
 
 /* Class = "UITableViewSection"; headerTitle = "Region and Color"; ObjectID = "lGI-LD-xR7"; */
-"lGI-LD-xR7.headerTitle" = "Region and Color";
+"lGI-LD-xR7.headerTitle" = "Region och färg";
 
 /* Class = "UITableViewController"; title = "Pump Broadcasts"; ObjectID = "oBL-lh-SHI"; */
-"oBL-lh-SHI.title" = "Pump Broadcasts";
+"oBL-lh-SHI.title" = "Pumpsändningar";
 
 /* Class = "UILabel"; text = "On"; ObjectID = "ojQ-ob-gBx"; */
-"ojQ-ob-gBx.text" = "On";
+"ojQ-ob-gBx.text" = "På";
 
 /* Class = "UILabel"; text = "Enter the pump region"; ObjectID = "tGa-FP-JqD"; */
-"tGa-FP-JqD.text" = "Enter the pump region";
+"tGa-FP-JqD.text" = "Ange pumpregion";
 
 /* Class = "UILabel"; text = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:"; ObjectID = "yLn-Ya-p1R"; */
-"yLn-Ya-p1R.text" = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:";
+"yLn-Ya-p1R.text" = "Loop kommer att lyssna på statusmeddelanden skickade av din pump. Följ de här stegen nedan på din pump för att aktivera dessa meddelanden:";

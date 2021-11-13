@@ -98,7 +98,7 @@
 "World-Wide" = "Maailmanlaajuinen";
 
 /* Describing the Canada pump region */
- "Canada" = "Kanada";
+"Canada" = "Kanada";
 
 /* Pump error code when invalid history page is requested */
- "History page does not exist" = "Historiasivua ei ole olemassa";
+"History page does not exist" = "Historiasivua ei ole olemassa";
