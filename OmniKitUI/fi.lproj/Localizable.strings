@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Soita testiäänet";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Soitetaan testiäänet…";
+"Playing Test Beeps…" = "Playing Test Beeps…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "PM-versio";
@@ -270,7 +270,7 @@
 "Delivery Status: %1$@\n" = "Annostelun tila: %1$@\n";
 
 /* The format string for minutes (1: number of minutes string) */
- "%1$@ minutes" = "%1$@ minuuttia";
+"%1$@ minutes" = "%1$@ minuuttia";
 
 /* The format string for Alerts: (1: the alerts string) */
 "Alerts: %1$@\n" = "Hälytykset: %1$@\n";
