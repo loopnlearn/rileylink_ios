@@ -212,3 +212,6 @@
 
 /* Recovery suggestion when pairing signal strength is too high */
 "Please reposition the RileyLink further from the pod" = "Please reposition the RileyLink further from the pod";
+
+/* Description for an inactive alert modifier */
+" (inactive)" = " (inactive)";
