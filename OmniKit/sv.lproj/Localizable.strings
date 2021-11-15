@@ -96,7 +96,7 @@
 "Pod expiration advisory alarm" = "Larm för utgångsdatum för pod";
 
 /* The title for pod expiration notification */
-"Pod Expiration Notice" = "Notis om utgångsdatum för pod";
+"Pod Expiration Notice" = "Poddbyte";
 
 /* Description for Pod expired pod fault */
 "Pod expired" = "Pod har utgått";

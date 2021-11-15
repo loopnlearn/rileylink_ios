@@ -23,7 +23,7 @@
 "HuY-fE-vM8.text" = "Hvis du reiser til en annen tidssone for en lenger tid, kan du endre pumpens tidssone når som helst under innstillinger i Loop.";
 
 /* Class = "UILabel"; text = "Loop will keep your pumpʼs clock synchronized with your phone in the time zone youʼre in now."; ObjectID = "IQ5-53-x9s"; */
-"IQ5-53-x9s.text" = "Loop will keep your pumpʼs clock synchronized with your phone in the time zone youʼre in now.";
+"IQ5-53-x9s.text" = "Loop holder pumpen sin klokke synkronisert med din telefon i tidssonen du er i nå.";
 
 /* Class = "UITableViewController"; title = "Setup Complete"; ObjectID = "Nwf-TJ-KmJ"; */
 "Nwf-TJ-KmJ.title" = "Konfigureringen er fullført";
@@ -62,7 +62,7 @@
 "lGI-LD-xR7.headerTitle" = "Region og farge";
 
 /* Class = "UITableViewController"; title = "Pump Broadcasts"; ObjectID = "oBL-lh-SHI"; */
-"oBL-lh-SHI.title" = "Pump Broadcasts";
+"oBL-lh-SHI.title" = "Pumpe-kringkasting";
 
 /* Class = "UILabel"; text = "On"; ObjectID = "ojQ-ob-gBx"; */
 "ojQ-ob-gBx.text" = "På";
@@ -71,4 +71,4 @@
 "tGa-FP-JqD.text" = "Angi pumperegion";
 
 /* Class = "UILabel"; text = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:"; ObjectID = "yLn-Ya-p1R"; */
-"yLn-Ya-p1R.text" = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:";
+"yLn-Ya-p1R.text" = "Loop lytter etter statusmeldinger sendt fra pumpen. Følg trinnene nedenfor på pumpen for å gjøre disse meldingene tilgjengelige:";
