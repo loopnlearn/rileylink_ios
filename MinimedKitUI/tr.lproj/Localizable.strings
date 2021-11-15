@@ -50,23 +50,23 @@
 "Configuration" = "Configuration";
 
 /* Button title to connect to pump during setup */
-"Connect" = "Connect";
+"Connect" = "Bağlan";
 
 /* The title of the cell showing BLE connection state */
-"Connection State" = "Connection State";
+"Connection State" = "Bağlantı Durumu";
 
 /* Button title to delete pump
    Title text for the button to remove a pump from Loop */
-"Delete Pump" = "Delete Pump";
+"Delete Pump" = "Pompayı Sil";
 
 /* Title text for delivery limits */
-"Delivery Limits" = "Delivery Limits";
+"Delivery Limits" = "İletim Kısıtlamaları";
 
 /* The title of the section describing the device */
-"Device" = "Device";
+"Device" = "Cihaz";
 
 /* The title of the command to discover commands */
-"Discover Commands" = "Discover Commands";
+"Discover Commands" = "Komutları Keşfet";
 
 /* Progress message for discovering commands. */
 "Discovering commands…" = "Discovering commands…";
@@ -99,19 +99,19 @@
 "Fetching pump model…" = "Fetching pump model…";
 
 /* The title of the cell showing firmware version */
-"Firmware" = "Firmware";
+"Firmware" = "Aygıt Yazılımı";
 
 /* The title of the cell showing the pump firmware version */
-"Firmware Version" = "Firmware Version";
+"Firmware Version" = "Cihaz Yazılımı Sürümü";
 
 /* The title of the command to get pump model */
-"Get Pump Model" = "Get Pump Model";
+"Get Pump Model" = "Pompa Modelini Al";
 
 /* Progress message for getting statistics. */
-"Get Statistics…" = "Get Statistics…";
+"Get Statistics…" = "İstatistikleri Al…";
 
 /* Instructions on selecting an insulin data source */
-"Insulin delivery can be determined from the pump by either interpreting the event history or comparing the reservoir volume over time. Reading event history allows for a more accurate status graph and uploading up-to-date treatment data to Nightscout, at the cost of faster pump battery drain and the possibility of a higher radio error rate compared to reading only reservoir volume. If the selected source cannot be used for any reason, the system will attempt to fall back to the other option." = "Insulin delivery can be determined from the pump by either interpreting the event history or comparing the reservoir volume over time. Reading event history allows for a more accurate status graph and uploading up-to-date treatment data to Nightscout, at the cost of faster pump battery drain and the possibility of a higher radio error rate compared to reading only reservoir volume. If the selected source cannot be used for any reason, the system will attempt to fall back to the other option.";
+"Insulin delivery can be determined from the pump by either interpreting the event history or comparing the reservoir volume over time. Reading event history allows for a more accurate status graph and uploading up-to-date treatment data to Nightscout, at the cost of faster pump battery drain and the possibility of a higher radio error rate compared to reading only reservoir volume. If the selected source cannot be used for any reason, the system will attempt to fall back to the other option." = "İnsülin iletimi, olay geçmişi yorumlanarak veya zaman içinde rezervuar hacmi karşılaştırılarak pompadan belirlenebilir. Olay geçmişinin okunması, daha doğru bir durum grafiğine ve güncel tedavi verilerinin Nightscout'a yüklenmesine, daha hızlı pompa pili tüketimi pahasına ve yalnızca rezervuar hacmini okumaya kıyasla daha yüksek radyo hata oranı olasılığına olanak tanır. Seçilen kaynak herhangi bir nedenle kullanılamıyorsa sistem diğer seçeneğe geri dönmeye çalışacaktır.";
 
 /* The title of the cell describing an awake radio */
 "Last Awake" = "Last Awake";
@@ -120,16 +120,16 @@
 "Listening Off" = "Listening Off";
 
 /* The title of the command to pair with mysentry */
-"MySentry Pair" = "MySentry Pair";
+"MySentry Pair" = "MySentry'e Bağlan";
 
 /* The title of the cell showing device name */
 "Name" = "Name";
 
 /* Message display when no response from tuning pump */
-"No response" = "No response";
+"No response" = "Yanıt yok";
 
 /* The title of the cell showing the last idle */
-"On Idle" = "On Idle";
+"On Idle" = "Boşta";
 
 /* Pump find device instruction */
 "On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device";
@@ -138,20 +138,20 @@
 "Preferred Data Source" = "Preferred Data Source";
 
 /* The title of the section describing the pump */
-"Pump" = "Pump";
+"Pump" = "Pompa";
 
 /* The title text for the battery type value */
-"Pump Battery Type" = "Pump Battery Type";
+"Pump Battery Type" = "Pompa Pil Tipi";
 
 /* The title of the cell showing pump ID
    The title text for the pump ID config value */
-"Pump ID" = "Pump ID";
+"Pump ID" = "Pompa ID";
 
 /* The title of the cell showing the pump model number */
-"Pump Model" = "Pump Model";
+"Pump Model" = "Pompa Tipi";
 
 /* Title of the pump settings view controller */
-"Pump Settings" = "Pump Settings";
+"Pump Settings" = "Pompa Ayarları";
 
 /* The title of the command to read basal schedule */
 "Read Basal Schedule" = "Read Basal Schedule";
