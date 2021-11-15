@@ -263,7 +263,7 @@
 /* Recovery suggestion on unexpected pod change */
 "Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
 
-/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string) */
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
 "Last Bolus Not Delivered: %1$@ U\n" = "Viim. bolusta ei annosteltu: %1$@ U\n";
 
 /* The format string for Delivery Status: (1: delivery status string) */

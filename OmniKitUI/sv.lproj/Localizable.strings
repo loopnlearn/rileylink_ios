@@ -267,7 +267,7 @@
 "Last Bolus Not Delivered: %1$@ U\n" = "Sista bolus ej given: %1$@ E\n";
 
 /* The format string for Delivery Status: (1: delivery status string) */
-"Delivery Status: %1$@\n" = "Delivery Status: %1$@\n";
+"Delivery Status: %1$@\n" = "Status på insulintillförsel: %1$@\n";
 
 /* The format string for minutes (1: number of minutes string) */
 "%1$@ minutes" = "%1$@ minuter";
