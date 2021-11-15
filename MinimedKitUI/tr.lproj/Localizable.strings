@@ -163,13 +163,13 @@
 "Reading basal schedule…" = "Reading basal schedule…";
 
 /* Progress message for reading pump status */
-"Reading pump status…" = "Reading pump status…";
+"Reading pump status…" = "Pompa durumu okunuyor…";
 
 /* The title of the cell showing the pump region */
-"Region" = "Region";
+"Region" = "Bölge";
 
 /* Button title to retry sentry setup */
-"Retry" = "Retry";
+"Retry" = "Tekrar Dene";
 
 /* The title of the command to fetch RileyLink statistics */
 "RileyLink Statistics" = "RileyLink Statistics";
@@ -185,25 +185,25 @@
 "Sending button press…" = "Sending button press…";
 
 /* The title of the cell showing BLE signal strength (RSSI) */
-"Signal Strength" = "Signal Strength";
+"Signal Strength" = "Sinyal Gücü";
 
 /* A message indicating a command succeeded */
-"Succeeded" = "Succeeded";
+"Succeeded" = "Başarılı oldu";
 
 /* The format string describing pump suspended state: (1: suspended) */
-"Suspended: %1$@\n" = "Suspended: %1$@\n";
+"Suspended: %1$@\n" = "Duraklatıldı: %1$@\n";
 
 /* The label indicating the results of each frequency trial */
-"Trials" = "Trials";
+"Trials" = "Denemeler";
 
 /* The title of the command to re-tune the radio */
 "Tune Radio Frequency" = "Tune Radio Frequency";
 
 /* Progress message for tuning radio */
-"Tuning radio…" = "Tuning radio…";
+"Tuning radio…" = "Frekans ayarlanıyor…";
 
 /* The detail text for an unknown pump model */
-"Unknown" = "Unknown";
+"Unknown" = "Bilinmiyor";
 
 /* The title of the cell showing uptime */
 "Uptime" = "Uptime";
