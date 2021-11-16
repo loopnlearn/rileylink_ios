@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "Podfehler: %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion." = "Der Pod ist nicht bereit zum Einsetzen der Kanüle.";
+"Pod is not in a state ready for cannula insertion" = "Der Pod ist nicht bereit zum Einsetzen der Kanüle.";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "Der Pod ist nicht bereit zum Befüllen";

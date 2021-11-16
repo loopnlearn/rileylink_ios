@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "Отказ Omnipod %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion." = "Omnipod не готов к установке катетера";
+"Pod is not in a state ready for cannula insertion" = "Omnipod не готов к установке катетера";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "Omnipod не готов к первичному заполнению";
