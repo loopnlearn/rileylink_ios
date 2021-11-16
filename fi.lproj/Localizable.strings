@@ -1,6 +1,3 @@
-/* Description for an inactive alert modifier */
-" (inactive)" = " (ei-aktiivinen)";
-
 /* Description for auto-off alarm */
 "Auto-off alarm" = "Autom. pois -varoitus";
 
@@ -95,4 +92,3 @@
 
 /* Description waiting for pairing reminder */
 "Waiting for pairing reminder" = "Odotetaan yhdistämismuistutusta";
-

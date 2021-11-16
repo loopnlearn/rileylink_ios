@@ -1,5 +1,5 @@
 /* Class = "UITableViewSection"; headerTitle = "Remove POD"; ObjectID = "1LF-te-Bdd"; */
-"1LF-te-Bdd.headerTitle" = "Снимите POD";
+"1LF-te-Bdd.headerTitle" = "Отключить POD";
 
 /* Class = "UINavigationItem"; title = "RileyLink Setup"; ObjectID = "3HH-eJ-lRh"; */
 "3HH-eJ-lRh.title" = "Настройка RileyLink";
@@ -41,7 +41,7 @@
 "ePA-6p-q8C.text" = "Напоминание";
 
 /* Class = "UINavigationItem"; title = "Pod Pairing"; ObjectID = "jVO-Ut-MhL"; */
-"jVO-Ut-MhL.title" = "Pod Pairing";
+"jVO-Ut-MhL.title" = "Cопряжение с Pod-ом";
 
 /* Class = "UITableViewController"; title = "Pump Setup"; ObjectID = "k1Y-x4-m0a"; */
 "k1Y-x4-m0a.title" = "Настройка помпы";
@@ -61,7 +61,7 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "vEc-Km-ewe"; */
 "vEc-Km-ewe.text" = "Ярлык";
 
-/* Class = "UILabel"; text = ""Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
+/* Class = "UILabel"; text = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
 "vmF-Dc-3DS.text" = "Заполните новый Pod инсулином. Дождитесь двух гудков Pod’ а во время заполнения.";
 
 /* Class = "UINavigationItem"; title = "Replace Pod"; ObjectID = "yy1-xf-HdR"; */
