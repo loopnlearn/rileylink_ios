@@ -11,25 +11,25 @@
 "Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@U %2$@ %3$@ %4$@";
 
 /* Delivery status when bolusing */
-"Bolusing" = "Bolusing";
+"Bolusing" = "Bolus verme";
 
 /* Delivery status when bolusing and temp basal is running */
-"Bolusing with temp basal" = "Bolusing with temp basal";
+"Bolusing with temp basal" = "Geçici bazal ile bolus verme";
 
 /* Pod state when inserting cannula */
 "Cannula inserting" = "Cannula inserting";
 
 /* String describing a dose that was certainly scheduled */
-"Certain" = "Certain";
+"Certain" = "Belirli";
 
 /* Pod state when pod has been deactivated */
-"Deactivated" = "Deactivated";
+"Deactivated" = "Devre dışı";
 
 /* Description for Empty reservoir pod fault */
-"Empty reservoir" = "Empty reservoir";
+"Empty reservoir" = "Rezervuar boş";
 
 /* Error message shown when empty response from pod was received */
-"Empty response from pod" = "Empty response from pod";
+"Empty response from pod" = "Pod'tan geri bildirim boş";
 
 /* Pod state error event logged shutting down */
 "Error event logged, shutting down" = "Error event logged, shutting down";
@@ -50,78 +50,78 @@
 "InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@";
 
 /* Description for low reservoir alarm */
-"Low reservoir advisory alarm" = "Low reservoir advisory alarm";
+"Low reservoir advisory alarm" = "Düşük rezervuar uyarı alarmı";
 
 /* Recovery suggestion when no RileyLink is available */
-"Make sure your RileyLink is nearby and powered on" = "Make sure your RileyLink is nearby and powered on";
+"Make sure your RileyLink is nearby and powered on" = "RileyLink'inizin yakında ve açık olduğundan emin olun";
 
 /* Pod alert state when no alerts are active */
-"No alerts" = "No alerts";
+"No alerts" = "Uyarı yok";
 
 /* Error message shown when no pod is paired */
-"No pod paired" = "No pod paired";
+"No pod paired" = "Eşleşmiş pod bulunmuyor";
 
 /* Error message shown when no response from pod was received */
-"No response from pod" = "No response from pod";
+"No response from pod" = "Pod yanıt vermiyor";
 
 /* Error message shown when no response from pod was received */
-"No RileyLink available" = "No RileyLink available";
+"No RileyLink available" = "Mevcut RileyLink bulunmuyor";
 
 /* Delivery status when basal is running
    Pod state when running above fifty units */
 "Normal" = "Normal";
 
 /* Description for Occlusion detected pod fault */
-"Occlusion detected" = "Occlusion detected";
+"Occlusion detected" = "Tıkanma algılandı";
 
 /* Generic title of the omnipod pump manager */
 "Omnipod" = "Omnipod";
 
 /* Pod status after pairing */
-"Paired" = "Paired";
+"Paired" = "Eşleşildi";
 
 /* Recovery suggestion when no response is received from pod */
-"Please bring your pod closer to the RileyLink and try again" = "Please bring your pod closer to the RileyLink and try again";
+"Please bring your pod closer to the RileyLink and try again" = "Lütfen pod'unuzu RileyLink'e yaklaştırın ve tekrar deneyin";
 
 /* Recover suggestion shown when no pod is paired */
-"Please pair a new pod" = "Please pair a new pod";
+"Please pair a new pod" = "Lütfen yeni bir pod eşleştirin";
 
 /* Error message shown when user cannot pair because pod is already paired */
-"Pod already paired" = "Pod already paired";
+"Pod already paired" = "Pod zaten eşleştirilmiş";
 
 /* Error message shown when prime is attempted, but pod is already primed */
-"Pod already primed" = "Pod already primed";
+"Pod already primed" = "Pod zaten hazır";
 
 /* Description for expiration advisory alarm */
-"Pod expiration advisory alarm" = "Pod expiration advisory alarm";
+"Pod expiration advisory alarm" = "Pod sürec sona erme alarmı";
 
 /* The title for pod expiration notification */
-"Pod Expiration Notice" = "Pod Expiration Notice";
+"Pod Expiration Notice" = "Pod Sürec Aşımı Bildirimi";
 
 /* Description for Pod expired pod fault */
-"Pod expired" = "Pod expired";
+"Pod expired" = "Pod süreci sona erdi";
 
 /* Format string for pod fault code */
-"Pod Fault: %1$@" = "Pod Fault: %1$@";
+"Pod Fault: %1$@" = "Pod Hatası: %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion." = "Pod is not in a state ready for cannula insertion.";
+"Pod is not in a state ready for cannula insertion" = "Pod, henüz kanül yerleştirmeye hazır durumda değil.";
 
 /* Error message when prime fails because the pod is in an unexpected state */
-"Pod is not in a state ready for priming." = "Pod is not in a state ready for priming.";
+"Pod is not in a state ready for priming." = "Pod kullanıma hazır durumda değil.";
 
 /* Error message action could not be performed because pod is suspended */
-"Pod is suspended" = "Pod is suspended";
+"Pod is suspended" = "Pod durduldu";
 
 /* Pod state when prime or cannula insertion has not completed in the time allotted */
-"Pod setup window expired" = "Pod setup window expired";
+"Pod setup window expired" = "Pod kurulum penceresinin süresi doldu";
 
 /* Delivery status when pod is priming
    Pod status when priming */
-"Priming" = "Priming";
+"Priming" = "Doldur";
 
 /* Pod state when ready for basal programming */
-"Ready for basal programming" = "Ready for basal programming";
+"Ready for basal programming" = "Bazal programlama için hazır";
 
 /* Pod state when ready for cannula insertion */
 "Ready to insert cannula" = "Ready to insert cannula";
@@ -136,13 +136,13 @@
 "Shutdown imminent alarm" = "Shutdown imminent alarm";
 
 /* The format string describing a suspend. (1: Time)(2: Scheduled certainty */
-"Suspend: %1$@ %2$@" = "Suspend: %1$@ %2$@";
+"Suspend: %1$@ %2$@" = "Askıya alma: %1$@ %2$@";
 
 /* Delivery status when insulin delivery is suspended */
-"Suspended" = "Suspended";
+"Suspended" = "İptal edildi";
 
 /* Pod tank fill completed */
-"Tank fill completed" = "Tank fill completed";
+"Tank fill completed" = "Rezervuar doldurma işlemi tamamlandı";
 
 /* Pod power to motor activated */
 "Tank power activated" = "Tank power activated";
@@ -154,25 +154,25 @@
 "Temp basal running" = "Temp basal running";
 
 /* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
-"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@";
+"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "GeçiciBazal: %1$@ Ü/sa %2$@ %3$@ %4$@ Ü %5$@";
 
 /* The format string for pod expiration notification body (1: time until expiration) */
-"Time to replace your pod! Your pod will expire in %1$@" = "Time to replace your pod! Your pod will expire in %1$@";
+"Time to replace your pod! Your pod will expire in %1$@" = "Pod'unuzu değiştirme zamanı! Pod'unuzun süresi %1$@ içinde sona erecek";
 
 /* String describing a dose that was possibly scheduled */
-"Uncertain" = "Uncertain";
+"Uncertain" = "Belirsiz";
 
 /* Error message shown when empty response from pod was received */
-"Unexpected response from pod" = "Unexpected response from pod";
+"Unexpected response from pod" = "Pod'tan beklenmeyen yanıt";
 
 /* The format string for Unknown pod fault (1: The fault code value) */
-"Unknown pod fault %1$03d" = "Unknown pod fault %1$03d";
+"Unknown pod fault %1$03d" = "Bilinmeyen pod hatası: %1$03d";
 
 /* Recovery suggestion when operation could not be completed due to existing bolus in progress */
-"Wait for existing bolus to finish, or cancel bolus" = "Wait for existing bolus to finish, or cancel bolus";
+"Wait for existing bolus to finish, or cancel bolus" = "Mevcut bolusun bitmesini bekleyin veya bolusu iptal edin";
 
 /* Recovery suggestion when operation could not be completed due to existing temp basal in progress */
-"Wait for existing temp basal to finish, or suspend to cancel" = "Wait for existing temp basal to finish, or suspend to cancel";
+"Wait for existing temp basal to finish, or suspend to cancel" = "Mevcut geçici bazalın bitmesini bekleyin veya askıya almak için iptal edin";
 
 /* Description waiting for pairing reminder */
 "Waiting for pairing reminder" = "Waiting for pairing reminder";
@@ -181,31 +181,31 @@
 "Pod sent ack instead of response" = "Pod sent ack instead of response";
 
 /* Format string for invalid message error code (1: error code number) */
-"Command error %1$u" = "Command error %1$u";
+"Command error %1$u" = "Komut hatası %1$u";
 
 /* "Format string for unexpected pod change" */
-"Unexpected pod change" = "Unexpected pod change";
+"Unexpected pod change" = "Beklenmeyen pod değişikliği";
 
 /* Format string for activation time exceeded */
 "Activation time exceeded" = "Activation time exceeded";
 
 /* Format string for poor pod signal strength */
-"Poor signal strength" = "Poor signal strength";
+"Poor signal strength" = "Düşük sinyal gücü";
 
 /* Format string for pod signal strength too high */
-"Signal strength too high" = "Signal strength too high";
+"Signal strength too high" = "Sinyal gücü çok fazla";
 
 /* Recovery suggestion when no response is received from pod */
-"Please try repositioning the RileyLink and try again" = "Please try repositioning the RileyLink and try again";
+"Please try repositioning the RileyLink and try again" = "Lütfen RileyLink'i yeniden konumlandırmayı deneyin ve ardından tekrar deneyin";
 
 /* Recovery suggestion when ack received instead of response */
-"Try again" = "Try again";
+"Try again" = "Tekrar deneyin";
 
 /* Recovery suggestion when unexpected address received */
 "Crosstalk possible. Please move to a new location and try again" = "Crosstalk possible. Please move to a new location and try again";
 
 /* Recovery suggestion on unexpected pod change */
-"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
+"Please bring only original pod in range or deactivate original pod" = "Lütfen kapsama alanına yalnızca orijinal pod'u getirin veya orijinal pod'u devre dışı bırakın";
 
 /* Recovery suggestion when pairing signal strength is too low */
 "Please reposition the RileyLink relative to the pod" = "Please reposition the RileyLink relative to the pod";

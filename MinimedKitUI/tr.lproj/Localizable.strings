@@ -14,16 +14,16 @@
 "Alkaline and Lithium batteries decay at differing rates. Alkaline tend to have a linear voltage drop over time whereas lithium cell batteries tend to maintain voltage until halfway through their lifespan. Under normal usage in a Non-MySentry compatible Minimed (x22/x15) insulin pump running Loop, Alkaline batteries last approximately 4 to 5 days. Lithium batteries last between 1-2 weeks. This selection will use different battery voltage decay rates for each of the battery chemistry types and alert the user when a battery is approximately 8 to 10 hours from failure." = "Alkaline and Lithium batteries decay at differing rates. Alkaline tend to have a linear voltage drop over time whereas lithium cell batteries tend to maintain voltage until halfway through their lifespan. Under normal usage in a Non-MySentry compatible Minimed (x22/x15) insulin pump running Loop, Alkaline batteries last approximately 4 to 5 days. Lithium batteries last between 1-2 weeks. This selection will use different battery voltage decay rates for each of the battery chemistry types and alert the user when a battery is approximately 8 to 10 hours from failure.";
 
 /* Confirmation message for deleting a pump */
-"Are you sure you want to delete this pump?" = "Are you sure you want to delete this pump?";
+"Are you sure you want to delete this pump?" = "Bu pompa'yı silmek istediğinden emin misin?";
 
 /* The title of the cell describing an awake radio */
 "Awake Until" = "Awake Until";
 
 /* The title text for the basal rate schedule */
-"Basal Rates" = "Basal Rates";
+"Basal Rates" = "Bazal Oranları";
 
 /* The format string describing pump battery voltage: (1: battery voltage) */
-"Battery: %1$@ volts\n" = "Battery: %1$@ volts\n";
+"Battery: %1$@ volts\n" = "Pil: %1$@ volt\n";
 
 /* The label indicating the best radio frequency */
 "Best Frequency" = "Best Frequency";
@@ -35,19 +35,19 @@
 "Cancel" = "Cancel";
 
 /* The title of the command to change pump time */
-"Change Time" = "Change Time";
+"Change Time" = "Zamanı değiştir";
 
 /* The title of the command to change pump time zone */
-"Change Time Zone" = "Change Time Zone";
+"Change Time Zone" = "Zaman dilimini Değiştir";
 
 /* Progress message for changing pump time. */
-"Changing time…" = "Changing time…";
+"Changing time…" = "Zaman değiştir…";
 
 /* The title of the section describing commands */
-"Commands" = "Commands";
+"Commands" = "Komutlar";
 
 /* The title of the configuration section in settings */
-"Configuration" = "Configuration";
+"Configuration" = "Yapılandırma";
 
 /* Button title to connect to pump during setup */
 "Connect" = "Bağlan";
@@ -69,22 +69,22 @@
 "Discover Commands" = "Komutları Keşfet";
 
 /* Progress message for discovering commands. */
-"Discovering commands…" = "Discovering commands…";
+"Discovering commands…" = "Komutlar Keşfetiliyor…";
 
 /* The title of the command to enable diagnostic LEDs */
-"Enable Diagnostic LEDs" = "Enable Diagnostic LEDs";
+"Enable Diagnostic LEDs" = "Sistem Kontrolü LEDleri Etkinleştir";
 
 /* Progress message for enabling diagnostic LEDs */
-"Enabled Diagnostic LEDs" = "Enabled Diagnostic LEDs";
+"Enabled Diagnostic LEDs" = "Sistem Kontrolü LEDleri Etkin";
 
 /* The alert title for a resume error */
-"Error Resuming" = "Error Resuming";
+"Error Resuming" = "Devam ederken hata oluştu";
 
 /* The alert title for a suspend error */
-"Error Suspending" = "Error Suspending";
+"Error Suspending" = "İptal Ederken Hata Oluştu";
 
 /* The title of the command to fetch recent glucose */
-"Fetch Enlite Glucose" = "Fetch Enlite Glucose";
+"Fetch Enlite Glucose" = "Enlite Glikoz Değerlerini Oku";
 
 /* The title of the command to fetch recent history */
 "Fetch Recent History" = "Fetch Recent History";
@@ -132,10 +132,10 @@
 "On Idle" = "Boşta";
 
 /* Pump find device instruction */
-"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device";
+"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "Pompanızda, Cihaz Bul ekranına gidin ve \"Cihaz Bul\"u seçin.\n\nAna Menü >\nAraçlar >\nAygıtları Bağlayın >\nDiğer Aygıtlar >\nAçık >\nAygıt Bul";
 
 /* The title text for the preferred insulin data source config */
-"Preferred Data Source" = "Preferred Data Source";
+"Preferred Data Source" = "Tercih Edilen Veri Kaynağı";
 
 /* The title of the section describing the pump */
 "Pump" = "Pompa";
@@ -154,7 +154,7 @@
 "Pump Settings" = "Pompa Ayarları";
 
 /* The title of the command to read basal schedule */
-"Read Basal Schedule" = "Read Basal Schedule";
+"Read Basal Schedule" = "Bazal Planı Oku";
 
 /* The title of the command to read pump status */
 "Read Pump Status" = "Read Pump Status";
@@ -172,11 +172,11 @@
 "Retry" = "Tekrar Dene";
 
 /* The title of the command to fetch RileyLink statistics */
-"RileyLink Statistics" = "RileyLink Statistics";
+"RileyLink Statistics" = "RileyLink İstatistikleri";
 
 /* Title of button to save basal profile to pump
    Title of button to save delivery limit settings to pump */
-"Save to Pump…" = "Save to Pump…";
+"Save to Pump…" = "Pompaya Kaydet…";
 
 /* The title of the command to send a button press */
 "Send Button Press" = "Send Button Press";
