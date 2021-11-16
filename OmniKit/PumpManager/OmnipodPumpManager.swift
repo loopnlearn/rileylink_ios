@@ -40,7 +40,7 @@ extension OmnipodPumpManagerError: LocalizedError {
         case .podAlreadyPaired:
             return LocalizedString("Pod already paired", comment: "Error message shown when user cannot pair because pod is already paired")
         case .notReadyForCannulaInsertion:
-            return LocalizedString("Pod is not in a state ready for cannula insertion.", comment: "Error message when cannula insertion fails because the pod is in an unexpected state")
+            return LocalizedString("Pod is not in a state ready for cannula insertion", comment: "Error message when cannula insertion fails because the pod is in an unexpected state")
         }
     }
     
