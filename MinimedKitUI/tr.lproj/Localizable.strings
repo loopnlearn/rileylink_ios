@@ -2,22 +2,22 @@
 "%1$@  %2$@/%3$@  %4$@" = "%1$@  %2$@/%3$@  %4$@";
 
 /* The format string describing number of basal schedule entries: (1: number of entries) */
-"%1$@ basal schedule entries\n" = "%1$@ basal schedule entries\n";
+"%1$@ basal schedule entries\n" = "%1$@ bazal program girişleri\n";
 
 /* The format string describing units of insulin remaining: (1: number of units) */
-"%1$@ Units of insulin remaining\n" = "%1$@ Units of insulin remaining\n";
+"%1$@ Units of insulin remaining\n" = "%1$@ Ünite insülin kaldı\n";
 
 /* The format string for displaying an offset from a time zone: (1: GMT)(2: -)(3: 4:00) */
 "%1$@%2$@%3$@" = "%1$@%2$@%3$@";
 
 /* Instructions on selecting battery chemistry type */
-"Alkaline and Lithium batteries decay at differing rates. Alkaline tend to have a linear voltage drop over time whereas lithium cell batteries tend to maintain voltage until halfway through their lifespan. Under normal usage in a Non-MySentry compatible Minimed (x22/x15) insulin pump running Loop, Alkaline batteries last approximately 4 to 5 days. Lithium batteries last between 1-2 weeks. This selection will use different battery voltage decay rates for each of the battery chemistry types and alert the user when a battery is approximately 8 to 10 hours from failure." = "Alkaline and Lithium batteries decay at differing rates. Alkaline tend to have a linear voltage drop over time whereas lithium cell batteries tend to maintain voltage until halfway through their lifespan. Under normal usage in a Non-MySentry compatible Minimed (x22/x15) insulin pump running Loop, Alkaline batteries last approximately 4 to 5 days. Lithium batteries last between 1-2 weeks. This selection will use different battery voltage decay rates for each of the battery chemistry types and alert the user when a battery is approximately 8 to 10 hours from failure.";
+"Alkaline and Lithium batteries decay at differing rates. Alkaline tend to have a linear voltage drop over time whereas lithium cell batteries tend to maintain voltage until halfway through their lifespan. Under normal usage in a Non-MySentry compatible Minimed (x22/x15) insulin pump running Loop, Alkaline batteries last approximately 4 to 5 days. Lithium batteries last between 1-2 weeks. This selection will use different battery voltage decay rates for each of the battery chemistry types and alert the user when a battery is approximately 8 to 10 hours from failure." = "Alkalin ve lityum piller farklı hızlarda bitter. Alkalinler zamanla doğrusal bir voltaj düşüşüne sahip olma eğilimindeyken, lityum hücreli piller ömürlerinin yarısına kadar voltaj tutma eğilimindedir. MySentry uyumlu olmayan bir Minimed (x22/x15) insülin pompası çalışan Loop'ta normal kullanımda, Alkalin piller yaklaşık 4 ila 5 gün dayanır. Lityum piller 1-2 hafta dayanır. Bu seçim, pil kimyası türlerinin her biri için farklı pil voltajı düşüş oranları kullanır ve bir pil arızasından yaklaşık 8-10 saat sonra kullanıcıyı uyarır.";
 
 /* Confirmation message for deleting a pump */
 "Are you sure you want to delete this pump?" = "Bu pompa'yı silmek istediğinden emin misin?";
 
 /* The title of the cell describing an awake radio */
-"Awake Until" = "Awake Until";
+"Awake Until" = "Kadar etkin";
 
 /* The title text for the basal rate schedule */
 "Basal Rates" = "Bazal Oranları";
@@ -26,13 +26,13 @@
 "Battery: %1$@ volts\n" = "Pil: %1$@ volt\n";
 
 /* The label indicating the best radio frequency */
-"Best Frequency" = "Best Frequency";
+"Best Frequency" = "En Kaliteli Frekans";
 
 /* The format string describing pump bolusing state: (1: bolusing) */
-"Bolusing: %1$@\n" = "Bolusing: %1$@\n";
+"Bolusing: %1$@\n" = "Bolusluyor: %1$@\n";
 
 /* The title of the cancel action in an action sheet */
-"Cancel" = "Cancel";
+"Cancel" = "Vazgeç";
 
 /* The title of the command to change pump time */
 "Change Time" = "Zamanı değiştir";
@@ -87,16 +87,16 @@
 "Fetch Enlite Glucose" = "Enlite Glikoz Değerlerini Oku";
 
 /* The title of the command to fetch recent history */
-"Fetch Recent History" = "Fetch Recent History";
+"Fetch Recent History" = "Yakın Geçmişi Al";
 
 /* Progress message for fetching pump glucose. */
-"Fetching glucose…" = "Fetching glucose…";
+"Fetching glucose…" = "Glikoz değeri getiriliyor…";
 
 /* Progress message for fetching pump history. */
-"Fetching history…" = "Fetching history…";
+"Fetching history…" = "Geçmiş getiriliyor…";
 
 /* Progress message for fetching pump model. */
-"Fetching pump model…" = "Fetching pump model…";
+"Fetching pump model…" = "Pump modeli getiriliyor…";
 
 /* The title of the cell showing firmware version */
 "Firmware" = "Aygıt Yazılımı";
@@ -114,16 +114,16 @@
 "Insulin delivery can be determined from the pump by either interpreting the event history or comparing the reservoir volume over time. Reading event history allows for a more accurate status graph and uploading up-to-date treatment data to Nightscout, at the cost of faster pump battery drain and the possibility of a higher radio error rate compared to reading only reservoir volume. If the selected source cannot be used for any reason, the system will attempt to fall back to the other option." = "İnsülin iletimi, olay geçmişi yorumlanarak veya zaman içinde rezervuar hacmi karşılaştırılarak pompadan belirlenebilir. Olay geçmişinin okunması, daha doğru bir durum grafiğine ve güncel tedavi verilerinin Nightscout'a yüklenmesine, daha hızlı pompa pili tüketimi pahasına ve yalnızca rezervuar hacmini okumaya kıyasla daha yüksek radyo hata oranı olasılığına olanak tanır. Seçilen kaynak herhangi bir nedenle kullanılamıyorsa sistem diğer seçeneğe geri dönmeye çalışacaktır.";
 
 /* The title of the cell describing an awake radio */
-"Last Awake" = "Last Awake";
+"Last Awake" = "En son etkin";
 
 /* The title of the cell describing no radio awake data */
-"Listening Off" = "Listening Off";
+"Listening Off" = "Signal dinlemesi kapalı";
 
 /* The title of the command to pair with mysentry */
 "MySentry Pair" = "MySentry'e Bağlan";
 
 /* The title of the cell showing device name */
-"Name" = "Name";
+"Name" = "İsim";
 
 /* Message display when no response from tuning pump */
 "No response" = "Yanıt yok";
@@ -157,10 +157,10 @@
 "Read Basal Schedule" = "Bazal Planı Oku";
 
 /* The title of the command to read pump status */
-"Read Pump Status" = "Read Pump Status";
+"Read Pump Status" = "Pompa Durumunu Oku";
 
 /* Progress message for reading basal schedule */
-"Reading basal schedule…" = "Reading basal schedule…";
+"Reading basal schedule…" = "Bazal Planı Okunuyor…";
 
 /* Progress message for reading pump status */
 "Reading pump status…" = "Pompa durumu okunuyor…";
@@ -206,4 +206,4 @@
 "Unknown" = "Bilinmiyor";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
+"Uptime" = "Çalışma süresi";
