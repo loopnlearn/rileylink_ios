@@ -1,14 +1,14 @@
 /* Description for auto-off alarm */
-"Auto-off alarm" = "Auto-off alarm";
+"Auto-off alarm" = "Otomatik Alarm kapalı";
 
 /* Pod state when running below fifty units */
-"Below 50 units" = "Below 50 units";
+"Below 50 units" = "50 ünite altında";
 
 /* Error message shown when operation could not be completed due to existing bolus in progress */
-"Bolus in progress" = "Bolus in progress";
+"Bolus in progress" = "Bolus devam ediyor";
 
 /* The format string describing a bolus. (1: The amount delivered)(2: Start time of the dose)(3: duration)(4: scheduled certainty) */
-"Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@U %2$@ %3$@ %4$@";
+"Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@Ü %2$@ %3$@ %4$@";
 
 /* Delivery status when bolusing */
 "Bolusing" = "Bolus verme";
@@ -17,7 +17,7 @@
 "Bolusing with temp basal" = "Geçici bazal ile bolus verme";
 
 /* Pod state when inserting cannula */
-"Cannula inserting" = "Cannula inserting";
+"Cannula inserting" = "Kanül yerleştirme";
 
 /* String describing a dose that was certainly scheduled */
 "Certain" = "Belirli";
@@ -32,22 +32,22 @@
 "Empty response from pod" = "Pod'tan geri bildirim boş";
 
 /* Pod state error event logged shutting down */
-"Error event logged, shutting down" = "Error event logged, shutting down";
+"Error event logged, shutting down" = "Hata olayı günlüğe kaydedildi, kapatılıyor";
 
 /* Description for expiration alert */
-"Expiration alert" = "Expiration alert";
+"Expiration alert" = "Son tarih Uyarısı";
 
 /* Description for finish setup */
-"Finish setup " = "Finish setup ";
+"Finish setup " = "Kurulumu Bitir ";
 
 /* Pod inititialized */
-"Initialized" = "Initialized";
+"Initialized" = "Başlatıldı";
 
 /* The format string for Internal pod fault (1: The fault code value) */
-"Internal pod fault %1$03d" = "Internal pod fault %1$03d";
+"Internal pod fault %1$03d" = "Dahili pod arızası %1$03d";
 
 /* The format string describing a bolus that was interrupted. (1: The amount delivered)(2: The amount scheduled)(3: Start time of the dose)(4: duration)(5: scheduled certainty) */
-"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@";
+"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "Kesilen Bolus: %1$@ Ü (%2$@ Ü planlanan) %3$@ %4$@ %5$@";
 
 /* Description for low reservoir alarm */
 "Low reservoir advisory alarm" = "Düşük rezervuar uyarı alarmı";
@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "Pod Hatası: %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion" = "Pod, henüz kanül yerleştirmeye hazır durumda değil.";
+"Pod is not in a state ready for cannula insertion" = "Pod, henüz kanül yerleştirmeye hazır durumda değil";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "Pod kullanıma hazır durumda değil.";
@@ -124,16 +124,16 @@
 "Ready for basal programming" = "Bazal programlama için hazır";
 
 /* Pod state when ready for cannula insertion */
-"Ready to insert cannula" = "Ready to insert cannula";
+"Ready to insert cannula" = "Kanül yerleştirmeye hazır";
 
 /* The format string describing a resume. (1: Time)(2: Scheduled certainty */
-"Resume: %1$@ %2$@" = "Resume: %1$@ %2$@";
+"Resume: %1$@ %2$@" = "Devam Et: %1$@ %2$@";
 
 /* Delivery status when basal is running */
-"Scheduled Basal" = "Scheduled Basal";
+"Scheduled Basal" = "Planlanan Bazal";
 
 /* Description for shutdown imminent alarm */
-"Shutdown imminent alarm" = "Shutdown imminent alarm";
+"Shutdown imminent alarm" = "Her an kapanabilir alarmı";
 
 /* The format string describing a suspend. (1: Time)(2: Scheduled certainty */
 "Suspend: %1$@ %2$@" = "Askıya alma: %1$@ %2$@";
@@ -145,13 +145,13 @@
 "Tank fill completed" = "Rezervuar doldurma işlemi tamamlandı";
 
 /* Pod power to motor activated */
-"Tank power activated" = "Tank power activated";
+"Tank power activated" = "Pod motoru için güç kaynağı etkinleştirildi";
 
 /* Error message shown when temp basal could not be set due to existing temp basal in progress */
-"Temp basal in progress" = "Temp basal in progress";
+"Temp basal in progress" = "Geçici bir bazal oran zaten çalışıyor";
 
 /* Delivery status when temp basal is running */
-"Temp basal running" = "Temp basal running";
+"Temp basal running" = "Geçici bazal oranı devam ediyor";
 
 /* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
 "TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "GeçiciBazal: %1$@ Ü/sa %2$@ %3$@ %4$@ Ü %5$@";
@@ -175,10 +175,10 @@
 "Wait for existing temp basal to finish, or suspend to cancel" = "Mevcut geçici bazalın bitmesini bekleyin veya askıya almak için iptal edin";
 
 /* Description waiting for pairing reminder */
-"Waiting for pairing reminder" = "Waiting for pairing reminder";
+"Waiting for pairing reminder" = "Eşleşme hatırlatıcısı bekleniyor";
 
 /* Error message shown when pod sends ack instead of response */
-"Pod sent ack instead of response" = "Pod sent ack instead of response";
+"Pod sent ack instead of response" = "Pod yanıt yerine onay gönderdi";
 
 /* Format string for invalid message error code (1: error code number) */
 "Command error %1$u" = "Komut hatası %1$u";
@@ -187,7 +187,7 @@
 "Unexpected pod change" = "Beklenmeyen pod değişikliği";
 
 /* Format string for activation time exceeded */
-"Activation time exceeded" = "Activation time exceeded";
+"Activation time exceeded" = "Aktivasyon süresi aşıldı";
 
 /* Format string for poor pod signal strength */
 "Poor signal strength" = "Düşük sinyal gücü";
@@ -202,16 +202,16 @@
 "Try again" = "Tekrar deneyin";
 
 /* Recovery suggestion when unexpected address received */
-"Crosstalk possible. Please move to a new location and try again" = "Crosstalk possible. Please move to a new location and try again";
+"Crosstalk possible. Please move to a new location and try again" = "Çakışma olasılığı mümkün. Lütfen yeni bir konuma geçin ve tekrar deneyin";
 
 /* Recovery suggestion on unexpected pod change */
 "Please bring only original pod in range or deactivate original pod" = "Lütfen kapsama alanına yalnızca orijinal pod'u getirin veya orijinal pod'u devre dışı bırakın";
 
 /* Recovery suggestion when pairing signal strength is too low */
-"Please reposition the RileyLink relative to the pod" = "Please reposition the RileyLink relative to the pod";
+"Please reposition the RileyLink relative to the pod" = "Lütfen RileyLink'i pod'a göre yeniden konumlandırın";
 
 /* Recovery suggestion when pairing signal strength is too high */
-"Please reposition the RileyLink further from the pod" = "Please reposition the RileyLink further from the pod";
+"Please reposition the RileyLink further from the pod" = "Lütfen RileyLink'i pod'tan daha uzağa konumlandırın";
 
 /* Description for an inactive alert modifier */
-" (inactive)" = " (inactive)";
+" (inactive)" = " (etkin değil)";
