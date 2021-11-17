@@ -11,6 +11,7 @@ import LoopKit
 import LoopKitUI
 import RileyLinkKit
 import OmniKit
+import SwiftUI
 
 class InsertCannulaSetupViewController: SetupTableViewController {
     
@@ -118,8 +119,23 @@ class InsertCannulaSetupViewController: SetupTableViewController {
             }
             loadingText = errorText
             
-            // If we have an error, update the continue state depending on whether the cannula insertion was started
-            if let podCommsError = lastError as? PodCommsError {
+            let podCommsError: PodCommsError?
+            if let pumpManagerError = lastError as? PumpManagerError {
+                switch pumpManagerError {
+                // Check for a wrapped PodCommsError in the possible PumpManagerError types
+                case .communication(let error), .configuration(let error), .connection(let error), .deviceState(let error):
+                    podCommsError = error as? PodCommsError
+                default:
+                    podCommsError = nil
+                    break
+                }
+            } else {
+                // Check for a non PumpManagerError PodCommsError
+                podCommsError = lastError as? PodCommsError
+            }
+
+            // If we have an error, update the continue state depending on whether it's fatal or if the cannula insertion was started or not
+            if let podCommsError = podCommsError {
                 if podCommsError.isFaulted {
                     continueState = .fault
                 } else {

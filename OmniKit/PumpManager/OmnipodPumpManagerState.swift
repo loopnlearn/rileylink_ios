@@ -32,6 +32,8 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
 
     public var confirmationBeeps: Bool
 
+    public var automaticBolusBeeps: Bool
+
     // Temporal state not persisted
 
     internal enum EngageablePumpState: Equatable {
@@ -61,6 +63,7 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
         self.rileyLinkConnectionManagerState = rileyLinkConnectionManagerState
         self.unstoredDoses = []
         self.confirmationBeeps = false
+        self.automaticBolusBeeps = false
     }
     
     public init?(rawValue: RawValue) {
@@ -132,7 +135,9 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
         }
 
         self.confirmationBeeps = rawValue["confirmationBeeps"] as? Bool ?? rawValue["bolusBeeps"] as? Bool ?? false
-        
+
+        self.automaticBolusBeeps = rawValue["automaticBolusBeeps"] as? Bool ?? false
+
         if let pairingAttemptAddress = rawValue["pairingAttemptAddress"] as? UInt32 {
             self.pairingAttemptAddress = pairingAttemptAddress
         }
@@ -149,6 +154,7 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
             "basalSchedule": basalSchedule.rawValue,
             "unstoredDoses": unstoredDoses.map { $0.rawValue },
             "confirmationBeeps": confirmationBeeps,
+            "automaticBolusBeeps": automaticBolusBeeps,
         ]
         
         value["podState"] = podState?.rawValue
@@ -193,6 +199,7 @@ extension OmnipodPumpManagerState: CustomDebugStringConvertible {
             "* lastPumpDataReportDate: \(String(describing: lastPumpDataReportDate))",
             "* isPumpDataStale: \(String(describing: isPumpDataStale))",
             "* confirmationBeeps: \(String(describing: confirmationBeeps))",
+            "* automaticBolusBeeps: \(String(describing: automaticBolusBeeps))",
             "* pairingAttemptAddress: \(String(describing: pairingAttemptAddress))",
             "* rileyLinkBatteryAlertLevel: \(String(describing: rileyLinkBatteryAlertLevel))",
             "* lastRileyLinkBatteryAlertDate \(String(describing: lastRileyLinkBatteryAlertDate))",

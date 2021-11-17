@@ -27,6 +27,18 @@ public class ConfirmationBeepsTableViewCell: TextButtonTableViewCell {
     }
 }
 
+
+public class AutoBolusBeepsTableViewCell: TextButtonTableViewCell {
+
+    public func updateTextLabel(enabled: Bool) {
+        if enabled {
+            self.textLabel?.text = LocalizedString("Disable Automatic Bolus Beeps", comment: "Title text for button to disable automatic bolus beeps")
+        } else {
+            self.textLabel?.text = LocalizedString("Enable Automatic Bolus Beeps", comment: "Title text for button to enable automatic bolus beeps")
+        }
+    }
+}
+
 class OmnipodSettingsViewController: RileyLinkSettingsViewController {
 
     let pumpManager: OmnipodPumpManager
@@ -75,7 +87,14 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
         cell.updateTextLabel(enabled: pumpManager.confirmationBeeps)
         return cell
     }()
-    
+
+    lazy var autoBolusBeepsTableViewCell: AutoBolusBeepsTableViewCell = {
+        let cell = AutoBolusBeepsTableViewCell(style: .default, reuseIdentifier: nil)
+        cell.updateTextLabel(enabled: pumpManager.automaticBolusBeeps)
+        cell.isEnabled = self.pumpManager.confirmationBeeps
+        return cell
+    }()
+
     var activityIndicator: UIActivityIndicatorView!
     var refreshButton: UIButton!
 
@@ -262,6 +281,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
     private enum ConfigurationRow: Int, CaseIterable {
         case suspendResume = 0
         case enableDisableConfirmationBeeps
+        case enableDisableAutoBolusBeeps
         case reminder
         case timeZoneOffset
         case replacePod
@@ -393,6 +413,8 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
                 return suspendResumeTableViewCell
             case .enableDisableConfirmationBeeps:
                 return confirmationBeepsTableViewCell
+            case .enableDisableAutoBolusBeeps:
+                return autoBolusBeepsTableViewCell
             case .reminder:
                 let cell = tableView.dequeueReusableCell(withIdentifier: ExpirationReminderDateTableViewCell.className, for: indexPath) as! ExpirationReminderDateTableViewCell
                 if let podState = podState, let reminderDate = pumpManager.expirationReminderDate {
@@ -570,6 +592,9 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             case .enableDisableConfirmationBeeps:
                 confirmationBeepsTapped()
                 tableView.deselectRow(at: indexPath, animated: true)
+            case .enableDisableAutoBolusBeeps:
+                autoBolusBeepsTapped()
+                tableView.deselectRow(at: indexPath, animated: true)
             case .reminder:
                 tableView.deselectRow(at: indexPath, animated: true)
                 tableView.endUpdates()
@@ -652,9 +677,9 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             break
         case .configuration:
             switch configurationRows[indexPath.row] {
-            case .reminder, .suspendResume:
+            case .suspendResume, .enableDisableConfirmationBeeps, .enableDisableAutoBolusBeeps, .reminder:
                 break
-            case .enableDisableConfirmationBeeps, .timeZoneOffset, .replacePod:
+            case .timeZoneOffset, .replacePod:
                 tableView.reloadRows(at: [indexPath], with: .fade)
             }
         case .rileyLinks:
@@ -680,7 +705,8 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
                 }
             }
         case .suspend:
-            pumpManager.suspendDelivery { (error) in
+            let suspendTime: TimeInterval = .minutes(0) // untimed suspend with reminder beeps pending UI work
+            pumpManager.suspendDelivery(withSuspendReminders: suspendTime) { (error) in
                 if let error = error {
                     DispatchQueue.main.async {
                         let title = LocalizedString("Error Suspending", comment: "The alert title for a suspend error")
@@ -691,18 +717,18 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
         }
     }
 
-    private func confirmationBeepsTapped() {
+    private func setConfirmationBeeps(confirmationBeeps: Bool) {
         func done() {
             DispatchQueue.main.async { [weak self] in
                 if let self = self {
                     self.confirmationBeepsTableViewCell.updateTextLabel(enabled: self.pumpManager.confirmationBeeps)
                     self.confirmationBeepsTableViewCell.isLoading = false
+                    self.autoBolusBeepsTableViewCell.isEnabled = self.pumpManager.confirmationBeeps
                 }
             }
         }
 
         confirmationBeepsTableViewCell.isLoading = true
-        let confirmationBeeps = !pumpManager.confirmationBeeps
         pumpManager.setConfirmationBeeps(enabled: confirmationBeeps, completion: { (error) in
             if let error = error {
                 DispatchQueue.main.async {
@@ -717,6 +743,34 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             }
             done()
         })
+    }
+
+    private func confirmationBeepsTapped() {
+        setConfirmationBeeps(confirmationBeeps: !pumpManager.confirmationBeeps)
+    }
+
+    private func autoBolusBeepsTapped() {
+        let newValue = !pumpManager.automaticBolusBeeps
+        pumpManager.automaticBolusBeeps = newValue
+
+        func done() {
+            DispatchQueue.main.async { [weak self] in
+                if let self = self {
+                    self.autoBolusBeepsTableViewCell.updateTextLabel(enabled: newValue)
+                    self.autoBolusBeepsTableViewCell.isLoading = false
+                }
+            }
+        }
+
+        // Beep if confirmation beeps are enabled else just update the value displayed
+        if pumpManager.confirmationBeeps {
+            self.autoBolusBeepsTableViewCell.isLoading = true
+            pumpManager.setConfirmationBeeps(enabled: true, completion: { (error) in
+                done() // no worries if confirmation beep fails for any reason
+            })
+        } else {
+            self.autoBolusBeepsTableViewCell.updateTextLabel(enabled: newValue)
+        }
     }
 }
 
