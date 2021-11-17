@@ -35,19 +35,19 @@
 "Error event logged, shutting down" = "Error event logged, shutting down";
 
 /* Description for expiration alert */
-"Expiration alert" = "Expiration alert";
+"Expiration alert" = "Son tarih Uyarısı";
 
 /* Description for finish setup */
-"Finish setup " = "Finish setup ";
+"Finish setup " = "Kurulumu Bitir ";
 
 /* Pod inititialized */
-"Initialized" = "Initialized";
+"Initialized" = "Başlatıldı";
 
 /* The format string for Internal pod fault (1: The fault code value) */
-"Internal pod fault %1$03d" = "Internal pod fault %1$03d";
+"Internal pod fault %1$03d" = "Dahili pod arızası %1$03d";
 
 /* The format string describing a bolus that was interrupted. (1: The amount delivered)(2: The amount scheduled)(3: Start time of the dose)(4: duration)(5: scheduled certainty) */
-"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@";
+"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "Kesilen Bolus: %1$@ Ü (%2$@ Ü planlanan) %3$@ %4$@ %5$@";
 
 /* Description for low reservoir alarm */
 "Low reservoir advisory alarm" = "Düşük rezervuar uyarı alarmı";
@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "Pod Hatası: %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion" = "Pod, henüz kanül yerleştirmeye hazır durumda değil.";
+"Pod is not in a state ready for cannula insertion" = "Pod, henüz kanül yerleştirmeye hazır durumda değil";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "Pod kullanıma hazır durumda değil.";
@@ -124,7 +124,7 @@
 "Ready for basal programming" = "Bazal programlama için hazır";
 
 /* Pod state when ready for cannula insertion */
-"Ready to insert cannula" = "Ready to insert cannula";
+"Ready to insert cannula" = "Kanül yerleştirmeye hazır";
 
 /* The format string describing a resume. (1: Time)(2: Scheduled certainty */
 "Resume: %1$@ %2$@" = "Resume: %1$@ %2$@";
