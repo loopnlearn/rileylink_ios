@@ -181,31 +181,31 @@
 "Pod sent ack instead of response" = "Pod sent ack instead of response";
 
 /* Format string for invalid message error code (1: error code number) */
-"Command error %1$u" = "Command error %1$u";
+"Command error %1$u" = "Befehl-Fehler %1$u";
 
 /* "Format string for unexpected pod change" */
-"Unexpected pod change" = "Unexpected pod change";
+"Unexpected pod change" = "Unerwartete Pod-Änderung";
 
 /* Format string for activation time exceeded */
-"Activation time exceeded" = "Activation time exceeded";
+"Activation time exceeded" = "Aktivierungszeit überschritten";
 
 /* Format string for poor pod signal strength */
-"Poor signal strength" = "Poor signal strength";
+"Poor signal strength" = "Pod-Signalstärke";
 
 /* Format string for pod signal strength too high */
-"Signal strength too high" = "Signal strength too high";
+"Signal strength too high" = "Signalstärke zu hoch";
 
 /* Recovery suggestion when no response is received from pod */
-"Please try repositioning the RileyLink and try again" = "Please try repositioning the RileyLink and try again";
+"Please try repositioning the RileyLink and try again" = "Bitte ändern Sie die Position von RileyLink und versuchen Sie dann erneut";
 
 /* Recovery suggestion when ack received instead of response */
-"Try again" = "Try again";
+"Try again" = "Bitte erneut versuchen";
 
 /* Recovery suggestion when unexpected address received */
-"Crosstalk possible. Please move to a new location and try again" = "Crosstalk possible. Please move to a new location and try again";
+"Crosstalk possible. Please move to a new location and try again" = "Störsignale möglich. Bitte Position ändern und dann erneut versuchen";
 
 /* Recovery suggestion on unexpected pod change */
-"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
+"Please bring only original pod in range or deactivate original pod" = "Bitte halten Sie nur den Original-Pod in der Reichweite oder deaktivieren Sie den Original-Pod";
 
 /* Recovery suggestion when pairing signal strength is too low */
 "Please reposition the RileyLink relative to the pod" = "Please reposition the RileyLink relative to the pod";
