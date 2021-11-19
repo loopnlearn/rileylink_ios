@@ -179,10 +179,10 @@
 "Save to Pump…" = "Pompaya Kaydet…";
 
 /* The title of the command to send a button press */
-"Send Button Press" = "Send Button Press";
+"Send Button Press" = "Gönder Düğmesine Bas";
 
 /* Progress message for sending button press to pump. */
-"Sending button press…" = "Sending button press…";
+"Sending button press…" = "Gönderme düğmesine basın…";
 
 /* The title of the cell showing BLE signal strength (RSSI) */
 "Signal Strength" = "Sinyal Gücü";
@@ -197,7 +197,7 @@
 "Trials" = "Denemeler";
 
 /* The title of the command to re-tune the radio */
-"Tune Radio Frequency" = "Tune Radio Frequency";
+"Tune Radio Frequency" = "Radyo Frekansını Ayarla";
 
 /* Progress message for tuning radio */
 "Tuning radio…" = "Frekans ayarlanıyor…";

@@ -50,25 +50,25 @@
 "fVG-pl-jT9.headerTitle" = "Pump ID";
 
 /* Class = "UILabel"; text = "Your pump is ready for use."; ObjectID = "g1m-3k-XI3"; */
-"g1m-3k-XI3.text" = "Your pump is ready for use.";
+"g1m-3k-XI3.text" = "Ihre Pumpe ist einsatzbereit.";
 
 /* Class = "UITableViewController"; title = "Pump Settings"; ObjectID = "iQZ-kT-QUm"; */
-"iQZ-kT-QUm.title" = "Pump Settings";
+"iQZ-kT-QUm.title" = "Pumpeneinstellungen";
 
 /* Class = "UITableViewSection"; footerTitle = "The pump region and color are denoted as the last 3 letters of the the model number (labeled as REF)."; ObjectID = "lGI-LD-xR7"; */
-"lGI-LD-xR7.footerTitle" = "The pump region and color are denoted as the last 3 letters of the the model number (labeled as REF).";
+"lGI-LD-xR7.footerTitle" = "Die Region und Farbe der Pumpe sind in den letzten 3 Buchstaben der mit REF gekennzeichneten Modellnummer angegeben.";
 
 /* Class = "UITableViewSection"; headerTitle = "Region and Color"; ObjectID = "lGI-LD-xR7"; */
-"lGI-LD-xR7.headerTitle" = "Region and Color";
+"lGI-LD-xR7.headerTitle" = "Region und Farbe";
 
 /* Class = "UITableViewController"; title = "Pump Broadcasts"; ObjectID = "oBL-lh-SHI"; */
-"oBL-lh-SHI.title" = "Pump Broadcasts";
+"oBL-lh-SHI.title" = "Übertragungen von Pumpe";
 
 /* Class = "UILabel"; text = "On"; ObjectID = "ojQ-ob-gBx"; */
 "ojQ-ob-gBx.text" = "On";
 
 /* Class = "UILabel"; text = "Enter the pump region"; ObjectID = "tGa-FP-JqD"; */
-"tGa-FP-JqD.text" = "Enter the pump region";
+"tGa-FP-JqD.text" = "Region der Pumpe eingeben";
 
 /* Class = "UILabel"; text = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:"; ObjectID = "yLn-Ya-p1R"; */
-"yLn-Ya-p1R.text" = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:";
+"yLn-Ya-p1R.text" = "Loop wird die von der Pumpe gesendeten Statussignale einlesen. Gehen Sie wie folgt vor, um diese Statussignale zu aktivieren:";

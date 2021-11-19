@@ -44,7 +44,7 @@
 "Make sure your RileyLink is nearby and powered on" = "RileyLink'inizin yakında ve açık olduğundan emin olun";
 
 /* Pump error code describing max setting exceeded */
-"Max setting exceeded" = "Max setting exceeded";
+"Max setting exceeded" = "Maksimum ayar aşıldı";
 
 /* Pump title (1: model number) */
 "Minimed %@" = "Minimed %@";
