@@ -94,13 +94,13 @@
 "Device Information" = "Cihaz Bilgileri";
 
 /* Title text for button to disable bolus beeps */
-"Disable Bolus Beeps" = "Bolus'dan önce Uyarıyı Dışı Bırak";
+"Disable Bolus Beeps" = "Bolus Uyarılarını Devre Dışı Bırak";
 
 /* Title text for button to enable bolus beeps */
 "Enable Bolus Beeps" = "Bolus'dan önce Uyarıyı Etkinleştir";
 
 /* The alert title for disable bolus beeps error */
-"Error disabling bolus beeps" = "Bolus Uyarı seslerini devre dışı bırakılırken hata oluştu";
+"Error disabling bolus beeps" = "Bolus uyarılarını devre dışı bırakılırken hata oluştu";
 
 /* The alert title for enable bolus beeps error */
 "Error enabling bolus beeps" = "Bolus Uyarı seslerini etkinleştirirken hata oluştu";
