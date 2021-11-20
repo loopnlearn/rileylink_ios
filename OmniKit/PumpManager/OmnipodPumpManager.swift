@@ -1352,18 +1352,27 @@ extension OmnipodPumpManager: PumpManager {
                 state.bolusEngageState = .engaging
             })
 
-            // If pod suspended, resume basal before bolusing to match existing Medtronic PumpManager behavior
+            // Initialize to true to match existing Medtronic PumpManager behavior for any
+            // manual boluses or to false to never auto resume a suspended pod for any bolus.
+            let autoResumeOnManualBolus = true
+
             if case .some(.suspended) = self.state.podState?.suspendState {
+                // Pod suspended, only auto resume for a manual bolus if autoResumeOnManualBolus is true
+                if automatic || autoResumeOnManualBolus == false {
+                   self.log.error("enactBolus: returning error for %@ bolus with suspended pod", automatic ? "automatic" : "manual")
+                    completion(.failure(SetBolusError.certain(PodCommsError.podSuspended)))
+                    return
+                }
                 do {
                     let scheduleOffset = self.state.timeZone.scheduleOffset(forDate: Date())
                     let beep = self.confirmationBeeps
                     let podStatus = try session.resumeBasal(schedule: self.state.basalSchedule, scheduleOffset: scheduleOffset, acknowledgementBeep: beep, completionBeep: beep)
+                    try session.cancelSuspendAlerts()
                     guard podStatus.deliveryStatus.bolusing == false else {
-                        completion(.failure(SetBolusError.certain(PodCommsError.unfinalizedBolus)))
-                        return
+                        throw SetBolusError.certain(PodCommsError.unfinalizedBolus)
                     }
                 } catch let error {
-                    self.log.error("enactBolus: error resuming suspended pod: %s", String(describing: error))
+                    self.log.error("enactBolus: error resuming suspended pod: %@", String(describing: error))
                     completion(.failure(SetBolusError.certain(error as? PodCommsError ?? PodCommsError.commsError(error: error))))
                     return
                 }
