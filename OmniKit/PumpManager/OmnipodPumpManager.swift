@@ -450,9 +450,9 @@ extension OmnipodPumpManager {
 
         let timeUntilExpiration = formatter.string(from: timeBetweenNoticeAndExpiration) ?? ""
 
-        content.title = NSLocalizedString("Pod Expiration Notice", comment: "The title for pod expiration notification")
+        content.title = LocalizedString("Pod Expiration Notice", comment: "The title for pod expiration notification")
 
-        content.body = String(format: NSLocalizedString("Time to replace your pod! Your pod will expire in %1$@", comment: "The format string for pod expiration notification body (1: time until expiration)"), timeUntilExpiration)
+        content.body = String(format: LocalizedString("Time to replace your pod! Your pod will expire in %1$@", comment: "The format string for pod expiration notification body (1: time until expiration)"), timeUntilExpiration)
         content.sound = UNNotificationSound.default
         content.categoryIdentifier = LoopNotificationCategory.pumpExpired.rawValue
         content.threadIdentifier = LoopNotificationCategory.pumpExpired.rawValue

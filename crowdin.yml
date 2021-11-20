@@ -13,3 +13,5 @@ files:
     translation: MinimedKitUI/%osx_locale%.lproj/MinimedPumpManager.strings
   - source: /OmniKit/en.lproj/Localizable.strings
     translation: /OmniKit/%osx_locale%.lproj/Localizable.strings
+  - source: /OmniKitPacketParser/en.lproj/Localizable.strings
+    translation: /OmniKitPacketParser/%osx_locale%.lproj/Localizable.strings

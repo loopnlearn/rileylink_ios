@@ -72,7 +72,7 @@
 "Configuration" = "Configuration";
 
 /* The title of the Insulin Type */
-"Insulin Type" = "Insulin Type";
+"Insulin Type" = "Type d'Insuline";
 
 /* The title of the continue action in an action sheet */
 "Continue" = "Continuer";
@@ -106,7 +106,7 @@
 "Error enabling bolus beeps" = "Erreur lors de l’activation des bips de bolus";
 
 /* The alert title for enable Confirmation Beeps */
-"Enable Confirmation Beeps" = "Enable Confirmation Beeps";
+"Enable Confirmation Beeps" = "Activer les bips de confirmation";
 
 /* The alert title for Disable Confirmation Beep */
 "Disable Confirmation Beeps" = "Disable Confirmation Beeps";
