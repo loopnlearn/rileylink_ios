@@ -41,16 +41,16 @@
 "Connection Monitoring" = "Connection Monitoring";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
+"Uptime" = "正常运行时间";
 
 /* The title of the cell showing battery level */
-"Battery level" = "Battery level";
+"Battery level" = "电池电量";
 
 /* The title of the cell showing Voltage */
 "Voltage" = "Voltage";
 
 /* "The title of the section for alerts" */
-"Alert" = "Alert";
+"Alert" = "警报";
 
 /* The title of the cell showing Low Battery Alert */
 "Low Battery Alert" = "Low Battery Alert";
@@ -59,7 +59,7 @@
 "Battery level Alert" = "Battery level Alert";
 
 /* Battery level alert OFF in list of options */
-"OFF" = "OFF";
+"OFF" = "关闭";
 
 /* The title of the command to update diagnostic LEDs */
 "Diagnostic LEDs" = "Diagnostic LEDs";
@@ -80,10 +80,10 @@
 "Lighten Red LED" = "Lighten Red LED";
 
 /* The title of the cell showing Test Vibration */
-"Test Vibration" = "Test Vibration";
+"Test Vibration" = "测试震动";
 
 /* The title of the cell for sounding device finding piezo */
-"Find Device" = "Find Device";
+"Find Device" = "查找设备";
 
 /* The title of the cell for connection LED */
 "Connection LED" = "Connection LED";
@@ -92,13 +92,13 @@
 "Connection Vibration" = "Connection Vibration";
 
 /* Detail text when battery alert disabled. */
-"Off" = "Off";
+"Off" = "关闭";
 
 /* Text indicating LED Mode is on */
-"On" = "On";
+"On" = "开";
 
 /* Text indicating LED Mode is off */
-"Off" = "Off";
+"Off" = "关闭";
 
 /* Text indicating LED Mode is auto */
-"Auto" = "Auto";
+"Auto" = "自动";

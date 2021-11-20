@@ -20,7 +20,7 @@
 "Cannula inserting" = "植入管路";
 
 /* String describing a dose that was certainly scheduled */
-"Certain" = "Certain";
+"Certain" = "科学之";
 
 /* Pod state when pod has been deactivated */
 "Deactivated" = "已解除";
@@ -199,7 +199,7 @@
 "Please try repositioning the RileyLink and try again" = "Please try repositioning the RileyLink and try again";
 
 /* Recovery suggestion when ack received instead of response */
-"Try again" = "Try again";
+"Try again" = "再試一次";
 
 /* Recovery suggestion when unexpected address received */
 "Crosstalk possible. Please move to a new location and try again" = "Crosstalk possible. Please move to a new location and try again";
