@@ -2,13 +2,13 @@
 "Auto-off alarm" = "Auto-off alarm";
 
 /* Pod state when running below fifty units */
-"Below 50 units" = "Below 50 units";
+"Below 50 units" = "Menej ako 50 jednotiek";
 
 /* Error message shown when operation could not be completed due to existing bolus in progress */
-"Bolus in progress" = "Bolus in progress";
+"Bolus in progress" = "Bolus sa podáva";
 
 /* The format string describing a bolus. (1: The amount delivered)(2: Start time of the dose)(3: duration)(4: scheduled certainty) */
-"Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@U %2$@ %3$@ %4$@";
+"Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@J %2$@ %3$@ %4$@";
 
 /* Delivery status when bolusing */
 "Bolusing" = "Bolusing";
@@ -17,13 +17,13 @@
 "Bolusing with temp basal" = "Bolusing with temp basal";
 
 /* Pod state when inserting cannula */
-"Cannula inserting" = "Cannula inserting";
+"Cannula inserting" = "Nastrelenie kanuly";
 
 /* String describing a dose that was certainly scheduled */
 "Certain" = "Certain";
 
 /* Pod state when pod has been deactivated */
-"Deactivated" = "Deactivated";
+"Deactivated" = "Deaktivované";
 
 /* Description for Empty reservoir pod fault */
 "Empty reservoir" = "Empty reservoir";

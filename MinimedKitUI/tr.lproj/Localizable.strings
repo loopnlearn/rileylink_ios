@@ -188,7 +188,7 @@
 "Signal Strength" = "Sinyal Gücü";
 
 /* A message indicating a command succeeded */
-"Succeeded" = "Başarılı oldu";
+"Succeeded" = "Başarılı";
 
 /* The format string describing pump suspended state: (1: suspended) */
 "Suspended: %1$@\n" = "Duraklatıldı: %1$@\n";

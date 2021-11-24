@@ -1,5 +1,5 @@
 /* Communications error for a bolus currently running */
-"A bolus is already in progress" = "Halihazırda bir bolus devam ediyor";
+"A bolus is already in progress" = "Bolus zaten devam ediyor";
 
 /* The description of AlarmClockReminderPumpEvent */
 "AlarmClockReminder" = "AlarmClockReminder";
@@ -8,7 +8,7 @@
 "AlarmSensor" = "AlarmSensor";
 
 /* Describing the battery chemistry as Alkaline */
-"Alkaline" = "Alkali";
+"Alkaline" = "Alkalin";
 
 /* The format string description of a BasalProfileStartPumpEvent. (1: The index of the profile)(2: The basal rate) */
 "Basal Profile %1$@: %2$@ U/hour" = "Bazal Profil %1$@: %2$@ Ü/Sa";
