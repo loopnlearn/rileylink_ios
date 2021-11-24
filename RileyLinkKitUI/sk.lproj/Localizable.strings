@@ -1,41 +1,41 @@
 /* The title of the section describing commands */
-"Commands" = "Commands";
+"Commands" = "Príkazy";
 
 /* The connected state */
-"Connected" = "Connected";
+"Connected" = "Pripojený";
 
 /* The in-progress connecting state */
-"Connecting" = "Connecting";
+"Connecting" = "Pripája sa";
 
 /* The title of the cell showing BLE connection state */
-"Connection State" = "Connection State";
+"Connection State" = "Stav pripojenia";
 
 /* The title of the section describing the device */
-"Device" = "Device";
+"Device" = "Zariadenie";
 
 /* The title of the devices table section in RileyLink settings */
-"Devices" = "Devices";
+"Devices" = "Zariadenia";
 
 /* The disconnected state */
-"Disconnected" = "Disconnected";
+"Disconnected" = "Odpojené";
 
 /* The in-progress disconnecting state */
-"Disconnecting" = "Disconnecting";
+"Disconnecting" = "Odpája sa";
 
 /* The title of the cell showing firmware version */
 "Firmware" = "Firmware";
 
 /* The title of the cell showing current rileylink frequency */
-"Frequency" = "Frequency";
+"Frequency" = "Frekvencia";
 
 /* The title of the cell showing device name */
-"Name" = "Name";
+"Name" = "Názov";
 
 /* RileyLink setup description */
 "RileyLink allows for communication with the pump over Bluetooth Low Energy." = "RileyLink allows for communication with the pump over Bluetooth Low Energy.";
 
 /* The title of the cell showing BLE signal strength (RSSI) */
-"Signal Strength" = "Signal Strength";
+"Signal Strength" = "Sila Signálu";
 
 /* The header of the cells showing connection monitoring */
 "Connection Monitoring" = "Connection Monitoring";
@@ -44,22 +44,22 @@
 "Uptime" = "Uptime";
 
 /* The title of the cell showing battery level */
-"Battery level" = "Battery level";
+"Battery level" = "Stav batérie";
 
 /* The title of the cell showing Voltage */
-"Voltage" = "Voltage";
+"Voltage" = "Napätie";
 
 /* "The title of the section for alerts" */
-"Alert" = "Alert";
+"Alert" = "Upozornenie";
 
 /* The title of the cell showing Low Battery Alert */
-"Low Battery Alert" = "Low Battery Alert";
+"Low Battery Alert" = "Upozornenie Nízky stav Batérie";
 
 /* Header of list showing battery level alert options */
-"Battery level Alert" = "Battery level Alert";
+"Battery level Alert" = "Upozornenie Stavu Batérie";
 
 /* Battery level alert OFF in list of options */
-"OFF" = "OFF";
+"OFF" = "VYP";
 
 /* The title of the command to update diagnostic LEDs */
 "Diagnostic LEDs" = "Diagnostic LEDs";
@@ -71,7 +71,7 @@
 "Invert LED Logic" = "Invert LED Logic";
 
 /* The header of the cells showing test commands */
-"Test Commands" = "Test Commands";
+"Test Commands" = "Testovať Ovládanie";
 
 /* The title of the cell showing Lighten Yellow LED */
 "Lighten Yellow LED" = "Lighten Yellow LED";
@@ -80,7 +80,7 @@
 "Lighten Red LED" = "Lighten Red LED";
 
 /* The title of the cell showing Test Vibration */
-"Test Vibration" = "Test Vibration";
+"Test Vibration" = "Testovať Vibrovanie";
 
 /* The title of the cell for sounding device finding piezo */
 "Find Device" = "Find Device";
