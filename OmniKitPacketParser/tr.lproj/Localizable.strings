@@ -90,7 +90,7 @@
 "Pod already paired" = "Pod zaten eşleştirilmiş";
 
 /* Error message shown when prime is attempted, but pod is already primed */
-"Pod already primed" = "Pod zaten hazır";
+"Pod already primed" = "Pod'unuz zaten kullanıma hazırlanmış";
 
 /* Description for expiration advisory alarm */
 "Pod expiration advisory alarm" = "Pod sürec sona erme alarmı";

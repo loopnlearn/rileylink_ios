@@ -47,10 +47,10 @@
 "Internal pod fault %1$03d" = "Dahili pod arızası %1$03d";
 
 /* The format string describing a bolus that was interrupted. (1: The amount delivered)(2: The amount scheduled)(3: Start time of the dose)(4: duration)(5: scheduled certainty) */
-"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "Kesilen Bolus: %1$@ Ü (%2$@ Ü planlanan) %3$@ %4$@ %5$@";
+"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "Bolus kesintisi: %1$@ Ü (%2$@ Ü planlanan) %3$@ %4$@ %5$@";
 
 /* Description for low reservoir alarm */
-"Low reservoir advisory alarm" = "Düşük rezervuar uyarı alarmı";
+"Low reservoir advisory alarm" = "Düşük rezervuar uyarısı";
 
 /* Recovery suggestion when no RileyLink is available */
 "Make sure your RileyLink is nearby and powered on" = "RileyLink'inizin yakında ve açık olduğundan emin olun";
@@ -65,7 +65,7 @@
 "No response from pod" = "Pod yanıt vermiyor";
 
 /* Error message shown when no response from pod was received */
-"No RileyLink available" = "Mevcut RileyLink bulunmuyor";
+"No RileyLink available" = "RileyLink mevcut değil";
 
 /* Delivery status when basal is running
    Pod state when running above fifty units */
@@ -90,10 +90,10 @@
 "Pod already paired" = "Pod zaten eşleştirilmiş";
 
 /* Error message shown when prime is attempted, but pod is already primed */
-"Pod already primed" = "Pod zaten hazır";
+"Pod already primed" = "Pod'unuz zaten kullanıma hazırlanmış";
 
 /* Description for expiration advisory alarm */
-"Pod expiration advisory alarm" = "Pod sürec sona erme alarmı";
+"Pod expiration advisory alarm" = "Pod sona erme uyarısı";
 
 /* The title for pod expiration notification */
 "Pod Expiration Notice" = "Pod Sürec Aşımı Bildirimi";
@@ -108,17 +108,17 @@
 "Pod is not in a state ready for cannula insertion" = "Pod, henüz kanül yerleştirmeye hazır durumda değil";
 
 /* Error message when prime fails because the pod is in an unexpected state */
-"Pod is not in a state ready for priming." = "Pod kullanıma hazır durumda değil.";
+"Pod is not in a state ready for priming." = "Pod doldurulmaya hazır değil.";
 
 /* Error message action could not be performed because pod is suspended */
-"Pod is suspended" = "Pod durduldu";
+"Pod is suspended" = "Pod askıya alındı";
 
 /* Pod state when prime or cannula insertion has not completed in the time allotted */
 "Pod setup window expired" = "Pod kurulum penceresinin süresi doldu";
 
 /* Delivery status when pod is priming
    Pod status when priming */
-"Priming" = "Doldur";
+"Priming" = "Hazırlanıyor";
 
 /* Pod state when ready for basal programming */
 "Ready for basal programming" = "Bazal programlama için hazır";
@@ -139,7 +139,7 @@
 "Suspend: %1$@ %2$@" = "Askıya alma: %1$@ %2$@";
 
 /* Delivery status when insulin delivery is suspended */
-"Suspended" = "İptal edildi";
+"Suspended" = "Askıya alındı";
 
 /* Pod tank fill completed */
 "Tank fill completed" = "Rezervuar doldurma işlemi tamamlandı";
@@ -151,7 +151,7 @@
 "Temp basal in progress" = "Geçici bir bazal oran zaten çalışıyor";
 
 /* Delivery status when temp basal is running */
-"Temp basal running" = "Geçici bazal oranı devam ediyor";
+"Temp basal running" = "Geçici bazal işletiliyor";
 
 /* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
 "TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "GeçiciBazal: %1$@ Ü/sa %2$@ %3$@ %4$@ Ü %5$@";

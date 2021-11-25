@@ -81,22 +81,22 @@
 "Error Resuming" = "Devam ederken hata oluştu";
 
 /* The alert title for a suspend error */
-"Error Suspending" = "İptal Ederken Hata Oluştu";
+"Error Suspending" = "Askıya alırken Hata";
 
 /* The title of the command to fetch recent glucose */
-"Fetch Enlite Glucose" = "Enlite Glikoz Değerlerini Oku";
+"Fetch Enlite Glucose" = "Enlite Glikoz Değerlerini Al";
 
 /* The title of the command to fetch recent history */
 "Fetch Recent History" = "Yakın Geçmişi Al";
 
 /* Progress message for fetching pump glucose. */
-"Fetching glucose…" = "Glikoz değeri getiriliyor…";
+"Fetching glucose…" = "Glikoz değeri alınıyor…";
 
 /* Progress message for fetching pump history. */
-"Fetching history…" = "Geçmiş getiriliyor…";
+"Fetching history…" = "Geçmiş alınıyor…";
 
 /* Progress message for fetching pump model. */
-"Fetching pump model…" = "Pump modeli getiriliyor…";
+"Fetching pump model…" = "Pompa modeli alınıyor…";
 
 /* The title of the cell showing firmware version */
 "Firmware" = "Aygıt Yazılımı";
@@ -111,13 +111,13 @@
 "Get Statistics…" = "İstatistikleri Al…";
 
 /* Instructions on selecting an insulin data source */
-"Insulin delivery can be determined from the pump by either interpreting the event history or comparing the reservoir volume over time. Reading event history allows for a more accurate status graph and uploading up-to-date treatment data to Nightscout, at the cost of faster pump battery drain and the possibility of a higher radio error rate compared to reading only reservoir volume. If the selected source cannot be used for any reason, the system will attempt to fall back to the other option." = "İnsülin iletimi, olay geçmişi yorumlanarak veya zaman içinde rezervuar hacmi karşılaştırılarak pompadan belirlenebilir. Olay geçmişinin okunması, daha doğru bir durum grafiğine ve güncel tedavi verilerinin Nightscout'a yüklenmesine, daha hızlı pompa pili tüketimi pahasına ve yalnızca rezervuar hacmini okumaya kıyasla daha yüksek radyo hata oranı olasılığına olanak tanır. Seçilen kaynak herhangi bir nedenle kullanılamıyorsa sistem diğer seçeneğe geri dönmeye çalışacaktır.";
+"Insulin delivery can be determined from the pump by either interpreting the event history or comparing the reservoir volume over time. Reading event history allows for a more accurate status graph and uploading up-to-date treatment data to Nightscout, at the cost of faster pump battery drain and the possibility of a higher radio error rate compared to reading only reservoir volume. If the selected source cannot be used for any reason, the system will attempt to fall back to the other option." = "İnsülin iletimi, olay geçmişi yorumlanarak veya zaman içinde rezervuar hacmi karşılaştırılarak pompadan belirlenebilir. Olay geçmişinin okunması, daha doğru bir durum grafiğine ve güncel tedavi verilerinin Nightscout'a yüklenmesine karşın, yalnızca rezervuar hacmini okumaya kıyasla daha hızlı pompa pili tüketimi ve daha yüksek pompa iletişim hatasına sebep olabilir. Seçilen kaynak herhangi bir nedenle kullanılamıyorsa sistem diğer seçeneğe geri dönmeye çalışacaktır.";
 
 /* The title of the cell describing an awake radio */
-"Last Awake" = "En son etkin";
+"Last Awake" = "Son uyanma";
 
 /* The title of the cell describing no radio awake data */
-"Listening Off" = "Signal dinlemesi kapalı";
+"Listening Off" = "Dinleme kapalı";
 
 /* The title of the command to pair with mysentry */
 "MySentry Pair" = "MySentry'e Bağlan";
@@ -132,7 +132,7 @@
 "On Idle" = "Boşta";
 
 /* Pump find device instruction */
-"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "Pompanızda, Cihaz Bul ekranına gidin ve \"Cihaz Bul\"u seçin.\n\nAna Menü >\nAraçlar >\nAygıtları Bağlayın >\nDiğer Aygıtlar >\nAçık >\nAygıt Bul";
+"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "Pompanızda, Cihaz Bul ekranına gidin ve \"Cihaz Bul\"u seçin.\n\nAna Menü >\nAraçlar >\nCihazları Bağlayın >\nDiğer Cihazlar >\nAçık >\nCihaz Bul";
 
 /* The title text for the preferred insulin data source config */
 "Preferred Data Source" = "Tercih Edilen Veri Kaynağı";
