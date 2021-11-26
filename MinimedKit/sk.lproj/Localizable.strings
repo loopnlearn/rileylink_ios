@@ -1,5 +1,5 @@
 /* Communications error for a bolus currently running */
-"A bolus is already in progress" = "Bolus zaten devam ediyor";
+"A bolus is already in progress" = "Podanie bolusu už prebieha";
 
 /* The description of AlarmClockReminderPumpEvent */
 "AlarmClockReminder" = "AlarmClockReminder";
@@ -8,97 +8,97 @@
 "AlarmSensor" = "AlarmSensor";
 
 /* Describing the battery chemistry as Alkaline */
-"Alkaline" = "Alkalin";
+"Alkaline" = "Alkalické";
 
 /* The format string description of a BasalProfileStartPumpEvent. (1: The index of the profile)(2: The basal rate) */
-"Basal Profile %1$@: %2$@ U/hour" = "Bazal Profil %1$@: %2$@ Ü/Sa";
+"Basal Profile %1$@: %2$@ U/hour" = "Bazálny Profil %1$@: %2$@ J/hod";
 
 /* Pump error code when bolus is in progress */
-"Bolus in progress" = "Bolus devam ediyor";
+"Bolus in progress" = "Bolus sa podáva";
 
 /* Suggestions for diagnosing a command refused pump error */
-"Check that the pump is not suspended or priming, or has a percent temp basal type" = "Pompanın durdurulmadığından veya Hazırlanıyor olmadığından veya yüzdelik geçici bazal oranı tipi ayarında olmadığını kontrol edin";
+"Check that the pump is not suspended or priming, or has a percent temp basal type" = "Skontrolujte že pumpa nie je pozastavená alebo sa nastavuje, alebo má percentuálny dočasný typ bazálu";
 
 /* Pump error code returned when command refused */
-"Command refused" = "Komut reddedildi";
+"Command refused" = "Príkaz zamietnutý";
 
 /* No comment provided by engineer. */
-"Comms with another pump detected" = "Başka bir pompa algılandı.";
+"Comms with another pump detected" = "Zaznamenané komunikácie s inou pumpou.";
 
 /* Error description */
-"Decoding Error" = "Kod Çözme Hatası";
+"Decoding Error" = "Chyba dekódovania";
 
 /* Error description */
-"Device Error" = "Aygıt Hatası";
+"Device Error" = "Chyba zariadenia";
 
 /* Describing the pump history insulin data source */
-"Event History" = "Etkinlik Geçmişi";
+"Event History" = "História Udalostí";
 
 /* Format string for failure reason. (1: The operation being performed) (2: The response data) */
-"Invalid response during %1$@: %2$@" = "%1$@: %2$@ sürecinde geçersiz yanıt";
+"Invalid response during %1$@: %2$@" = "Neplatná odpoveď počas %1$@: %2$@";
 
 /* Describing the battery chemistry as Lithium */
-"Lithium" = "Lityum";
+"Lithium" = "Líthiové";
 
 /* Recovery suggestion */
-"Make sure your RileyLink is nearby and powered on" = "RileyLink'inizin yakında ve açık olduğundan emin olun";
+"Make sure your RileyLink is nearby and powered on" = "Uistite sa že je váš RileyLink v dosahu a zapnutý";
 
 /* Pump error code describing max setting exceeded */
-"Max setting exceeded" = "Maksimum ayar aşıldı";
+"Max setting exceeded" = "Prekročené max nastavenie";
 
 /* Pump title (1: model number) */
 "Minimed %@" = "Minimed %@";
 
 /* Generic title of the minimed pump manager */
-"Minimed 500/700 Series" = "Minimed 500/700 Serisi";
+"Minimed 500/700 Series" = "Minimed 500/700 Série";
 
 /* Describing the North America pump region */
-"North America" = "Kuzey Amerika";
+"North America" = "Severná Amerika";
 
 /* No comment provided by engineer. */
-"Pump did not respond" = "Pompa yanıt vermedi";
+"Pump did not respond" = "Pumpa neodpovedá";
 
 /* Error description */
-"Pump Error" = "Pompa hatası";
+"Pump Error" = "Chyba pumpy";
 
 /* No comment provided by engineer. */
-"Pump is suspended" = "Pompa durduldu";
+"Pump is suspended" = "Pumpa je pozastavená";
 
 /* No comment provided by engineer. */
-"Pump responded unexpectedly" = "Pompa beklenmedik şekilde yanıt verdi";
+"Pump responded unexpectedly" = "Pumpa odpovedala neočakávane";
 
 /* The format string describing a pump message. (1: The packet type)(2: The message type)(3: The message address)(4: The message data */
-"PumpMessage(%1$@, %2$@, %3$@, %4$@)" = "PompaMesajı(%1$@, %2$@, %3$@, %4$@)";
+"PumpMessage(%1$@, %2$@, %3$@, %4$@)" = "Správa Pumpy(%1$@, %2$@, %3$@, %4$@)";
 
 /* Describing the reservoir insulin data source */
-"Reservoir" = "Rezervuar";
+"Reservoir" = "Rezervoár";
 
 /* Error description */
-"RileyLink radio tune failed" = "RileyLink frekans ayarı başarısız oldu";
+"RileyLink radio tune failed" = "RileyLink radio ladenie zlyhalo";
 
 /* The format string description of a TempBasalPumpEvent. (1: The rate of the temp basal in minutes) */
-"Temporary Basal: %1$.3f U/hour" = "Geçici Bazal Oranı: %1$.3f Ü/Sa";
+"Temporary Basal: %1$.3f U/hour" = "Dočasný Bazál: %1$.3f J/hod";
 
 /* The format string description of a TempBasalDurationPumpEvent. (1: The duration of the temp basal in minutes) */
-"Temporary Basal: %1$d min" = "Geçici Bazal Oranı: %1$d dk";
+"Temporary Basal: %1$d min" = "Dočasný Bazál: %1$d min";
 
 /* The format string description of a TempBasalPumpEvent. (1: The rate of the temp basal in percent) */
-"Temporary Basal: %1$d%%" = "Geçici Bazal Oranı: %1$d%%";
+"Temporary Basal: %1$d%%" = "Dočasný Bazál: %1$d%%";
 
 /* The format string description of an unknown pump error code. (1: The specific error code raw value) */
-"Unknown pump error code: %1$@" = "Bilinmeyen pompa hata kodu: %1$@";
+"Unknown pump error code: %1$@" = "Neznáma chyba pumpy kód: %1$@";
 
 /* No comment provided by engineer. */
-"Unknown pump model: %@" = "Bilinmeyen pompa modeli: %@";
+"Unknown pump model: %@" = "Neznámy model pumpy: %@";
 
 /* Format string for an unknown response. (1: The operation being performed) (2: The response data) */
-"Unknown response during %1$@: %2$@" = "%1$@: %2$@ Sürecinde bilinmeyen yanıt";
+"Unknown response during %1$@: %2$@" = "Neznáma odpoveď počas %1$@: %2$@";
 
 /* Describing the worldwide pump region */
-"World-Wide" = "Dünya Çapında";
+"World-Wide" = "Celo-Svetovo";
 
 /* Describing the Canada pump region */
 "Canada" = "Kanada";
 
 /* Pump error code when invalid history page is requested */
-"History page does not exist" = "Geçmiş sayfası mevcut değil";
+"History page does not exist" = "Stránka História neexistuje";
