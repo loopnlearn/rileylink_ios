@@ -1359,7 +1359,7 @@ extension OmnipodPumpManager: PumpManager {
             if case .some(.suspended) = self.state.podState?.suspendState {
                 // Pod suspended, only auto resume for a manual bolus if autoResumeOnManualBolus is true
                 if automatic || autoResumeOnManualBolus == false {
-                   self.log.error("enactBolus: returning error for %@ bolus with suspended pod", automatic ? "automatic" : "manual")
+                    self.log.error("enactBolus: returning pod suspended error for %@ bolus", automatic ? "automatic" : "manual")
                     completion(.failure(SetBolusError.certain(PodCommsError.podSuspended)))
                     return
                 }
