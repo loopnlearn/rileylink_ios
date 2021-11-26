@@ -957,6 +957,16 @@
 		1980CFFE273C567900AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1980CFFF273C56A700AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1980D001273C58A000AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD7876274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
+		19BD7877274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
+		19BD7878274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD7879274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787A274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787B274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787C274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787D274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787E274D8D01005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787F274D8D01005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		19C76BA4274872DC0067EB7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B19B9871DF3EF68006AB65F /* NewTimePumpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTimePumpEvent.swift; sourceTree = "<group>"; };
 		2F962EBE1E678BAA0070EFBD /* PumpOpsSynchronousTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PumpOpsSynchronousTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -3262,6 +3272,7 @@
 				tr,
 				"pt-PT",
 				uk,
+				sk,
 			);
 			mainGroup = C12EA22E198B436800309FA4;
 			productRefGroup = C12EA238198B436800309FA4 /* Products */;
@@ -4407,6 +4418,7 @@
 				1957BC5927486C4C00FAD366 /* uk */,
 				1957BC5A27486C4E00FAD366 /* vi */,
 				19C76BA4274872DC0067EB7A /* en */,
+				19BD787F274D8D01005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4438,6 +4450,7 @@
 				1980CFE8273C53A200AC5351 /* tr */,
 				1980CFEF273C54F900AC5351 /* pt-PT */,
 				1980CFFA273C567900AC5351 /* uk */,
+				19BD7876274D8D00005CFB6F /* sk */,
 			);
 			name = MinimedPumpManager.storyboard;
 			sourceTree = "<group>";
@@ -4468,6 +4481,7 @@
 				1980CFEB273C53A200AC5351 /* tr */,
 				1980CFF3273C54F900AC5351 /* pt-PT */,
 				1980CFFD273C567900AC5351 /* uk */,
+				19BD787A274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4498,6 +4512,7 @@
 				1980CFED273C542B00AC5351 /* tr */,
 				1980CFF4273C54F900AC5351 /* pt-PT */,
 				1980CFFF273C56A700AC5351 /* uk */,
+				19BD787B274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4528,6 +4543,7 @@
 				1980CFEA273C53A200AC5351 /* tr */,
 				1980CFF2273C54F900AC5351 /* pt-PT */,
 				1980CFFC273C567900AC5351 /* uk */,
+				19BD7879274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4559,6 +4575,7 @@
 				1980CFE9273C53A200AC5351 /* tr */,
 				1980CFF1273C54F900AC5351 /* pt-PT */,
 				1980CFFB273C567900AC5351 /* uk */,
+				19BD7878274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4589,6 +4606,7 @@
 				1980CFEC273C53A300AC5351 /* tr */,
 				1980CFF6273C54FA00AC5351 /* pt-PT */,
 				1980CFFE273C567900AC5351 /* uk */,
+				19BD787D274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4619,6 +4637,7 @@
 				1980CFEE273C543500AC5351 /* tr */,
 				1980CFF7273C54FA00AC5351 /* pt-PT */,
 				1980D001273C58A000AC5351 /* uk */,
+				19BD787E274D8D01005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4650,6 +4669,7 @@
 				1980CFE6273C537100AC5351 /* tr */,
 				1980CFF0273C54F900AC5351 /* pt-PT */,
 				1980CFF8273C564700AC5351 /* uk */,
+				19BD7877274D8D00005CFB6F /* sk */,
 			);
 			name = OmnipodPumpManager.storyboard;
 			sourceTree = "<group>";
@@ -4688,6 +4708,7 @@
 				1980CFE7273C53A000AC5351 /* tr */,
 				1980CFF5273C54FA00AC5351 /* pt-PT */,
 				1980CFF9273C567700AC5351 /* uk */,
+				19BD787C274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

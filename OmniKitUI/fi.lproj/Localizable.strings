@@ -274,3 +274,6 @@
 
 /* The format string for Alerts: (1: the alerts string) */
 "Alerts: %1$@\n" = "Hälytykset: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "If the problem persists, move to a new area and try again";
