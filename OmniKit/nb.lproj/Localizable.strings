@@ -208,7 +208,7 @@
 "Please bring only original pod in range or deactivate original pod" = "Vennligst ha bare den opprinnelige poden innenfor rekkevidde, eller deaktiver den opprinnelige poden";
 
 /* Recovery suggestion when pairing signal strength is too low */
-"Please reposition the RileyLink relative to the pod" = "Vennligst flytte RileyLink i forhold til poden";
+"Please reposition the RileyLink relative to the pod" = "Vennligst flytt RileyLink i forhold til poden";
 
 /* Recovery suggestion when pairing signal strength is too high */
 "Please reposition the RileyLink further from the pod" = "Vennligst flytt RileyLink lenger bort fra poden";

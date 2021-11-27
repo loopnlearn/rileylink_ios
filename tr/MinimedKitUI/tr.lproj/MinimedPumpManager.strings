@@ -23,7 +23,7 @@
 "HuY-fE-vM8.text" = "Uzun bir süre için farklı bir saat dilimine seyahat ederseniz, pompanın saat dilimini istediğiniz zaman Loop'un Ayarlar ekranında değiştirebilirsiniz.";
 
 /* Class = "UILabel"; text = "Loop will keep your pumpʼs clock synchronized with your phone in the time zone youʼre in now."; ObjectID = "IQ5-53-x9s"; */
-"IQ5-53-x9s.text" = "Loop, pompanızın saatini telefonunuzun şu anda bulunduğunuz saat dilimi ile senkronize olmasını sağlar.";
+"IQ5-53-x9s.text" = "Loop, pompanızın saatinin, telefonunuzun şu anda bulunduğunuz saat dilimi ile senkronize olmasını sağlar.";
 
 /* Class = "UITableViewController"; title = "Setup Complete"; ObjectID = "Nwf-TJ-KmJ"; */
 "Nwf-TJ-KmJ.title" = "Kurulum tamamlandı";
@@ -41,7 +41,7 @@
 "c7t-pZ-WqY.text" = "Araçlar";
 
 /* Class = "UILabel"; text = "Connect Devices"; ObjectID = "erq-yb-anx"; */
-"erq-yb-anx.text" = "Cihazları bağlan";
+"erq-yb-anx.text" = "Cihazları bağla";
 
 /* Class = "UITableViewSection"; footerTitle = "The pump ID is the 6-digit numerical portion of the serial number (labeled as SN or S/N)."; ObjectID = "fVG-pl-jT9"; */
 "fVG-pl-jT9.footerTitle" = "Pompa kimliği, Pompanızın seri numarasının (SN veya S/N olarak etiketlenmiş) 6 haneli sayısal kısmıdır.";
