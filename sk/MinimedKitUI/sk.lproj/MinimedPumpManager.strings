@@ -8,7 +8,7 @@
 "A6i-Cb-baR.text" = "Ostatné zariadenia";
 
 /* Class = "UILabel"; text = "Do not change the time using your pumpʼs menu."; ObjectID = "Bdb-j4-WcR"; */
-"Bdb-j4-WcR.text" = "Do not change the time using your pumpʼs menu.";
+"Bdb-j4-WcR.text" = "Nemeňte čas použitím menu vašej pumpy.";
 
 /* Class = "UITableViewController"; title = "Pump Clock"; ObjectID = "Fps-h3-V4K"; */
 "Fps-h3-V4K.title" = "Hodiny Pumpy";
@@ -20,10 +20,10 @@
 "HfQ-fG-8vO.text" = "Prezrieť nastavenia vašej pumpy nižšie. Tieto nastavenia môžete zmeniť kedykoľvek na obrazovke Nastavenia Slučky.";
 
 /* Class = "UILabel"; text = "If you travel to a different time zone for an extended period of time, you can change the pumpʼs time zone at any time in Loopʼs Settings screen."; ObjectID = "HuY-fE-vM8"; */
-"HuY-fE-vM8.text" = "If you travel to a different time zone for an extended period of time, you can change the pumpʼs time zone at any time in Loopʼs Settings screen.";
+"HuY-fE-vM8.text" = "Ak cestujete do iného časového pásma na dlhší čas, môžete zmeniť časové pásmo pumpy kedykoľvek v sekcii Nastavenia pre Loop.";
 
 /* Class = "UILabel"; text = "Loop will keep your pumpʼs clock synchronized with your phone in the time zone youʼre in now."; ObjectID = "IQ5-53-x9s"; */
-"IQ5-53-x9s.text" = "Loop will keep your pumpʼs clock synchronized with your phone in the time zone youʼre in now.";
+"IQ5-53-x9s.text" = "Loop bude udržiavať čas na vašej pumpe synchronizovaný s vašim teléfonom v časovom pásme v akom sa teraz nachádzate.";
 
 /* Class = "UITableViewController"; title = "Setup Complete"; ObjectID = "Nwf-TJ-KmJ"; */
 "Nwf-TJ-KmJ.title" = "Inštalácia je dokončená";
@@ -56,13 +56,13 @@
 "iQZ-kT-QUm.title" = "Nastavenia Pumpy";
 
 /* Class = "UITableViewSection"; footerTitle = "The pump region and color are denoted as the last 3 letters of the the model number (labeled as REF)."; ObjectID = "lGI-LD-xR7"; */
-"lGI-LD-xR7.footerTitle" = "The pump region and color are denoted as the last 3 letters of the the model number (labeled as REF).";
+"lGI-LD-xR7.footerTitle" = "Región a farba pumpy sú označené ako posledné 3 písmená čísla modelu (označené ako REF).";
 
 /* Class = "UITableViewSection"; headerTitle = "Region and Color"; ObjectID = "lGI-LD-xR7"; */
 "lGI-LD-xR7.headerTitle" = "Región a Farba";
 
 /* Class = "UITableViewController"; title = "Pump Broadcasts"; ObjectID = "oBL-lh-SHI"; */
-"oBL-lh-SHI.title" = "Pump Broadcasts";
+"oBL-lh-SHI.title" = "Vysielania Pumpy";
 
 /* Class = "UILabel"; text = "On"; ObjectID = "ojQ-ob-gBx"; */
 "ojQ-ob-gBx.text" = "Zapnuté";
@@ -71,4 +71,4 @@
 "tGa-FP-JqD.text" = "Zadajte región pumpy";
 
 /* Class = "UILabel"; text = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:"; ObjectID = "yLn-Ya-p1R"; */
-"yLn-Ya-p1R.text" = "Slučka bude počúvať stav správ zaslaných vašou pumpou. Nasledujte kroky nižšie na vašej pumpe pre povolenie týchto správ:";
+"yLn-Ya-p1R.text" = "Loop bude počúvať stav správ zaslaných vašou pumpou. Nasledujte kroky nižšie na vašej pumpe pre povolenie týchto správ:";
