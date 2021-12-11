@@ -90,7 +90,7 @@
 "Fetch Recent History" = "Hent nylig historikk";
 
 /* Progress message for fetching pump glucose. */
-"Fetching glucose…" = "Henter blodsukkeret…";
+"Fetching glucose…" = "Henter blodsukker…";
 
 /* Progress message for fetching pump history. */
 "Fetching history…" = "Henter historikk…";
