@@ -85,6 +85,7 @@
 /* The title of the cell for sounding device finding piezo */
 "Find Device" = "Nájsť Zariadenie";
 
+/* The title of the cell for connection LED */
 "Connection LED" = "Pripojenie LED";
 
 /* The title of the cell for connection vibration */
