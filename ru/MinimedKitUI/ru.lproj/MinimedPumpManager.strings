@@ -44,7 +44,7 @@
 "erq-yb-anx.text" = "Подключить устройства";
 
 /* Class = "UITableViewSection"; footerTitle = "The pump ID is the 6-digit numerical portion of the serial number (labeled as SN or S/N)."; ObjectID = "fVG-pl-jT9"; */
-"fVG-pl-jT9.footerTitle" = "ID помпы — это 6-значная цифровая часть серийного номера (обозначаемого SN or S/N).";
+"fVG-pl-jT9.footerTitle" = "ID помпы — это 6-значная цифровая часть серийного номера (обозначаемого SN или S/N).";
 
 /* Class = "UITableViewSection"; headerTitle = "Pump ID"; ObjectID = "fVG-pl-jT9"; */
 "fVG-pl-jT9.headerTitle" = "ID помпы";
@@ -71,4 +71,4 @@
 "tGa-FP-JqD.text" = "Введите регион помпы";
 
 /* Class = "UILabel"; text = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:"; ObjectID = "yLn-Ya-p1R"; */
-"yLn-Ya-p1R.text" = "Loop will listen for status messages sent by your pump. Follow the steps below on your pump to enable these messages:";
+"yLn-Ya-p1R.text" = "Loop будет отслеживать сообщения о состоянии с помпы. Выполните следующие шаги на помпе, чтобы активировать такие сообщения:";

@@ -38,7 +38,7 @@
 "Change Time" = "Изменить время";
 
 /* The title of the command to change pump time zone */
-"Change Time Zone" = "Изменить временной пояс";
+"Change Time Zone" = "Изменить часовой пояс";
 
 /* Progress message for changing pump time. */
 "Changing time…" = "Изменяется время…";
@@ -72,10 +72,10 @@
 "Discovering commands…" = "Обнаружение команд…";
 
 /* The title of the command to enable diagnostic LEDs */
-"Enable Diagnostic LEDs" = "Включить LED лампочки диагностики";
+"Enable Diagnostic LEDs" = "Включить диагностические LED";
 
 /* Progress message for enabling diagnostic LEDs */
-"Enabled Diagnostic LEDs" = "LED лампочки диагностики включены";
+"Enabled Diagnostic LEDs" = "Диагностические LED включены";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Ошибка при возобновлении";
@@ -145,7 +145,7 @@
 
 /* The title of the cell showing pump ID
    The title text for the pump ID config value */
-"Pump ID" = "Инд номер помпы";
+"Pump ID" = "Идентификационный № помпы";
 
 /* The title of the cell showing the pump model number */
 "Pump Model" = "Модель помпы";

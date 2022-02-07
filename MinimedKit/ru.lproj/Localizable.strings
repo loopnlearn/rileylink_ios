@@ -17,7 +17,7 @@
 "Bolus in progress" = "Подается болюс";
 
 /* Suggestions for diagnosing a command refused pump error */
-"Check that the pump is not suspended or priming, or has a percent temp basal type" = "Убедитесь, что помпа не остановлена и не заполняется или не находится в режиме подачи оставшихся процентов временного базала";
+"Check that the pump is not suspended or priming, or has a percent temp basal type" = "Убедитесь, что помпа не остановлена и не заправляется или не находится в режиме подачи временного базала в процентах";
 
 /* Pump error code returned when command refused */
 "Command refused" = "Отказ в выполнении команды";
@@ -74,7 +74,7 @@
 "Reservoir" = "Резервуар";
 
 /* Error description */
-"RileyLink radio tune failed" = "Настройка радиосвязи с RileyLink не удалась";
+"RileyLink radio tune failed" = "Настройка радиосвязи RileyLink с помпой не удалась";
 
 /* The format string description of a TempBasalPumpEvent. (1: The rate of the temp basal in minutes) */
 "Temporary Basal: %1$.3f U/hour" = "Временный базал: %1$.3f ед/ч";
