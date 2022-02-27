@@ -1,8 +1,8 @@
 /* Description for auto-off alarm */
-"Auto-off alarm" = "Otomatik Alarm kapalı";
+"Auto-off alarm" = "Otomatik-kapanma alarmı";
 
 /* Pod state when running below fifty units */
-"Below 50 units" = "50 ünite altında";
+"Below 50 units" = "50 ünite'den az";
 
 /* Error message shown when operation could not be completed due to existing bolus in progress */
 "Bolus in progress" = "Bolus devam ediyor";
@@ -11,10 +11,10 @@
 "Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@Ü %2$@ %3$@ %4$@";
 
 /* Delivery status when bolusing */
-"Bolusing" = "Bolus verme";
+"Bolusing" = "Bolus veriliyor";
 
 /* Delivery status when bolusing and temp basal is running */
-"Bolusing with temp basal" = "Geçici bazal ile bolus verme";
+"Bolusing with temp basal" = "Geçici bazal ile bolus veriliyor";
 
 /* Pod state when inserting cannula */
 "Cannula inserting" = "Kanül yerleştirme";
