@@ -223,7 +223,7 @@ public class PodCommsSession {
         
         // If a confirmation beep type was specified & pod isn't faulted, append a beep config message block to emit the requested beep type
         if let confirmationBeepType = confirmationBeepType, podState.isFaulted == false {
-            let confirmationBeepBlock = BeepConfigCommand(beepConfigType: confirmationBeepType, basalCompletionBeep: true, tempBasalCompletionBeep: false, bolusCompletionBeep: true)
+            let confirmationBeepBlock = BeepConfigCommand(beepConfigType: confirmationBeepType, basalCompletionBeep: true, tempBasalCompletionBeep: true, bolusCompletionBeep: true)
             blocksToSend += [confirmationBeepBlock]
         }
 
