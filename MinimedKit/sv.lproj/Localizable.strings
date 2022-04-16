@@ -11,7 +11,7 @@
 "Alkaline" = "Alkaliskt";
 
 /* The format string description of a BasalProfileStartPumpEvent. (1: The index of the profile)(2: The basal rate) */
-"Basal Profile %1$@: %2$@ U/hour" = "Basalprofil %1$@: %2$@ E/h";
+"Basal Profile %1$@: %2$@ U/hour" = "Basalprofil %1$@: %2$@ IE/h";
 
 /* Pump error code when bolus is in progress */
 "Bolus in progress" = "Ger bolus";
@@ -77,7 +77,7 @@
 "RileyLink radio tune failed" = "RileyLink radiosignal misslyckad";
 
 /* The format string description of a TempBasalPumpEvent. (1: The rate of the temp basal in minutes) */
-"Temporary Basal: %1$.3f U/hour" = "Temporär basal: %1$.3f E/timme";
+"Temporary Basal: %1$.3f U/hour" = "Temporär basal: %1$.3f IE/h";
 
 /* The format string description of a TempBasalDurationPumpEvent. (1: The duration of the temp basal in minutes) */
 "Temporary Basal: %1$d min" = "Temporär basal: %1$d min";
