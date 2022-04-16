@@ -98,7 +98,7 @@
 "World-Wide" = "Weltweit";
 
 /* Describing the Canada pump region */
-"Canada" = "Canada";
+"Canada" = "Kanada";
 
 /* Pump error code when invalid history page is requested */
-"History page does not exist" = "History page does not exist";
+"History page does not exist" = "Zurückliegende Ereignisse existieren nicht";
