@@ -731,7 +731,7 @@ public class PodCommsSession {
 
     // Throws PodCommsError
     @discardableResult
-     public func getStatus(beepBlock: MessageBlock? = nil) throws -> StatusResponse {
+    public func getStatus(beepBlock: MessageBlock? = nil) throws -> StatusResponse {
         if useCancelNoneForStatus {
             return try cancelNone(beepBlock: beepBlock) // functional replacement for getStatus()
         }
@@ -762,7 +762,6 @@ public class PodCommsSession {
 
     @discardableResult
     public func readPodInfo(podInfoResponseSubType: PodInfoResponseSubType, beepBlock: MessageBlock? = nil) throws -> PodInfoResponse {
-        let infoResponse: PodInfoResponse = try send([GetStatusCommand(podInfoType: .detailedStatus)], beepBlock: beepBlock)
         let podInfoCommand = GetStatusCommand(podInfoType: podInfoResponseSubType)
         let podInfoResponse: PodInfoResponse = try send([podInfoCommand], beepBlock: beepBlock)
         return podInfoResponse
