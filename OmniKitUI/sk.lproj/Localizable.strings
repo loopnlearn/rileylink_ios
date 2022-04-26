@@ -112,10 +112,10 @@
 "Disable Confirmation Beeps" = "Vypnúť Potvrdzovacie Pípnutia";
 
 /* Title text for button to disable extended confirmation beeps */
-"Disable Extended Confirmation Beeps" = "Disable Extended Confirmation Beeps";
+"Disable Extended Confirmation Beeps" = "Vypnúť Rozšírené Potrvdzovacie Pípnutia";
 
 /* Title text for button to enable extended confirmation beeps */
-"Enable Extended Confirmation Beeps" = "Enable Extended Confirmation Beeps";
+"Enable Extended Confirmation Beeps" = "Zapnúť Rozšírené Potrvdzovacie Pípnutia";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Zhrnutie Chyby";
