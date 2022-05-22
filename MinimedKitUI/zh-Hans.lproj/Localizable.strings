@@ -206,4 +206,4 @@
 "Unknown" = "未知";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
+"Uptime" = "正常运行时间";

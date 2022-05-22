@@ -157,7 +157,7 @@
 "TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@";
 
 /* The format string for pod expiration notification body (1: time until expiration) */
-"Time to replace your pod! Your pod will expire in %1$@" = "Byt din pod! Din pod går ut om %1$@";
+"Time to replace your pod! Your pod will expire in %1$@" = "Byt din podd! Din podd går ut om %1$@";
 
 /* String describing a dose that was possibly scheduled */
 "Uncertain" = "Osäker";

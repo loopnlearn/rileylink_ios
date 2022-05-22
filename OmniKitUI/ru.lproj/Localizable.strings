@@ -111,11 +111,11 @@
 /* The alert title for Disable Confirmation Beep */
 "Disable Confirmation Beeps" = "Запретить подтверждающие звуковые сигналы";
 
-/* The alert title for enable Automatic Bolus Beeps */
-"Enable Automatic Bolus Beeps" = "Разрешить звуковые сигналы автоматического болюса";
+/* Title text for button to disable extended confirmation beeps */
+"Disable Extended Confirmation Beeps" = "Запретить расширенные подтверждающие звуковые сигналы";
 
-/* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "Запретить звуковые сигналы автоматического болюса";
+/* Title text for button to enable extended confirmation beeps */
+"Enable Extended Confirmation Beeps" = "Разрешить расширенные подтверждающие звуковые сигналы";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Ошибка возобновления";
