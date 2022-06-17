@@ -1,5 +1,5 @@
 /* Description for auto-off alarm */
-"Auto-off alarm" = "Авто отключение сигнала";
+"Auto-off alarm" = "Авто-отключение сигнала";
 
 /* Pod state when running below fifty units */
 "Below 50 units" = "Менее 50 единиц";

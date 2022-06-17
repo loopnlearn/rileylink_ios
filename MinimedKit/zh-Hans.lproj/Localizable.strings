@@ -47,7 +47,7 @@
 "Max setting exceeded" = "超过最大限制";
 
 /* Pump title (1: model number) */
-"Minimed %@" = "Minimed %@";
+"Minimed %@" = "美敦力%@";
 
 /* Generic title of the minimed pump manager */
 "Minimed 500/700 Series" = "Minimed 500/700系列";
@@ -98,7 +98,7 @@
 "World-Wide" = "全球";
 
 /* Describing the Canada pump region */
-"Canada" = "Canada";
+"Canada" = "加拿大";
 
 /* Pump error code when invalid history page is requested */
-"History page does not exist" = "History page does not exist";
+"History page does not exist" = "历史记录页面不存在";
