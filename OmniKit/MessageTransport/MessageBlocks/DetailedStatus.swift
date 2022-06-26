@@ -46,11 +46,11 @@ public struct DetailedStatus : PodInfo, Equatable {
         
         self.deliveryStatus = DeliveryStatus(rawValue: encodedData[2] & 0xf)!
         
-        self.bolusNotDelivered = Pod.pulseSize * Double((Int(encodedData[3] & 0x3) << 8) | Int(encodedData[4]))
+        self.bolusNotDelivered = Double((Int(encodedData[3] & 0x3) << 8) | Int(encodedData[4])) / Pod.pulsesPerUnit
         
         self.lastProgrammingMessageSeqNum = encodedData[5]
         
-        self.totalInsulinDelivered = Pod.pulseSize * Double(encodedData[6...7].toBigEndian(UInt16.self))
+        self.totalInsulinDelivered = Double(encodedData[6...7].toBigEndian(UInt16.self)) / Pod.pulsesPerUnit
         
         self.faultEventCode = FaultEventCode(rawValue: encodedData[8])
         
@@ -61,7 +61,7 @@ public struct DetailedStatus : PodInfo, Equatable {
             self.faultEventTimeSinceActivation = nil
         }
         
-        let reservoirValue = Double((Int(encodedData[11] & 0x3) << 8) + Int(encodedData[12])) * Pod.pulseSize
+        let reservoirValue = Double((Int(encodedData[11] & 0x3) << 8) + Int(encodedData[12])) / Pod.pulsesPerUnit
         
         if reservoirValue <= Pod.maximumReservoirReading {
             self.reservoirLevel = reservoirValue

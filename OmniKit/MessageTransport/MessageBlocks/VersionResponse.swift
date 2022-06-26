@@ -47,8 +47,8 @@ public struct VersionResponse : MessageBlock {
     public let pulseSize: Double?                   // VVVV / 100,000, must be 0x1388 / 100,000 = 0.05U
     public let secondsPerBolusPulse: Double?        // BR / 8, nominally 0x10 / 8 = 2 seconds per pulse
     public let secondsPerPrimePulse: Double?        // PR / 8, nominally 0x08 / 8 = 1 seconds per priming pulse
-    public let primeUnits: Double?                  // PP * pulseSize, nominally 0x34 * 0.05U = 2.6U
-    public let cannulaInsertionUnits: Double?       // CP * pulseSize, nominally 0x0A * 0.05U = 0.5U
+    public let primeUnits: Double?                  // PP / pulsesPerUnit, nominally 0x34 / 20 = 2.6U
+    public let cannulaInsertionUnits: Double?       // CP / pulsesPerUnit, nominally 0x0A / 20 = 0.5U
     public let serviceDuration: TimeInterval?       // PL hours, nominally 0x50 = 80 hours
 
     public let data: Data
@@ -131,8 +131,8 @@ public struct VersionResponse : MessageBlock {
             pulseSize = Double(encodedData[2...].toBigEndian(UInt16.self)) / 100000
             secondsPerBolusPulse = Double(encodedData[4]) / 8
             secondsPerPrimePulse = Double(encodedData[5]) / 8
-            primeUnits = Double(encodedData[6]) * Pod.pulseSize
-            cannulaInsertionUnits = Double(encodedData[7]) * Pod.pulseSize
+            primeUnits = Double(encodedData[6]) / Pod.pulsesPerUnit
+            cannulaInsertionUnits = Double(encodedData[7]) / Pod.pulsesPerUnit
             serviceDuration = TimeInterval.hours(Double(encodedData[8]))
 
             // These values only included in the shorter 0x15 VersionResponse for the AssignAddress command.
