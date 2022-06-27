@@ -381,7 +381,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
 
                 let deliveredUnits: Double?
                 if let dose = podState.unfinalizedBolus {
-                    deliveredUnits = pumpManager.roundToSupportedBolusVolume(units: dose.progress * dose.units)
+                    deliveredUnits = pumpManager.roundToSupportedBolusVolume(units: dose.progress() * dose.units)
                 } else {
                     deliveredUnits = nil
                 }
@@ -993,7 +993,7 @@ private extension UITableViewCell {
             return
         }
         
-        let progress = dose.progress
+        let progress = dose.progress()
         if let units = self.insulinFormatter.string(from: dose.units), let deliveredUnits = self.insulinFormatter.string(from: delivered) {
             if progress >= 1 {
                 self.detailTextLabel?.text = String(format: LocalizedString("%@ U (Finished)", comment: "Format string for bolus progress when finished. (1: The localized amount)"), units)

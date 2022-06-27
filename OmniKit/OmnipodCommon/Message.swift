@@ -44,10 +44,17 @@ struct Message {
         }
         
         self.expectFollowOnMessage = (b9 & 0b10000000) != 0
-        self.sequenceNum = Int((b9 >> 2) & 0b11111)
-        let crc = (UInt16(encodedData[encodedData.count-2]) << 8) + UInt16(encodedData[encodedData.count-1])
+        self.sequenceNum = Int((b9 >> 2) & 0b1111)
+
         let msgWithoutCrc = encodedData.prefix(encodedData.count - 2)
-        guard msgWithoutCrc.crc16() == crc else {
+
+        // Eros pods generates the expected CRC for Omnipod Messages that we can validate using crc16(), while Dash
+        // pods generates some unexpected checksum that is not understood and doesn't match the crc16 we need to generate.
+        // The Dash PDM explicitly ignores these two CRC bytes for incoming messages, so we ignore them for OmniBLE
+        // and rely on the higher level BLE & Dash "MessagePacket" data checking to provide data corruption protection.
+        let crc = (UInt16(encodedData[encodedData.count-2]) << 8) + UInt16(encodedData[encodedData.count-1])
+        let computedCrc = UInt16(msgWithoutCrc.crc16())
+        if computedCrc != crc {
             throw MessageError.invalidCrc
         }
         self.messageBlocks = try Message.decodeBlocks(data: Data(msgWithoutCrc.suffix(from: 6)))
@@ -79,12 +86,12 @@ struct Message {
             cmdData.append(cmd.data)
         }
         
-        let b9: UInt8 = ((expectFollowOnMessage ? 1 : 0) << 7) + (UInt8(sequenceNum & 0b11111) << 2) + UInt8((cmdData.count >> 8) & 0b11)
+        let b9: UInt8 = ((expectFollowOnMessage ? 1 : 0) << 7) + (UInt8(sequenceNum & 0b1111) << 2) + UInt8((cmdData.count >> 8) & 0b11)
         bytes.append(b9)
         bytes.append(UInt8(cmdData.count & 0xff))
         
         var data = Data(bytes) + cmdData
-        let crc = data.crc16()
+        let crc: UInt16 = data.crc16()
         data.appendBigEndian(crc)
         return data
     }

@@ -344,7 +344,7 @@ extension OmnipodPumpManager {
         case .disengaging:
             return .cancelingTempBasal
         case .stable:
-            if let tempBasal = podState.unfinalizedTempBasal, !tempBasal.isFinished {
+            if let tempBasal = podState.unfinalizedTempBasal, !tempBasal.isFinished() {
                 return .tempBasal(DoseEntry(tempBasal))
             }
             switch podState.suspendState {
@@ -367,7 +367,7 @@ extension OmnipodPumpManager {
         case .disengaging:
             return .canceling
         case .stable:
-            if let bolus = podState.unfinalizedBolus, !bolus.isFinished {
+            if let bolus = podState.unfinalizedBolus, !bolus.isFinished() {
                 return .inProgress(DoseEntry(bolus))
             }
         }
@@ -761,7 +761,7 @@ extension OmnipodPumpManager {
     // MARK: - Pump Commands
 
     private func getPodStatus(storeDosesOnSuccess: Bool, emitConfirmationBeep: Bool, completion: ((_ result: PumpManagerResult<StatusResponse>) -> Void)? = nil) {
-        guard state.podState?.unfinalizedBolus?.scheduledCertainty == .uncertain || state.podState?.unfinalizedBolus?.isFinished != false else {
+        guard state.podState?.unfinalizedBolus?.scheduledCertainty == .uncertain || state.podState?.unfinalizedBolus?.isFinished() != false else {
             self.log.info("Skipping status request due to unfinalized bolus in progress.")
             completion?(.failure(PodCommsError.unfinalizedBolus))
             return
@@ -825,7 +825,7 @@ extension OmnipodPumpManager {
             return
         }
 
-        guard state.podState?.unfinalizedBolus?.isFinished != false else {
+        guard state.podState?.unfinalizedBolus?.isFinished() != false else {
             completion(PodCommsError.unfinalizedBolus)
             return
         }
@@ -859,7 +859,7 @@ extension OmnipodPumpManager {
                 return .success(false)
             }
 
-            guard state.podState?.unfinalizedBolus?.isFinished != false else {
+            guard state.podState?.unfinalizedBolus?.isFinished() != false else {
                 return .failure(PodCommsError.unfinalizedBolus)
             }
 
@@ -1021,7 +1021,7 @@ extension OmnipodPumpManager {
             completion(OmnipodPumpManagerError.noPodPaired)
             return
         }
-        guard state.podState?.unfinalizedBolus?.scheduledCertainty == .uncertain || state.podState?.unfinalizedBolus?.isFinished != false else {
+        guard state.podState?.unfinalizedBolus?.scheduledCertainty == .uncertain || state.podState?.unfinalizedBolus?.isFinished() != false else {
             self.log.info("Skipping Play Test Beeps due to bolus still in progress.")
             completion(PodCommsError.unfinalizedBolus)
             return
@@ -1056,7 +1056,7 @@ extension OmnipodPumpManager {
             completion(.failure(OmnipodPumpManagerError.noPodPaired))
             return
         }
-        guard state.podState?.isFaulted == true || state.podState?.unfinalizedBolus?.scheduledCertainty == .uncertain || state.podState?.unfinalizedBolus?.isFinished != false else
+        guard state.podState?.isFaulted == true || state.podState?.unfinalizedBolus?.scheduledCertainty == .uncertain || state.podState?.unfinalizedBolus?.isFinished() != false else
         {
             self.log.info("Skipping Read Pulse Log due to bolus still in progress.")
             completion(.failure(PodCommsError.unfinalizedBolus))
@@ -1432,11 +1432,11 @@ extension OmnipodPumpManager: PumpManager {
                 if unfinalizedBolus.scheduledCertainty == .uncertain {
                     self.log.info("enactBolus: doing getStatus with uncertain bolus scheduled certainty")
                     getStatusNeeded = true
-                } else if unfinalizedBolus.isFinished == false {
+                } else if unfinalizedBolus.isFinished() == false {
                      self.log.info("enactBolus: not enacting bolus because podState indicates unfinalized bolus in progress")
                      completion(.failure(SetBolusError.certain(PodCommsError.unfinalizedBolus)))
                      return
-                } else if unfinalizedBolus.isBolusPositivelyFinished == false {
+                } else if unfinalizedBolus.isBolusPositivelyFinished() == false {
                     self.log.info("enactBolus: doing getStatus to verify if bolus complete")
                     getStatusNeeded = true
                 } else {
@@ -1514,7 +1514,7 @@ extension OmnipodPumpManager: PumpManager {
                     state.bolusEngageState = .disengaging
                 })
                 
-                if let bolus = self.state.podState?.unfinalizedBolus, !bolus.isFinished, bolus.scheduledCertainty == .uncertain {
+                if let bolus = self.state.podState?.unfinalizedBolus, !bolus.isFinished(), bolus.scheduledCertainty == .uncertain {
                     let status = try session.getStatus()
                     
                     if !status.deliveryStatus.bolusing {
@@ -1579,7 +1579,7 @@ extension OmnipodPumpManager: PumpManager {
             let resumingScheduledBasal = duration < .ulpOfOne
 
             // If a bolus is not finished, fail if not resuming the scheduled basal
-            guard self.state.podState?.unfinalizedBolus?.isFinished != false || resumingScheduledBasal else {
+            guard self.state.podState?.unfinalizedBolus?.isFinished() != false || resumingScheduledBasal else {
                 self.log.info("Not enacting temp basal because podState indicates unfinalized bolus in progress.")
                 completion(.failure(PodCommsError.unfinalizedBolus))
                 return
@@ -1736,7 +1736,7 @@ extension OmnipodPumpManager: PodCommsDelegate {
     func podComms(_ podComms: PodComms, didChange podState: PodState) {
         setState { (state) in
             // Check for any updates to bolus certainty, and log them
-            if let bolus = state.podState?.unfinalizedBolus, bolus.scheduledCertainty == .uncertain, !bolus.isFinished {
+            if let bolus = state.podState?.unfinalizedBolus, bolus.scheduledCertainty == .uncertain, !bolus.isFinished() {
                 if podState.unfinalizedBolus?.scheduledCertainty == .some(.certain) {
                     self.log.default("Resolved bolus uncertainty: did bolus")
                 } else if podState.unfinalizedBolus == nil {
