@@ -415,9 +415,9 @@ public class PodCommsSession {
             // Configure all the non-optional Pod Alarms
             let expirationTime = activatedAt + Pod.nominalPodLife
             let timeUntilExpirationAdvisory = expirationTime.timeIntervalSinceNow
-            let expirationAdvisoryAlarm = PodAlert.expirationAdvisoryAlarm(alarmTime: timeUntilExpirationAdvisory, duration: Pod.expirationAdvisoryWindow)
+            let expirationAdvisoryAlarm = PodAlert.expired(alertTime: timeUntilExpirationAdvisory, duration: Pod.expirationAdvisoryWindow)
             let endOfServiceTime = activatedAt + Pod.serviceDuration
-            let shutdownImminentAlarm = PodAlert.shutdownImminentAlarm((endOfServiceTime - Pod.endOfServiceImminentWindow).timeIntervalSinceNow)
+            let shutdownImminentAlarm = PodAlert.shutdownImminent((endOfServiceTime - Pod.endOfServiceImminentWindow).timeIntervalSinceNow)
             try configureAlerts([expirationAdvisoryAlarm, shutdownImminentAlarm])
         }
         
@@ -508,7 +508,7 @@ public class PodCommsSession {
         let tempBasalCommand = SetInsulinScheduleCommand(nonce: podState.currentNonce, tempBasalRate: rate, duration: duration)
         let tempBasalExtraCommand = TempBasalExtraCommand(rate: rate, duration: duration, acknowledgementBeep: acknowledgementBeep, completionBeep: completionBeep, programReminderInterval: programReminderInterval)
 
-        guard podState.unfinalizedBolus?.isFinished != false else {
+        guard podState.unfinalizedBolus?.isFinished() != false else {
             return DeliveryCommandResult.certainFailure(error: .unfinalizedBolus)
         }
 

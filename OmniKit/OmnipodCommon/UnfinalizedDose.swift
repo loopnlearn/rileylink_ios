@@ -55,7 +55,7 @@ public struct UnfinalizedDose: RawRepresentable, Equatable, CustomStringConverti
     
     let doseType: DoseType
     public var units: Double
-    public var automatic: Bool      // Tracks if this dose was issued autmatically or manually
+    public var automatic: Bool      // Tracks if this dose was issued automatically or manually
     var scheduledUnits: Double?     // Tracks the scheduled units, as boluses may be canceled before finishing, at which point units would reflect actual delivered volume.
     var scheduledTempRate: Double?  // Tracks the original temp rate, as during finalization the units are discretized to pump pulses, changing the actual rate
     let startTime: Date
@@ -71,30 +71,32 @@ public struct UnfinalizedDose: RawRepresentable, Equatable, CustomStringConverti
         }
     }
     
-    private var nominalProgress: Double {
+    private func nominalProgress(at date: Date) -> Double {
         guard let duration = duration else {
             return 0
         }
-        let elapsed = -startTime.timeIntervalSinceNow
+        let elapsed = -startTime.timeIntervalSince(date)
         return elapsed / duration
     }
 
     // A value from 0 to 1 giving the nominal progress percentage for a bolus or a temp basal
-    public var progress: Double {
-        return min(nominalProgress, 1)
+    public func progress(at date: Date = Date()) -> Double {
+        return min(nominalProgress(at: date), 1)
     }
-    
+
     // Is a bolus or a temp basal nominally finished
-    public var isFinished: Bool {
-        return progress >= 1
+    public func isFinished(at date: Date = Date()) -> Bool {
+        return progress(at: date) >= 1
     }
 
     // Has a bolus operation had enough time to positively finish
-    public var isBolusPositivelyFinished: Bool {
-        // Pod faults if any pulse takes 20% or more of nominal to deliver
-        return nominalProgress >= 1.2
+    public func isBolusPositivelyFinished(at date: Date = Date()) -> Bool {
+        // An extra long pad time for the bolus command to be received by the pod
+        let startupPad = TimeInterval(seconds: -5)
+        // Use 120% of nominal duration as pod will fault if any pulse takes 20% too long to deliver
+        return nominalProgress(at: date.addingTimeInterval(startupPad)) > 1.2
     }
-    
+
     // Units per hour
     public var rate: Double {
         guard let duration = duration else {
@@ -104,7 +106,7 @@ public struct UnfinalizedDose: RawRepresentable, Equatable, CustomStringConverti
     }
 
     public var finalizedUnits: Double? {
-        guard isFinished else {
+        guard isFinished() else {
             return nil
         }
         return units
@@ -172,10 +174,10 @@ public struct UnfinalizedDose: RawRepresentable, Equatable, CustomStringConverti
         duration = newDuration
     }
 
-    public var isMutable: Bool {
+    public func isMutable(at date: Date = Date()) -> Bool {
         switch doseType {
         case .bolus, .tempBasal:
-            return !isFinished
+            return !isFinished(at: date)
         default:
             return false
         }
@@ -248,7 +250,7 @@ public struct UnfinalizedDose: RawRepresentable, Equatable, CustomStringConverti
             "units": units,
             "startTime": startTime,
             "scheduledCertainty": scheduledCertainty.rawValue,
-            "automatic" : automatic,
+            "automatic": automatic,
         ]
         
         if let scheduledUnits = scheduledUnits {
@@ -283,7 +285,7 @@ extension NewPumpEvent {
     init(_ dose: UnfinalizedDose) {
         let title = String(describing: dose)
         let entry = DoseEntry(dose)
-        self.init(date: dose.startTime, dose: entry, isMutable: dose.isMutable, raw: dose.uniqueKey, title: title)
+        self.init(date: dose.startTime, dose: entry, isMutable: dose.isMutable(), raw: dose.uniqueKey, title: title)
     }
 }
 
@@ -291,23 +293,9 @@ extension DoseEntry {
     init (_ dose: UnfinalizedDose) {
         switch dose.doseType {
         case .bolus:
-            self = DoseEntry(
-                type: .bolus,
-                startDate: dose.startTime,
-                endDate: dose.finishTime,
-                value: dose.scheduledUnits ?? dose.units,
-                unit: .units,
-                deliveredUnits: dose.finalizedUnits
-            )
+            self = DoseEntry(type: .bolus, startDate: dose.startTime, endDate: dose.finishTime, value: dose.scheduledUnits ?? dose.units, unit: .units, deliveredUnits: dose.finalizedUnits)
         case .tempBasal:
-            self = DoseEntry(
-                type: .tempBasal,
-                startDate: dose.startTime,
-                endDate: dose.finishTime,
-                value: dose.scheduledTempRate ?? dose.rate,
-                unit: .unitsPerHour,
-                deliveredUnits: dose.finalizedUnits
-            )
+            self = DoseEntry(type: .tempBasal, startDate: dose.startTime, endDate: dose.finishTime, value: dose.scheduledTempRate ?? dose.rate, unit: .unitsPerHour, deliveredUnits: dose.finalizedUnits)
         case .suspend:
             self = DoseEntry(suspendDate: dose.startTime)
         case .resume:
