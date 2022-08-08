@@ -1382,7 +1382,12 @@ extension OmnipodPumpManager: PumpManager {
                 completion(.failure(SetBolusError.certain(error)))
                 return
             }
-            
+
+            if self.state.podState?.isSuspended == true {
+                completion(.failure(SetBolusError.certain(PodCommsError.podSuspended)))
+                return
+            }
+
             defer {
                 self.setState({ (state) in
                     state.bolusEngageState = .stable
@@ -1391,31 +1396,6 @@ extension OmnipodPumpManager: PumpManager {
             self.setState({ (state) in
                 state.bolusEngageState = .engaging
             })
-
-            // Initialize to true to match existing Medtronic PumpManager behavior for any
-            // manual boluses or to false to never auto resume a suspended pod for any bolus.
-            let autoResumeOnManualBolus = true
-
-            if case .some(.suspended) = self.state.podState?.suspendState {
-                // Pod suspended, only auto resume for a manual bolus if autoResumeOnManualBolus is true
-                if automatic || autoResumeOnManualBolus == false {
-                    self.log.error("enactBolus: returning pod suspended error for %@ bolus", automatic ? "automatic" : "manual")
-                    completion(.failure(SetBolusError.certain(PodCommsError.podSuspended)))
-                    return
-                }
-                do {
-                    let scheduleOffset = self.state.timeZone.scheduleOffset(forDate: Date())
-                    let beep = self.confirmationBeeps
-                    let podStatus = try session.resumeBasal(schedule: self.state.basalSchedule, scheduleOffset: scheduleOffset, acknowledgementBeep: beep)
-                    guard podStatus.deliveryStatus.bolusing == false else {
-                        throw SetBolusError.certain(PodCommsError.unfinalizedBolus)
-                    }
-                } catch let error {
-                    self.log.error("enactBolus: error resuming suspended pod: %@", String(describing: error))
-                    completion(.failure(SetBolusError.certain(error as? PodCommsError ?? PodCommsError.commsError(error: error))))
-                    return
-                }
-            }
 
             var getStatusNeeded = false // initializing to true effectively disables the bolus comms getStatus optimization
             var finalizeFinishedDosesNeeded = false
@@ -1569,8 +1549,8 @@ extension OmnipodPumpManager: PumpManager {
                 return
             }
 
-            if case .some(.suspended) = self.state.podState?.suspendState {
-                self.log.info("Not enacting temp basal because podState indicates pod is suspended.")
+            if self.state.podState?.isSuspended == true {
+                self.log.error("enactTempBasal returning pod suspended error")
                 completion(.failure(PodCommsError.podSuspended))
                 return
             }
