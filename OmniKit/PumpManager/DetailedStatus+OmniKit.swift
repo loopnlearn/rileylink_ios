@@ -13,8 +13,8 @@ extension DetailedStatus {
     // Returns an appropropriate PDM style Ref string for the Detailed Status.
     // For most types, Ref: TT-VVVHH-IIIRR-FFF computed as {19|17}-{VV}{SSSS/60}-{NNNN/20}{RRRR/20}-PP
     public var pdmRef: String? {
-    let TT, VVV, HH, III, RR, FFF: UInt8
-       let refStr = LocalizedString("Ref", comment: "PDM style 'Ref' string")
+        let TT, VVV, HH, III, RR, FFF: UInt8
+        let refStr = LocalizedString("Ref", comment: "PDM style 'Ref' string")
 
         switch faultEventCode.faultType {
         case .noFaults, .reservoirEmpty, .exceededMaximumPodLife80Hrs:
@@ -37,11 +37,7 @@ extension DetailedStatus {
         HH = UInt8(timeActive.hours)
         III = UInt8(totalInsulinDelivered)
 
-        if let reservoirLevel = self.reservoirLevel {
-            RR = UInt8(reservoirLevel)
-        } else {
-            RR = 51         // value used for 50+ U
-        }
+        RR = UInt8(self.reservoirLevel) // special 51.15 value used for > 50U will become 51 as needed
 
         return String(format: "%@:\u{00a0}%02d-%03d%02d-%03d%02d-%03d", refStr, TT, VVV, HH, III, RR, FFF)
     }

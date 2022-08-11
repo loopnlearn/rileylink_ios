@@ -23,7 +23,7 @@ public struct DetailedStatus : PodInfo, Equatable {
     public let totalInsulinDelivered: Double
     public let faultEventCode: FaultEventCode
     public let faultEventTimeSinceActivation: TimeInterval?
-    public let reservoirLevel: Double?
+    public let reservoirLevel: Double
     public let timeActive: TimeInterval
     public let unacknowledgedAlerts: AlertSet
     public let faultAccessingTables: Bool
@@ -61,13 +61,7 @@ public struct DetailedStatus : PodInfo, Equatable {
             self.faultEventTimeSinceActivation = nil
         }
         
-        let reservoirValue = Double((Int(encodedData[11] & 0x3) << 8) + Int(encodedData[12])) / Pod.pulsesPerUnit
-        
-        if reservoirValue <= Pod.maximumReservoirReading {
-            self.reservoirLevel = reservoirValue
-        } else {
-            self.reservoirLevel =  nil
-        }
+        self.reservoirLevel = Double((Int(encodedData[11] & 0x3) << 8) + Int(encodedData[12])) / Pod.pulsesPerUnit
         
         self.timeActive = TimeInterval(minutes: Double(encodedData[13...14].toBigEndian(UInt16.self)))
         
@@ -125,7 +119,7 @@ extension DetailedStatus: CustomDebugStringConvertible {
             "* lastProgrammingMessageSeqNum: \(lastProgrammingMessageSeqNum)",
             "* totalInsulinDelivered: \(totalInsulinDelivered.twoDecimals) U",
             "* faultEventCode: \(faultEventCode.description)",
-            "* reservoirLevel: \(reservoirLevel?.twoDecimals ?? "50+") U",
+            "* reservoirLevel: \(reservoirLevel > Pod.maximumReservoirReading ? "50+" : reservoirLevel.twoDecimals) U",
             "* timeActive: \(timeActive.stringValue)",
             "* unacknowledgedAlerts: \(unacknowledgedAlerts)",
             "",
