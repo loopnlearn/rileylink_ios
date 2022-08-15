@@ -18,6 +18,27 @@ public enum MessageError: Error {
     case validationFailed(description: String)
 }
 
+extension MessageError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .notEnoughData:
+            return LocalizedString("Not enough data", comment: "Description for MessageError notEnoughData")
+        case .invalidCrc:
+            return LocalizedString("Invalid CRC", comment: "Description for MessageError invalidCrc")
+        case .invalidSequence:
+            return LocalizedString("Unexpected message sequence number", comment: "Description for MessageError invalidSequence")
+        case .invalidAddress(address: let address):
+            return String(format: LocalizedString("Invalid address: (%1$@)", comment: "Description for MessageError invalidSequence"), String(format: "%08x", address))
+        case .parsingError:
+            return LocalizedString("Parsing Error: ", comment: "Description for MessageError parsingError")
+        case .unknownValue(let value, let typeDescription):
+            return String(format: LocalizedString("Unknown Value (%1$@) for type %2$@", comment: "Format string for description of MessageError unknownValue. (1: value) (2: Type)"), String(describing: value), typeDescription)
+        case .validationFailed(let description):
+            return String(format: LocalizedString("Validation failed: %1$@", comment: "Format string for description of MessageError validationFailed. (1: description of validation failure)"), description)
+        }
+    }
+}
+
 struct Message {
     let address: UInt32
     let messageBlocks: [MessageBlock]
@@ -31,7 +52,7 @@ struct Message {
         self.expectFollowOnMessage = expectFollowOnMessage
     }
     
-    init(encodedData: Data) throws {
+    init(encodedData: Data, checkCRC: Bool = true) throws {
         guard encodedData.count >= 10 else {
             throw MessageError.notEnoughData
         }
@@ -45,17 +66,12 @@ struct Message {
         
         self.expectFollowOnMessage = (b9 & 0b10000000) != 0
         self.sequenceNum = Int((b9 >> 2) & 0b1111)
-
-        let msgWithoutCrc = encodedData.prefix(encodedData.count - 2)
-
-        // Eros pods generates the expected CRC for Omnipod Messages that we can validate using crc16(), while Dash
-        // pods generates some unexpected checksum that is not understood and doesn't match the crc16 we need to generate.
-        // The Dash PDM explicitly ignores these two CRC bytes for incoming messages, so we ignore them for OmniBLE
-        // and rely on the higher level BLE & Dash "MessagePacket" data checking to provide data corruption protection.
         let crc = (UInt16(encodedData[encodedData.count-2]) << 8) + UInt16(encodedData[encodedData.count-1])
-        let computedCrc = UInt16(msgWithoutCrc.crc16())
-        if computedCrc != crc {
-            throw MessageError.invalidCrc
+        let msgWithoutCrc = encodedData.prefix(encodedData.count - 2)
+        if checkCRC {
+            guard msgWithoutCrc.crc16() == crc else {
+                throw MessageError.invalidCrc
+            }
         }
         self.messageBlocks = try Message.decodeBlocks(data: Data(msgWithoutCrc.suffix(from: 6)))
     }

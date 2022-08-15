@@ -58,8 +58,8 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
 
     public var setupUnitsDelivered: Double?
 
-    public let piVersion: String
     public let pmVersion: String
+    public let piVersion: String
     public let lot: UInt32
     public let tid: UInt32
     var activeAlertSlots: AlertSet
@@ -105,11 +105,11 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
     public var deliveryStatusVerified: Bool
     public var lastCommsOK: Bool
 
-    public init(address: UInt32, piVersion: String, pmVersion: String, lot: UInt32, tid: UInt32, packetNumber: Int = 0, messageNumber: Int = 0) {
+    public init(address: UInt32, pmVersion: String, piVersion: String, lot: UInt32, tid: UInt32, packetNumber: Int = 0, messageNumber: Int = 0) {
         self.address = address
         self.nonceState = NonceState(lot: lot, tid: tid)
-        self.piVersion = piVersion
         self.pmVersion = pmVersion
+        self.piVersion = piVersion
         self.lot = lot
         self.tid = tid
         self.lastInsulinMeasurements = nil
@@ -184,15 +184,19 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
     public mutating func updateFromStatusResponse(_ response: StatusResponse) {
         let now = updatePodTimes(timeActive: response.timeActive)
         updateDeliveryStatus(deliveryStatus: response.deliveryStatus, podProgressStatus: response.podProgressStatus, bolusNotDelivered: response.bolusNotDelivered)
-        lastInsulinMeasurements = PodInsulinMeasurements(insulinDelivered: response.insulin, reservoirLevel: response.reservoirLevel, setupUnitsDelivered: setupUnitsDelivered, validTime: now)
-        activeAlertSlots = response.alerts
-    }
 
-    public mutating func updateFromDetailedStatusResponse(_ response: DetailedStatus) {
-        let now = updatePodTimes(timeActive: response.timeActive)
-        updateDeliveryStatus(deliveryStatus: response.deliveryStatus, podProgressStatus: response.podProgressStatus, bolusNotDelivered: response.bolusNotDelivered)
-        lastInsulinMeasurements = PodInsulinMeasurements(insulinDelivered: response.totalInsulinDelivered, reservoirLevel: response.reservoirLevel, setupUnitsDelivered: setupUnitsDelivered, validTime: now)
-        activeAlertSlots = response.unacknowledgedAlerts
+        let setupUnits = setupUnitsDelivered != nil ? setupUnitsDelivered! : Pod.primeUnits + Pod.cannulaInsertionUnits
+
+        // Calculated new delivered value which will be a negative value until setup has completed OR after a pod reset fault
+        let calcDelivered = response.insulinDelivered - setupUnits
+
+        // insulinDelivered should never be a negative value or decrease from the previous saved delivered value
+        let prevDelivered = lastInsulinMeasurements != nil ? lastInsulinMeasurements!.delivered : 0
+        let insulinDelivered = max(calcDelivered, prevDelivered)
+
+        lastInsulinMeasurements = PodInsulinMeasurements(insulinDelivered: insulinDelivered, reservoirLevel: response.reservoirLevel, validTime: now)
+
+        activeAlertSlots = response.alerts
     }
 
     public mutating func registerConfiguredAlert(slot: AlertSlot, alert: PodAlert) {

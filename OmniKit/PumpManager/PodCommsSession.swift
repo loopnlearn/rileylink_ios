@@ -101,7 +101,7 @@ extension PodCommsError: LocalizedError {
         case .invalidData:
             return nil
         case .noResponse:
-            return LocalizedString("Please try repositioning the RileyLink and try again", comment: "Recovery suggestion when no response is received from pod")
+            return LocalizedString("Please try repositioning the pod or the RileyLink", comment: "Recovery suggestion when no response is received from pod")
         case .emptyResponse:
             return nil
         case .podAckedInsteadOfReturningResponse:
@@ -113,7 +113,7 @@ extension PodCommsError: LocalizedError {
         case .unknownResponseType:
             return nil
         case .invalidAddress:
-            return LocalizedString("Crosstalk possible. Please move to a new location and try again", comment: "Recovery suggestion when unexpected address received")
+            return LocalizedString("Crosstalk possible. Please move to a new location", comment: "Recovery suggestion when unexpected address received")
         case .noRileyLinkAvailable:
             return LocalizedString("Make sure your RileyLink is nearby and powered on", comment: "Recovery suggestion when no RileyLink is available")
         case .unfinalizedBolus:
@@ -123,7 +123,7 @@ extension PodCommsError: LocalizedError {
         case .nonceResyncFailed:
             return nil
         case .podSuspended:
-            return nil
+            return LocalizedString("Resume delivery", comment: "Recovery suggestion when pod is suspended")
         case .podFault:
             return nil
         case .commsError:
@@ -186,7 +186,8 @@ public class PodCommsSession {
         if self.podState.fault == nil {
             self.podState.fault = fault // save the first fault returned
             handleCancelDosing(deliveryType: .all, bolusNotDelivered: fault.bolusNotDelivered)
-            podState.updateFromDetailedStatusResponse(fault)
+            let derivedStatusResponse = StatusResponse(detailedStatus: fault)
+            podState.updateFromStatusResponse(derivedStatusResponse)
         }
         log.error("Pod Fault: %@", String(describing: fault))
     }
@@ -384,8 +385,8 @@ public class PodCommsSession {
     private func markSetupProgressCompleted(statusResponse: StatusResponse) {
         if (podState.setupProgress != .completed) {
             podState.setupProgress = .completed
-            podState.setupUnitsDelivered = statusResponse.insulin // stash the current insulin delivered value as the baseline
-            log.info("Total setup units delivered: %@", String(describing: statusResponse.insulin))
+            podState.setupUnitsDelivered = statusResponse.insulinDelivered // stash the current insulin delivered value as the baseline
+            log.info("Total setup units delivered: %@", String(describing: statusResponse.insulinDelivered))
         }
     }
 
@@ -514,7 +515,7 @@ public class PodCommsSession {
 
         do {
             let status: StatusResponse = try send([tempBasalCommand, tempBasalExtraCommand])
-            podState.unfinalizedTempBasal = UnfinalizedDose(tempBasalRate: rate, startTime: Date(), duration: duration, scheduledCertainty: .certain, automatic: automatic)
+            podState.unfinalizedTempBasal = UnfinalizedDose(tempBasalRate: rate, startTime: Date(), duration: duration, isHighTemp: false, scheduledCertainty: .certain, automatic: automatic)
             podState.updateFromStatusResponse(status)
             return DeliveryCommandResult.success(statusResponse: status)
         } catch PodCommsError.nonceResyncFailed {
@@ -522,7 +523,7 @@ public class PodCommsSession {
         } catch PodCommsError.rejectedMessage(let errorCode) {
             return DeliveryCommandResult.certainFailure(error: PodCommsError.rejectedMessage(errorCode: errorCode))
         } catch let error {
-            podState.unfinalizedTempBasal = UnfinalizedDose(tempBasalRate: rate, startTime: Date(), duration: duration, scheduledCertainty: .uncertain, automatic: automatic)
+            podState.unfinalizedTempBasal = UnfinalizedDose(tempBasalRate: rate, startTime: Date(), duration: duration, isHighTemp: false, scheduledCertainty: .uncertain, automatic: automatic)
             return DeliveryCommandResult.uncertainFailure(error: error as? PodCommsError ?? PodCommsError.commsError(error: error))
         }
     }
@@ -751,7 +752,8 @@ public class PodCommsSession {
             // just detected that the pod has faulted, handle setting the fault state but don't throw
             handlePodFault(fault: detailedStatus)
         } else {
-            podState.updateFromDetailedStatusResponse(detailedStatus)
+            let derivedStatusResponse = StatusResponse(detailedStatus: detailedStatus)
+            podState.updateFromStatusResponse(derivedStatusResponse)
         }
         return detailedStatus
     }
