@@ -112,10 +112,10 @@
 "Disable Confirmation Beeps" = "Bestätigungstöne ausschalten";
 
 /* Title text for button to disable extended confirmation beeps */
-"Disable Extended Confirmation Beeps" = "Disable Extended Confirmation Beeps";
+"Disable Extended Confirmation Beeps" = "erweiterte Bestätigungstöne ausschalten";
 
 /* Title text for button to enable extended confirmation beeps */
-"Enable Extended Confirmation Beeps" = "Enable Extended Confirmation Beeps";
+"Enable Extended Confirmation Beeps" = "erweiterte Bestätigungstöne einschalten";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Fehler beim Fortfahren";
