@@ -77,7 +77,7 @@ internal class OmnipodHUDProvider: NSObject, HUDProvider, PodStateObserver {
 
             var reservoirAlertState: ReservoirAlertState = .ok
             for (_, alert) in podState.activeAlerts {
-                if case .lowReservoirAlarm = alert {
+                if case .lowReservoir = alert {
                     reservoirAlertState = .lowReservoir
                     break
                 }
@@ -185,7 +185,7 @@ internal class OmnipodHUDProvider: NSObject, HUDProvider, PodStateObserver {
             let reservoirLevel = reservoirVolume?.asReservoirPercentage()
             var reservoirAlertState: ReservoirAlertState = .ok
             for alert in alerts {
-                if case .lowReservoirAlarm = alert {
+                if case .lowReservoir = alert {
                     reservoirAlertState = .lowReservoir
                 }
             }

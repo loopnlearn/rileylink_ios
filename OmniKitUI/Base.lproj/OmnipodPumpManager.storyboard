@@ -108,7 +108,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vmF-Dc-3DS">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="45"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <string key="text">Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing.</string>
+                                                    <string key="text">Fill a new Omnipod Eros pod (clear needle cap) with U-100 insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
