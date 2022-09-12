@@ -63,7 +63,7 @@ extension CommandResponseViewController {
 
         result += String(format: LocalizedString("Pulse Count: %1$d\n", comment: "The format string for Pulse Count (1: pulse count)"), Int(round(status.totalInsulinDelivered / Pod.pulseSize)))
 
-        result += String(format: LocalizedString("Reservoir Level: %1$@ U\n", comment: "The format string for Reservoir Level: (1: reservoir level string)"), status.reservoirLevel > Pod.maximumReservoirReading ? "50+" : status.reservoirLevel.twoDecimals)
+        result += String(format: LocalizedString("Reservoir Level: %1$@ U\n", comment: "The format string for Reservoir Level: (1: reservoir level string)"), reservoirLevelString(status.reservoirLevel))
 
         result += String(format: LocalizedString("Last Bolus Not Delivered: %1$@ U\n", comment: "The format string for Last Bolus Not Delivered: (1: bolus not delivered string)"), status.bolusNotDelivered.twoDecimals)
 
@@ -105,7 +105,7 @@ extension CommandResponseViewController {
 
     static func readPodStatus(pumpManager: OmnipodPumpManager) -> T {
         return T { (completionHandler) -> String in
-            pumpManager.readPodStatus() { (result) in
+            pumpManager.getDetailedStatus() { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let status):
