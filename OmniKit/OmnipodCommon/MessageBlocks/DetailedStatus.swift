@@ -118,8 +118,7 @@ extension DetailedStatus: CustomDebugStringConvertible {
             "* bolusNotDelivered: \(bolusNotDelivered.twoDecimals) U",
             "* lastProgrammingMessageSeqNum: \(lastProgrammingMessageSeqNum)",
             "* totalInsulinDelivered: \(totalInsulinDelivered.twoDecimals) U",
-            "* faultEventCode: \(faultEventCode.description)",
-            "* reservoirLevel: \(reservoirLevel > Pod.maximumReservoirReading ? "50+" : reservoirLevel.twoDecimals) U",
+            "* reservoirLevel: \(reservoirLevelString(reservoirLevel)) U",
             "* timeActive: \(timeActive.stringValue)",
             "* unacknowledgedAlerts: \(unacknowledgedAlerts)",
             "",
@@ -133,6 +132,7 @@ extension DetailedStatus: CustomDebugStringConvertible {
         }
         if faultEventCode.faultType != .noFaults {
             result += [
+                "* faultEventCode: \(faultEventCode.description)",
                 "* faultAccessingTables: \(faultAccessingTables)",
                 "* faultEventTimeSinceActivation: \(faultEventTimeSinceActivation?.stringValue ?? "NA")",
                 "* errorEventInfo: \(errorEventInfo?.description ?? "NA")",
@@ -219,4 +219,24 @@ public struct ErrorEventInfo: CustomStringConvertible, Equatable {
         self.immediateBolusInProgress = (rawValue & 0x10) != 0
         self.podProgressStatus = PodProgressStatus(rawValue: rawValue & 0xF)!
     }
+}
+
+//
+// Convenience functions for dealing with ReserviorLevel readings.
+// Historically these were optionals with no reading representing 50+.
+//
+public func isValidReservoirLevelValue(_ reservoirLevel: Double?) -> Bool
+{
+	if let reservoirLevel = reservoirLevel, reservoirLevel <= Pod.maximumReservoirReading {
+		return true
+	}
+	return false
+}
+
+public func reservoirLevelString(_ reservoirLevel: Double?) -> String
+{
+	if isValidReservoirLevelValue(reservoirLevel) {
+		return reservoirLevel!.twoDecimals
+	}
+	return "50+"
 }

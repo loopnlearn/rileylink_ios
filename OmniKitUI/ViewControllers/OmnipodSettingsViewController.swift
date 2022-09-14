@@ -1020,15 +1020,7 @@ private extension UITableViewCell {
             detailTextLabel?.text = LocalizedString("Unknown", comment: "The detail text for delivered insulin when no measurement is available")
             return
         }
-        if reservoirLevel > Pod.maximumReservoirReading {
-            if let units = insulinFormatter.string(from: Pod.maximumReservoirReading) {
-                detailTextLabel?.text = String(format: LocalizedString("%@+ U", comment: "Format string for reservoir reading when above the maximum reading. (1: The localized amount)"), units)
-            }
-        } else {
-            if let units = insulinFormatter.string(from: reservoirLevel) {
-                detailTextLabel?.text = String(format: LocalizedString("%@ U", comment: "Format string for insulin remaining in reservoir. (1: The localized amount)"), units)
-            }
-        }
+        detailTextLabel?.text = reservoirLevelString(reservoirLevel) + " U"
     }
 }
 
