@@ -155,13 +155,14 @@ class MinimedPumpSettingsViewController: RileyLinkSettingsViewController {
 
     private enum CommandsRow: Int, CaseIterable {
         case tune
-        case mySentryPair
         case dumpHistory
         case fetchGlucose
         case getPumpModel
         case pressDownButton
         case readPumpStatus
         case readBasalSchedule
+        // This should always be last so it can be omitted for non-MySentry pumps:
+        case mySentryPair
     }
 
 
@@ -183,7 +184,8 @@ class MinimedPumpSettingsViewController: RileyLinkSettingsViewController {
         case .rileyLinks:
             return super.tableView(tableView, numberOfRowsInSection: section)
         case .commands:
-            return CommandsRow.allCases.count
+            let commandsRowCount = pumpManager.state.pumpModel.hasMySentry ? CommandsRow.allCases.count : CommandsRow.allCases.count - 1
+            return commandsRowCount
         case .delete:
             return 1
         }
@@ -282,8 +284,6 @@ class MinimedPumpSettingsViewController: RileyLinkSettingsViewController {
             switch CommandsRow(rawValue: indexPath.row)! {
             case .tune:
                 cell.setTuneInfo(lastValidFrequency: pumpState?.lastValidFrequency, lastTuned: pumpState?.lastTuned, measurementFormatter: measurementFormatter, dateFormatter: dateFormatter)
-            case .mySentryPair:
-                cell.textLabel?.text = LocalizedString("MySentry Pair", comment: "The title of the command to pair with mysentry")
 
             case .dumpHistory:
                 cell.textLabel?.text = LocalizedString("Fetch Recent History", comment: "The title of the command to fetch recent history")
@@ -303,6 +303,8 @@ class MinimedPumpSettingsViewController: RileyLinkSettingsViewController {
             case .readBasalSchedule:
                 cell.textLabel?.text = LocalizedString("Read Basal Schedule", comment: "The title of the command to read basal schedule")
 
+            case .mySentryPair:
+                cell.textLabel?.text = LocalizedString("MySentry Pair", comment: "The title of the command to pair with mysentry")
             }
             return cell
 
@@ -432,8 +434,6 @@ class MinimedPumpSettingsViewController: RileyLinkSettingsViewController {
         switch command {
         case .tune:
             vc = .tuneRadio(ops: ops, device: device, measurementFormatter: measurementFormatter)
-        case .mySentryPair:
-            vc = .mySentryPair(ops: ops, device: device)
         case .dumpHistory:
             vc = .dumpHistory(ops: ops, device: device)
         case .fetchGlucose:
@@ -446,6 +446,8 @@ class MinimedPumpSettingsViewController: RileyLinkSettingsViewController {
             vc = .readPumpStatus(ops: ops, device: device, measurementFormatter: measurementFormatter)
         case .readBasalSchedule:
             vc = .readBasalSchedule(ops: ops, device: device, integerFormatter: integerFormatter)
+        case .mySentryPair:
+            vc = .mySentryPair(ops: ops, device: device)
         }
 
         vc?.title = title
