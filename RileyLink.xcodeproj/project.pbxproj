@@ -66,7 +66,6 @@
 		4352A73220DEC9D600CAC200 /* CommandResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4352A73120DEC9D600CAC200 /* CommandResponseViewController.swift */; };
 		4352A73320DEC9FC00CAC200 /* RileyLinkKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D5E78E1FAF7BFB004ACDB7 /* RileyLinkKitUI.framework */; };
 		4352A73420DECAE000CAC200 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FB610A20DDF55E002B996B /* LoopKitUI.framework */; };
-		4352A73920DECBAA00CAC200 /* RileyLinkMinimedDeviceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4352A73820DECBAA00CAC200 /* RileyLinkMinimedDeviceTableViewController.swift */; };
 		4352A73A20DECDB300CAC200 /* MinimedKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C10D9BC11C8269D500378342 /* MinimedKit.framework */; };
 		4352A73F20DED02C00CAC200 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4352A73D20DED01700CAC200 /* HKUnit.swift */; };
 		4352A74120DED23100CAC200 /* RileyLinkDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4352A74020DED23000CAC200 /* RileyLinkDeviceManager.swift */; };
@@ -1011,7 +1010,6 @@
 		4352A72720DEC9B700CAC200 /* MinimedKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinimedKitUI.h; sourceTree = "<group>"; };
 		4352A72820DEC9B700CAC200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4352A73120DEC9D600CAC200 /* CommandResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandResponseViewController.swift; sourceTree = "<group>"; };
-		4352A73820DECBAA00CAC200 /* RileyLinkMinimedDeviceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RileyLinkMinimedDeviceTableViewController.swift; sourceTree = "<group>"; };
 		4352A73D20DED01700CAC200 /* HKUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
 		4352A74020DED23000CAC200 /* RileyLinkDeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RileyLinkDeviceManager.swift; sourceTree = "<group>"; };
 		435535D51FB6D98400CE5A23 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -1885,12 +1883,11 @@
 				43709AE020DF1D5400F941B3 /* MinimedPumpManager.storyboard */,
 				43709ACC20DF1CC900F941B3 /* Setup */,
 				4352A73120DEC9D600CAC200 /* CommandResponseViewController.swift */,
-				4352A73820DECBAA00CAC200 /* RileyLinkMinimedDeviceTableViewController.swift */,
+				C16E61252208EC580069F357 /* MinimedHUDProvider.swift */,
 				43709AC320DF1C8B00F941B3 /* MinimedPumpManager+UI.swift */,
 				43709AC220DF1C8B00F941B3 /* MinimedPumpSettingsViewController.swift */,
 				43709AC020DF1C8B00F941B3 /* PumpModel.swift */,
 				43709AC120DF1C8B00F941B3 /* RadioSelectionTableViewController.swift */,
-				C16E61252208EC580069F357 /* MinimedHUDProvider.swift */,
 			);
 			path = MinimedKitUI;
 			sourceTree = "<group>";
@@ -3420,7 +3417,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8F3DD08286A52F100ABAD70 /* PumpManager in Resources */,
 				7D9BEFEF23369861005DCFD6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3655,7 +3651,6 @@
 				4352A74320DED3F200CAC200 /* NumberFormatter.swift in Sources */,
 				4352A73220DEC9D600CAC200 /* CommandResponseViewController.swift in Sources */,
 				43709AC520DF1C8B00F941B3 /* RadioSelectionTableViewController.swift in Sources */,
-				4352A73920DECBAA00CAC200 /* RileyLinkMinimedDeviceTableViewController.swift in Sources */,
 				4352A74220DED3D200CAC200 /* CaseCountable.swift in Sources */,
 				43709AC620DF1C8B00F941B3 /* MinimedPumpSettingsViewController.swift in Sources */,
 				43709AC720DF1C8B00F941B3 /* MinimedPumpManager+UI.swift in Sources */,
