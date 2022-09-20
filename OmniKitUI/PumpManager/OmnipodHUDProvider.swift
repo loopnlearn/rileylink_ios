@@ -205,6 +205,9 @@ internal class OmnipodHUDProvider: NSObject, HUDProvider, PodStateObserver {
 
 extension Double {
     func asReservoirPercentage() -> Double {
-        return min(1, max(0, self / Pod.reservoirCapacity))
+        if isValidReservoirLevelValue(self) {
+            return min(1, max(0, self / Pod.reservoirCapacity))
+        }
+        return 1
     }
 }
