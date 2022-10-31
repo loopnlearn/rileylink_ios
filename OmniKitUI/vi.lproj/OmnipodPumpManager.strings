@@ -61,8 +61,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "vEc-Km-ewe"; */
 "vEc-Km-ewe.text" = "Nhãn";
 
-/* Class = "UILabel"; text = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
-"vmF-Dc-3DS.text" = "Nạp insulin vào pod mới. Bạn sẽ nghe 2 tiếng beep trong quá trình nạp. Hãy giữ Rileylink ngay bên cạnh pod trong quá trình ghép đôi.";
+/* Class = "UILabel"; text = "Fill a new Omnipod Eros pod (clear needle cap) with U-100 insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
+"vmF-Dc-3DS.text" = "Fill a new Omnipod Eros pod (clear needle cap) with U-100 insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing.";
 
 /* Class = "UINavigationItem"; title = "Replace Pod"; ObjectID = "yy1-xf-HdR"; */
 "yy1-xf-HdR.title" = "Thay Pod";

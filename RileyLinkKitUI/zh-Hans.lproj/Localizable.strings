@@ -47,16 +47,16 @@
 "Battery level" = "电池电量";
 
 /* The title of the cell showing Voltage */
-"Voltage" = "Voltage";
+"Voltage" = "电压";
 
 /* "The title of the section for alerts" */
 "Alert" = "警报";
 
 /* The title of the cell showing Low Battery Alert */
-"Low Battery Alert" = "Low Battery Alert";
+"Low Battery Alert" = "低电量提醒";
 
 /* Header of list showing battery level alert options */
-"Battery level Alert" = "Battery level Alert";
+"Battery level Alert" = "电池电量警报";
 
 /* Battery level alert OFF in list of options */
 "OFF" = "关闭";
@@ -71,13 +71,13 @@
 "Invert LED Logic" = "Invert LED Logic";
 
 /* The header of the cells showing test commands */
-"Test Commands" = "Test Commands";
+"Test Commands" = "测试命令";
 
 /* The title of the cell showing Lighten Yellow LED */
-"Lighten Yellow LED" = "Lighten Yellow LED";
+"Lighten Yellow LED" = "点亮黄色指示灯";
 
 /* The title of the cell showing Lighten Yellow LED */
-"Lighten Red LED" = "Lighten Red LED";
+"Lighten Red LED" = "点亮红色提示灯";
 
 /* The title of the cell showing Test Vibration */
 "Test Vibration" = "测试震动";
@@ -86,10 +86,10 @@
 "Find Device" = "查找设备";
 
 /* The title of the cell for connection LED */
-"Connection LED" = "Connection LED";
+"Connection LED" = "连接状态显示灯";
 
 /* The title of the cell for connection vibration */
-"Connection Vibration" = "Connection Vibration";
+"Connection Vibration" = "连接状态震动提醒";
 
 /* Detail text when battery alert disabled. */
 "Off" = "关闭";

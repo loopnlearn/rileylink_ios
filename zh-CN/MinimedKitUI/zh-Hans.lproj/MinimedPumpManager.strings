@@ -2,10 +2,10 @@
 "0MV-2k-Dty.title" = "RileyLink Setup";
 
 /* Class = "UILabel"; text = "Find Device"; ObjectID = "1fp-45-qWK"; */
-"1fp-45-qWK.text" = "Find Device";
+"1fp-45-qWK.text" = "寻找设备";
 
 /* Class = "UILabel"; text = "Other Devices"; ObjectID = "A6i-Cb-baR"; */
-"A6i-Cb-baR.text" = "Other Devices";
+"A6i-Cb-baR.text" = "其他设备";
 
 /* Class = "UILabel"; text = "Do not change the time using your pumpʼs menu."; ObjectID = "Bdb-j4-WcR"; */
 "Bdb-j4-WcR.text" = "Do not change the time using your pumpʼs menu.";

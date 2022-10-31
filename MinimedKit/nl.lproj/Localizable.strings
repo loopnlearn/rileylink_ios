@@ -41,16 +41,16 @@
 "Lithium" = "Lithium";
 
 /* Recovery suggestion */
-"Make sure your RileyLink is nearby and powered on" = "Wees er zeker van dat de RileyLink is in de buurt en aanstaat";
+"Make sure your RileyLink is nearby and powered on" = "Wees er zeker van dat de RileyLink in de buurt is en aanstaat";
 
 /* Pump error code describing max setting exceeded */
-"Max setting exceeded" = "Max instelling overschreden";
+"Max setting exceeded" = "Maximale instelling overschreden";
 
 /* Pump title (1: model number) */
-"Minimed %@" = "Minimed %@";
+"Minimed %@" = "Metronic Minimed %@";
 
 /* Generic title of the minimed pump manager */
-"Minimed 500/700 Series" = "Minimed 500/700 series";
+"Minimed 500/700 Series" = "Medtronic Minimed 500/700 series";
 
 /* Describing the North America pump region */
 "North America" = "Noord-Amerika";
@@ -101,4 +101,4 @@
 "Canada" = "Canada";
 
 /* Pump error code when invalid history page is requested */
-"History page does not exist" = "History page does not exist";
+"History page does not exist" = "Deze pagina bestaat niet";
