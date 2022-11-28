@@ -3,7 +3,7 @@
 //  OmniKit
 //
 //  Created by Joseph Moran on 10/20/22.
-//  Copyright © 2022 Joseph Moran. All rights reserved.
+//  Copyright © 2022 LoopKit Authors. All rights reserved.
 //
 
 import Foundation
