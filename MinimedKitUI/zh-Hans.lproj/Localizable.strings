@@ -102,7 +102,7 @@
 "Firmware" = "固件";
 
 /* The title of the cell showing the pump firmware version */
-"Firmware Version" = "Firmware Version";
+"Firmware Version" = "固件版本";
 
 /* The title of the command to get pump model */
 "Get Pump Model" = "获取胰岛素泵型号";
@@ -166,7 +166,7 @@
 "Reading pump status…" = "正在读取胰岛素泵状态…";
 
 /* The title of the cell showing the pump region */
-"Region" = "Region";
+"Region" = "地区";
 
 /* Button title to retry sentry setup */
 "Retry" = "重试";
@@ -206,4 +206,4 @@
 "Unknown" = "未知";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
+"Uptime" = "正常运行时间";

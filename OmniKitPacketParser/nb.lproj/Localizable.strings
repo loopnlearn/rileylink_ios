@@ -50,7 +50,7 @@
 "InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "InterruptedBolus: %1$@ E (%2$@ E planlagt) %3$@ %4$@ %5$@";
 
 /* Description for low reservoir alarm */
-"Low reservoir advisory alarm" = "Anbefalt alarm for lavt reservoar";
+"Low reservoir advisory alarm" = "Alarm for lavt insulin-reservoar";
 
 /* Recovery suggestion when no RileyLink is available */
 "Make sure your RileyLink is nearby and powered on" = "Pass på at din RileyLink er slått på og er i nærheten";
@@ -78,7 +78,7 @@
 "Omnipod" = "Omnipod";
 
 /* Pod status after pairing */
-"Paired" = "Sammenkoblbet";
+"Paired" = "Sammenkoblet";
 
 /* Recovery suggestion when no response is received from pod */
 "Please bring your pod closer to the RileyLink and try again" = "Prøv å sette pod og RileyLink nærmere hverandre og prøv så igjen";
@@ -93,7 +93,7 @@
 "Pod already primed" = "Pod er allerede fyllt";
 
 /* Description for expiration advisory alarm */
-"Pod expiration advisory alarm" = "Anbefalt utløpsalarm for pod";
+"Pod expiration advisory alarm" = "Utløpsalarm for pod";
 
 /* The title for pod expiration notification */
 "Pod Expiration Notice" = "Utløpsmelding for pod";

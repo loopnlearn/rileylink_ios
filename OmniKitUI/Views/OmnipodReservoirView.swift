@@ -117,31 +117,21 @@ public final class OmnipodReservoirView: LevelHUDView, NibLoadable {
         return formatter
     }()
 
-    private let insulinFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 3
-        return formatter
-    }()
-
-
     public func update(volume: Double?, at date: Date, level: Double?, reservoirAlertState: ReservoirAlertState) {
         self.reservoirLevel = level
 
         let time = timeFormatter.string(from: date)
         caption?.text = time
 
-        if let volume = volume {
+        if let volume = volume, isValidReservoirLevelValue(volume) {
             if let units = numberFormatter.string(from: volume) {
                 volumeLabel.text = String(format: LocalizedString("%@U", comment: "Format string for reservoir volume. (1: The localized volume)"), units)
 
                 accessibilityValue = String(format: LocalizedString("%1$@ units remaining at %2$@", comment: "Accessibility format string for (1: localized volume)(2: time)"), units, time)
             }
-        } else if let maxReservoirReading = insulinFormatter.string(from: Pod.maximumReservoirReading) {
+        } else if let maxReservoirReading = numberFormatter.string(from: Pod.maximumReservoirReading) {
             accessibilityValue = String(format: LocalizedString("Greater than %1$@ units remaining at %2$@", comment: "Accessibility format string for (1: localized volume)(2: time)"), maxReservoirReading, time)
         }
         self.reservoirAlertState = reservoirAlertState
     }
 }
-
-

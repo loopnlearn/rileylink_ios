@@ -72,7 +72,7 @@
 "Configuration" = "Configurazione";
 
 /* The title of the Insulin Type */
-"Insulin Type" = "Insulin Type";
+"Insulin Type" = "Tipo d’insulina";
 
 /* The title of the continue action in an action sheet */
 "Continue" = "Continua";
@@ -106,16 +106,16 @@
 "Error enabling bolus beeps" = "Errore durante l’attivazione dei bip bolo";
 
 /* The alert title for enable Confirmation Beeps */
-"Enable Confirmation Beeps" = "Enable Confirmation Beeps";
+"Enable Confirmation Beeps" = "Abilita Bip di Conferma";
 
 /* The alert title for Disable Confirmation Beep */
-"Disable Confirmation Beeps" = "Disable Confirmation Beeps";
+"Disable Confirmation Beeps" = "Disabilita Bip di Conferma";
 
-/* The alert title for enable Automatic Bolus Beeps */
-"Enable Automatic Bolus Beeps" = "Enable Automatic Bolus Beeps";
+/* Title text for button to disable extended confirmation beeps */
+"Disable Extended Confirmation Beeps" = "Disable Extended Confirmation Beeps";
 
-/* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "Disable Automatic Bolus Beeps";
+/* Title text for button to enable extended confirmation beeps */
+"Enable Extended Confirmation Beeps" = "Enable Extended Confirmation Beeps";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Errore durante la ripresa";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Emetti bip di prova";
 
 /* Progress message for play test beeps. */
-"Playing Test Beeps…" = "Playing Test Beeps…";
+"Playing Test Beeps…" = "Bip di prova in esecuzione…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "Versione PM";
@@ -249,28 +249,31 @@
 "Unknown" = "Sconosciuto";
 
 /* The title of the diagnostics section in settings */
-"Diagnostics" = "Diagnostics";
+"Diagnostics" = "Diagnostiche";
 
 /* The diagnostic command Read Pod Status */
-"Read Pod Status" = "Read Pod Status";
+"Read Pod Status" = "Leggi stato microinfusore";
 
 /* The diagnostic command Read Pulse Log */
 "Read Pulse Log" = "Read Pulse Log";
 
 /* The title of the pod details section in settings */
-"Pod Details" = "Pod Details";
+"Pod Details" = "Dettagli Del Pod";
 
 /* Recovery suggestion on unexpected pod change */
-"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
+"Please bring only original pod in range or deactivate original pod" = "Si prega di portare solo il pod originale nel range o disattivare il pod originale";
 
 /* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
-"Last Bolus Not Delivered: %1$@ U\n" = "Last Bolus Not Delivered: %1$@ U\n";
+"Last Bolus Not Delivered: %1$@ U\n" = "Ultimo Bolo non Consegnato: %1$@ U\n";
 
 /* The format string for Delivery Status: (1: delivery status string) */
-"Delivery Status: %1$@\n" = "Delivery Status: %1$@\n";
+"Delivery Status: %1$@\n" = "Stato di consegna: %1$@\n";
 
 /* The format string for minutes (1: number of minutes string) */
-"%1$@ minutes" = "%1$@ minutes";
+"%1$@ minutes" = "%1$@ minuti";
 
 /* The format string for Alerts: (1: the alerts string) */
-"Alerts: %1$@\n" = "Alerts: %1$@\n";
+"Alerts: %1$@\n" = "Avvisi: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Se il problema persiste, passare in una nuova area e riprovare";

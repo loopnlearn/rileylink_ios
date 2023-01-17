@@ -60,7 +60,7 @@ class PodCommsSessionTests: XCTestCase, PodCommsSessionDelegate {
 
         // 2018-05-25T13:03:51.765792 pod Message(ffffffff seq:01 [OmniKitPacketParser.VersionResponse(blockType: OmniKitPacketParser.MessageBlockType.versionResponse, lot: 43620, tid: 560313, address: Optional(521580830), pmVersion: 2.7.0, piVersion: 2.7.0, data: 23 bytes)])
 
-        let podState = PodState(address: 521580830, piVersion: "2.7.0", pmVersion: "2.7.0", lot: 43620, tid: 560313)
+        let podState = PodState(address: 521580830, pmVersion: "2.7.0", piVersion: "2.7.0", lot: 43620, tid: 560313)
 
         let messageTransport = MockMessageTransport(address: podState.address, messageNumber: 5)
 
@@ -76,9 +76,8 @@ class PodCommsSessionTests: XCTestCase, PodCommsSessionDelegate {
         let session = PodCommsSession(podState: podState, transport: messageTransport, delegate: self)
 
 
-        // 2018-05-26T09:11:07.984983 pdm Message(1f16b11e seq:05 [SetInsulinScheduleCommand(nonce:2232447658, bolus(units: 1.0, timeBetweenPulses: 2.0)), OmniKitPacketParser.BolusExtraCommand(blockType: OmniKitPacketParser.MessageBlockType.bolusExtra, completionBeep: false, programReminderInterval: 0.0, units: 1.0, timeBetweenPulses: 2.0, squareWaveUnits: 0.0, squareWaveDuration: 0.0)])
-        let bolusDelivery = SetInsulinScheduleCommand.DeliverySchedule.bolus(units: 1.0, timeBetweenPulses: 2.0)
-        let sentCommand = SetInsulinScheduleCommand(nonce: 2232447658, deliverySchedule: bolusDelivery)
+        // 2018-05-26T09:11:07.984983 pdm Message(1f16b11e seq:05 [SetInsulinScheduleCommand(nonce:2232447658, bolus(units: 1.0, timeBetweenPulses: 2.0)), OmniKitPacketParser.BolusExtraCommand(blockType: OmniKitPacketParser.MessageBlockType.bolusExtra, completionBeep: false, programReminderInterval: 0.0, units: 1.0, timeBetweenPulses: 2.0, extendedUnits: 0.0, extendedDuration: 0.0)])
+        let sentCommand = SetInsulinScheduleCommand(nonce: 2232447658, units: 1.0)
 
         do {
             let status: StatusResponse = try session.send([sentCommand])

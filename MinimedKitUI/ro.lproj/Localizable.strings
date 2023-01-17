@@ -188,7 +188,7 @@
 "Signal Strength" = "Puterea semnalului";
 
 /* A message indicating a command succeeded */
-"Succeeded" = "Succeeded";
+"Succeeded" = "Succes";
 
 /* The format string describing pump suspended state: (1: suspended) */
 "Suspended: %1$@\n" = "Suspendat: %1$@\n";
@@ -207,4 +207,3 @@
 
 /* The title of the cell showing uptime */
 "Uptime" = "Timp în funcțiune";
-

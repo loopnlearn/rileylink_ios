@@ -36,7 +36,7 @@
 "Active Time" = "Activatie tijd";
 
 /* The title of the cell showing the Pod Active Clock */
-"Pod Active Clock" = "Pod Active Clock";
+"Pod Active Clock" = "Pod actieve klok";
 
 /* The title of the cell showing alarm status */
 "Alarms" = "Alarmen";
@@ -111,11 +111,11 @@
 /* The alert title for Disable Confirmation Beep */
 "Disable Confirmation Beeps" = "Schakel bevestigingspiepjes uit";
 
-/* The alert title for enable Automatic Bolus Beeps */
-"Enable Automatic Bolus Beeps" = "Automatische boluspiepen inschakelen";
+/* Title text for button to disable extended confirmation beeps */
+"Disable Extended Confirmation Beeps" = "Schakel bevestigingspiepjes uit";
 
-/* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "Automatische boluspiepen uitschakelen";
+/* Title text for button to enable extended confirmation beeps */
+"Enable Extended Confirmation Beeps" = "Schakel bevestigingspiepjes in";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Fout met hervatten";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Speel test piepjes af";
 
 /* Progress message for play test beeps. */
-"Playing Test Beeps…" = "Playing Test Beeps…";
+"Playing Test Beeps…" = "Testpieptoon wordt afgespeeld…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "PM versie";
@@ -258,19 +258,22 @@
 "Read Pulse Log" = "Pulslog uitlezen";
 
 /* The title of the pod details section in settings */
-"Pod Details" = "Pod Details";
+"Pod Details" = "Pod details";
 
 /* Recovery suggestion on unexpected pod change */
-"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
+"Please bring only original pod in range or deactivate original pod" = "Breng alstublieft alleen de originele pod binnen bereik of deactiveer de originele pod";
 
 /* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
-"Last Bolus Not Delivered: %1$@ U\n" = "Last Bolus Not Delivered: %1$@ U\n";
+"Last Bolus Not Delivered: %1$@ U\n" = "Laatste bolus niet afgegeven: %1$@ E\n";
 
 /* The format string for Delivery Status: (1: delivery status string) */
-"Delivery Status: %1$@\n" = "Delivery Status: %1$@\n";
+"Delivery Status: %1$@\n" = "Status afgifte: %1$@\n";
 
 /* The format string for minutes (1: number of minutes string) */
-"%1$@ minutes" = "%1$@ minutes";
+"%1$@ minutes" = "%1$@ minuten";
 
 /* The format string for Alerts: (1: the alerts string) */
-"Alerts: %1$@\n" = "Alerts: %1$@\n";
+"Alerts: %1$@\n" = "Waarschuwingen: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Als het probleem aanhoudt, ga dan naar een nieuw gebied en probeer het opnieuw";

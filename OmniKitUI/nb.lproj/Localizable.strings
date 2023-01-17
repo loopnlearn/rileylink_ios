@@ -111,11 +111,11 @@
 /* The alert title for Disable Confirmation Beep */
 "Disable Confirmation Beeps" = "Slå av lyd for bekreftelse";
 
-/* The alert title for enable Automatic Bolus Beeps */
-"Enable Automatic Bolus Beeps" = "Slå på lyd for bekreftelse av Auto-bolus";
+/* Title text for button to disable extended confirmation beeps */
+"Disable Extended Confirmation Beeps" = "Deaktiver utvidede bekreftelseslyder";
 
-/* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "Slå av lyd for bekreftelse av Auto-bolus";
+/* Title text for button to enable extended confirmation beeps */
+"Enable Extended Confirmation Beeps" = "Aktiver utvidede bekreftelseslyder";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Kunne ikke fortsette";
@@ -274,3 +274,6 @@
 
 /* The format string for Alerts: (1: the alerts string) */
 "Alerts: %1$@\n" = "Varsler %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Hvis problemet vedvarer, gå til et annet område og prøv igjen";

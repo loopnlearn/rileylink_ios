@@ -54,13 +54,13 @@
 "Basal Delivery" = "Basal Delivery";
 
 /* The title text for the basal rate schedule */
-"Basal Rates" = "Basal Rates";
+"Basal Rates" = "الضخ المستمر";
 
 /* The title of the cell showing pod bolus status */
 "Bolus Delivery" = "Bolus Delivery";
 
 /* The title of the cancel action in an action sheet */
-"Cancel" = "Cancel";
+"Cancel" = "إلغاء";
 
 /* The title of the command to change pump time zone */
 "Change Time Zone" = "Change Time Zone";
@@ -69,7 +69,7 @@
 "Changing time…" = "Changing time…";
 
 /* The title of the configuration section in settings */
-"Configuration" = "Configuration";
+"Configuration" = "المعطيات";
 
 /* The title of the Insulin Type */
 "Insulin Type" = "Insulin Type";
@@ -88,7 +88,7 @@
 "Delete Omnipod" = "Delete Omnipod";
 
 /* Title text for delivery limits */
-"Delivery Limits" = "Delivery Limits";
+"Delivery Limits" = "حدود الضخ";
 
 /* The title of the device information section in settings */
 "Device Information" = "Device Information";
@@ -111,14 +111,14 @@
 /* The alert title for Disable Confirmation Beep */
 "Disable Confirmation Beeps" = "Disable Confirmation Beeps";
 
-/* The alert title for enable Automatic Bolus Beeps */
-"Enable Automatic Bolus Beeps" = "Enable Automatic Bolus Beeps";
+/* Title text for button to disable extended confirmation beeps */
+"Disable Extended Confirmation Beeps" = "Disable Extended Confirmation Beeps";
 
-/* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "Disable Automatic Bolus Beeps";
+/* Title text for button to enable extended confirmation beeps */
+"Enable Extended Confirmation Beeps" = "Enable Extended Confirmation Beeps";
 
 /* The alert title for a resume error */
-"Error Resuming" = "Error Resuming";
+"Error Resuming" = "خطأ في الاستئناف";
 
 /* The alert title for a suspend error */
 "Error Suspending" = "Error Suspending";
@@ -206,7 +206,7 @@
 "Replace Pod Now" = "Replace Pod Now";
 
 /* The title of the cell showing reservoir status */
-"Reservoir" = "Reservoir";
+"Reservoir" = "الخزان";
 
 /* Button title for retrying pod deactivation */
 "Retry Pod Deactivation" = "Retry Pod Deactivation";
@@ -274,3 +274,6 @@
 
 /* The format string for Alerts: (1: the alerts string) */
 "Alerts: %1$@\n" = "Alerts: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "If the problem persists, move to a new area and try again";

@@ -1,5 +1,5 @@
 /* Communications error for a bolus currently running */
-"A bolus is already in progress" = "Halihazırda bir bolus devam ediyor";
+"A bolus is already in progress" = "Bolus zaten devam ediyor";
 
 /* The description of AlarmClockReminderPumpEvent */
 "AlarmClockReminder" = "AlarmClockReminder";
@@ -8,7 +8,7 @@
 "AlarmSensor" = "AlarmSensor";
 
 /* Describing the battery chemistry as Alkaline */
-"Alkaline" = "Alkali";
+"Alkaline" = "Alkalin";
 
 /* The format string description of a BasalProfileStartPumpEvent. (1: The index of the profile)(2: The basal rate) */
 "Basal Profile %1$@: %2$@ U/hour" = "Bazal Profil %1$@: %2$@ Ü/Sa";
@@ -29,13 +29,13 @@
 "Decoding Error" = "Kod Çözme Hatası";
 
 /* Error description */
-"Device Error" = "Cihaz Hatası";
+"Device Error" = "Aygıt Hatası";
 
 /* Describing the pump history insulin data source */
 "Event History" = "Etkinlik Geçmişi";
 
 /* Format string for failure reason. (1: The operation being performed) (2: The response data) */
-"Invalid response during %1$@: %2$@" = "Sürecinde geçersiz yanıt %1$@: %2$@";
+"Invalid response during %1$@: %2$@" = "%1$@: %2$@ sürecinde geçersiz yanıt";
 
 /* Describing the battery chemistry as Lithium */
 "Lithium" = "Lityum";
@@ -68,7 +68,7 @@
 "Pump responded unexpectedly" = "Pompa beklenmedik şekilde yanıt verdi";
 
 /* The format string describing a pump message. (1: The packet type)(2: The message type)(3: The message address)(4: The message data */
-"PumpMessage(%1$@, %2$@, %3$@, %4$@)" = "Pompamesajı(%1$@, %2$@, %3$@, %4$@)";
+"PumpMessage(%1$@, %2$@, %3$@, %4$@)" = "PompaMesajı(%1$@, %2$@, %3$@, %4$@)";
 
 /* Describing the reservoir insulin data source */
 "Reservoir" = "Rezervuar";
@@ -92,7 +92,7 @@
 "Unknown pump model: %@" = "Bilinmeyen pompa modeli: %@";
 
 /* Format string for an unknown response. (1: The operation being performed) (2: The response data) */
-"Unknown response during %1$@: %2$@" = "Sürecinde bilinmeyen yanıt %1$@: %2$@";
+"Unknown response during %1$@: %2$@" = "%1$@: %2$@ Sürecinde bilinmeyen yanıt";
 
 /* Describing the worldwide pump region */
 "World-Wide" = "Dünya Çapında";

@@ -20,7 +20,7 @@
 "Awake Until" = "Aktiv til";
 
 /* The title text for the basal rate schedule */
-"Basal Rates" = "Basaldoser";
+"Basal Rates" = "Basal-program";
 
 /* The format string describing pump battery voltage: (1: battery voltage) */
 "Battery: %1$@ volts\n" = "Batteri: %1$@ volt\n";
@@ -84,13 +84,13 @@
 "Error Suspending" = "Pause feilet";
 
 /* The title of the command to fetch recent glucose */
-"Fetch Enlite Glucose" = "Hent enlite blodsukker";
+"Fetch Enlite Glucose" = "Hent Enlite blodsukker";
 
 /* The title of the command to fetch recent history */
 "Fetch Recent History" = "Hent nylig historikk";
 
 /* Progress message for fetching pump glucose. */
-"Fetching glucose…" = "Henter glukose…";
+"Fetching glucose…" = "Henter blodsukker…";
 
 /* Progress message for fetching pump history. */
 "Fetching history…" = "Henter historikk…";

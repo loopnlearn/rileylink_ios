@@ -28,13 +28,13 @@ public class ConfirmationBeepsTableViewCell: TextButtonTableViewCell {
 }
 
 
-public class AutoBolusBeepsTableViewCell: TextButtonTableViewCell {
+public class ExtendedBeepsTableViewCell: TextButtonTableViewCell {
 
     public func updateTextLabel(enabled: Bool) {
         if enabled {
-            self.textLabel?.text = LocalizedString("Disable Automatic Bolus Beeps", comment: "Title text for button to disable automatic bolus beeps")
+            self.textLabel?.text = LocalizedString("Disable Extended Confirmation Beeps", comment: "Title text for button to disable extended confirmation beeps")
         } else {
-            self.textLabel?.text = LocalizedString("Enable Automatic Bolus Beeps", comment: "Title text for button to enable automatic bolus beeps")
+            self.textLabel?.text = LocalizedString("Enable Extended Confirmation Beeps", comment: "Title text for button to enable extended confirmation beeps")
         }
     }
 }
@@ -88,9 +88,9 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
         return cell
     }()
 
-    lazy var autoBolusBeepsTableViewCell: AutoBolusBeepsTableViewCell = {
-        let cell = AutoBolusBeepsTableViewCell(style: .default, reuseIdentifier: nil)
-        cell.updateTextLabel(enabled: pumpManager.automaticBolusBeeps)
+    lazy var extendedBeepsTableViewCell: ExtendedBeepsTableViewCell = {
+        let cell = ExtendedBeepsTableViewCell(style: .default, reuseIdentifier: nil)
+        cell.updateTextLabel(enabled: pumpManager.extendedBeeps)
         cell.isEnabled = self.pumpManager.confirmationBeeps
         return cell
     }()
@@ -281,7 +281,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
     private enum ConfigurationRow: Int, CaseIterable {
         case suspendResume = 0
         case enableDisableConfirmationBeeps
-        case enableDisableAutoBolusBeeps
+        case enableDisableExtendedBeeps
         case reminder
         case timeZoneOffset
         case replacePod
@@ -381,7 +381,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
 
                 let deliveredUnits: Double?
                 if let dose = podState.unfinalizedBolus {
-                    deliveredUnits = pumpManager.roundToSupportedBolusVolume(units: dose.progress * dose.units)
+                    deliveredUnits = pumpManager.roundToSupportedBolusVolume(units: dose.progress() * dose.units)
                 } else {
                     deliveredUnits = nil
                 }
@@ -413,8 +413,8 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
                 return suspendResumeTableViewCell
             case .enableDisableConfirmationBeeps:
                 return confirmationBeepsTableViewCell
-            case .enableDisableAutoBolusBeeps:
-                return autoBolusBeepsTableViewCell
+            case .enableDisableExtendedBeeps:
+                return extendedBeepsTableViewCell
             case .reminder:
                 let cell = tableView.dequeueReusableCell(withIdentifier: ExpirationReminderDateTableViewCell.className, for: indexPath) as! ExpirationReminderDateTableViewCell
                 if let podState = podState, let reminderDate = pumpManager.expirationReminderDate {
@@ -592,8 +592,8 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             case .enableDisableConfirmationBeeps:
                 confirmationBeepsTapped()
                 tableView.deselectRow(at: indexPath, animated: true)
-            case .enableDisableAutoBolusBeeps:
-                autoBolusBeepsTapped()
+            case .enableDisableExtendedBeeps:
+                extendedBeepsTapped()
                 tableView.deselectRow(at: indexPath, animated: true)
             case .reminder:
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -677,7 +677,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             break
         case .configuration:
             switch configurationRows[indexPath.row] {
-            case .suspendResume, .enableDisableConfirmationBeeps, .enableDisableAutoBolusBeeps, .reminder:
+            case .suspendResume, .enableDisableConfirmationBeeps, .enableDisableExtendedBeeps, .reminder:
                 break
             case .timeZoneOffset, .replacePod:
                 tableView.reloadRows(at: [indexPath], with: .fade)
@@ -723,7 +723,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
                 if let self = self {
                     self.confirmationBeepsTableViewCell.updateTextLabel(enabled: self.pumpManager.confirmationBeeps)
                     self.confirmationBeepsTableViewCell.isLoading = false
-                    self.autoBolusBeepsTableViewCell.isEnabled = self.pumpManager.confirmationBeeps
+                    self.extendedBeepsTableViewCell.isEnabled = self.pumpManager.confirmationBeeps
                 }
             }
         }
@@ -749,27 +749,27 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
         setConfirmationBeeps(confirmationBeeps: !pumpManager.confirmationBeeps)
     }
 
-    private func autoBolusBeepsTapped() {
-        let newValue = !pumpManager.automaticBolusBeeps
-        pumpManager.automaticBolusBeeps = newValue
+    private func extendedBeepsTapped() {
+        let newValue = !pumpManager.extendedBeeps
+        pumpManager.extendedBeeps = newValue
 
         func done() {
             DispatchQueue.main.async { [weak self] in
                 if let self = self {
-                    self.autoBolusBeepsTableViewCell.updateTextLabel(enabled: newValue)
-                    self.autoBolusBeepsTableViewCell.isLoading = false
+                    self.extendedBeepsTableViewCell.updateTextLabel(enabled: newValue)
+                    self.extendedBeepsTableViewCell.isLoading = false
                 }
             }
         }
 
         // Beep if confirmation beeps are enabled else just update the value displayed
         if pumpManager.confirmationBeeps {
-            self.autoBolusBeepsTableViewCell.isLoading = true
+            self.extendedBeepsTableViewCell.isLoading = true
             pumpManager.setConfirmationBeeps(enabled: true, completion: { (error) in
                 done() // no worries if confirmation beep fails for any reason
             })
         } else {
-            self.autoBolusBeepsTableViewCell.updateTextLabel(enabled: newValue)
+            self.extendedBeepsTableViewCell.updateTextLabel(enabled: newValue)
         }
     }
 }
@@ -993,7 +993,7 @@ private extension UITableViewCell {
             return
         }
         
-        let progress = dose.progress
+        let progress = dose.progress()
         if let units = self.insulinFormatter.string(from: dose.units), let deliveredUnits = self.insulinFormatter.string(from: delivered) {
             if progress >= 1 {
                 self.detailTextLabel?.text = String(format: LocalizedString("%@ U (Finished)", comment: "Format string for bolus progress when finished. (1: The localized amount)"), units)
@@ -1016,21 +1016,11 @@ private extension UITableViewCell {
     }
 
     func setReservoirDetail(_ measurements: PodInsulinMeasurements?) {
-        guard let measurements = measurements else {
+        guard let reservoirLevel = measurements?.reservoirLevel else {
             detailTextLabel?.text = LocalizedString("Unknown", comment: "The detail text for delivered insulin when no measurement is available")
             return
         }
-        if measurements.reservoirLevel == nil {
-            if let units = insulinFormatter.string(from: Pod.maximumReservoirReading) {
-                detailTextLabel?.text = String(format: LocalizedString("%@+ U", comment: "Format string for reservoir reading when above or equal to maximum reading. (1: The localized amount)"), units)
-            }
-        } else {
-            if let reservoirValue = measurements.reservoirLevel,
-                let units = insulinFormatter.string(from: reservoirValue)
-            {
-                detailTextLabel?.text = String(format: LocalizedString("%@ U", comment: "Format string for insulin remaining in reservoir. (1: The localized amount)"), units)
-            }
-        }
+        detailTextLabel?.text = reservoirLevelString(reservoirLevel) + " U"
     }
 }
 
