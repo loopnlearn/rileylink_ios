@@ -394,14 +394,14 @@ extension OmnipodPumpManager {
 
     // Returns a suitable beep command MessageBlock based the current confirmationBeeps setting
     // and whether there is an unfinializedDose for a manual temp basal &/or a manual bolus.
-    private func beepMessageBlock(beepType: BeepConfigType) -> MessageBlock? {
+    private func beepMessageBlock(beepType: BeepType) -> MessageBlock? {
         guard self.confirmationBeeps else {
             return nil
         }
 
         // Enable temp basal & basal completion beeps if there is a cooresponding manual unfinalizedDose
         let beepMessageBlock = BeepConfigCommand(
-            beepConfigType: beepType,
+            beepType: beepType,
             tempBasalCompletionBeep: hasUnfinalizedManualTempBasal,
             bolusCompletionBeep: hasUnfinalizedManualBolus
         )
@@ -1041,7 +1041,7 @@ extension OmnipodPumpManager {
             case .success(let session):
                 let enabled = self.confirmationBeeps
                 let result = session.beepConfig(
-                    beepConfigType: .bipBeepBipBeepBipBeepBipBeep,
+                    beepType: .bipBeepBipBeepBipBeepBipBeep,
                     tempBasalCompletionBeep: enabled && self.hasUnfinalizedManualTempBasal,
                     bolusCompletionBeep: enabled && self.hasUnfinalizedManualBolus
                 )
@@ -1109,12 +1109,12 @@ extension OmnipodPumpManager {
         self.podComms.runSession(withName: name, using: rileyLinkSelector) { (result) in
             switch result {
             case .success(let session):
-                let beepConfigType: BeepConfigType = enabled ? .bipBip : .noBeep
+                let beepType: BeepType = enabled ? .bipBip : .noBeepNonCancel
                 let tempBasalCompletionBeep = enabled && self.hasUnfinalizedManualTempBasal
                 let bolusCompletionBeep = enabled && self.hasUnfinalizedManualBolus
 
                 // enable/disable Pod completion beeps for any in-progress insulin delivery
-                let result = session.beepConfig(beepConfigType: beepConfigType, tempBasalCompletionBeep: tempBasalCompletionBeep, bolusCompletionBeep: bolusCompletionBeep)
+                let result = session.beepConfig(beepType: beepType, tempBasalCompletionBeep: tempBasalCompletionBeep, bolusCompletionBeep: bolusCompletionBeep)
 
                 switch result {
                 case .success:
@@ -1517,7 +1517,7 @@ extension OmnipodPumpManager: PumpManager {
                 }
 
                 // when cancelling a bolus use the built-in type 6 beeeeeep to match PDM if confirmation beeps are enabled
-                let beepType: BeepType = self.confirmationBeeps ? .beeeeeep : .noBeep
+                let beepType: BeepType = self.confirmationBeeps ? .beeeeeep : .noBeepCancel
                 let result = session.cancelDelivery(deliveryType: .bolus, beepType: beepType)
                 switch result {
                 case .certainFailure(let error):
@@ -1589,7 +1589,7 @@ extension OmnipodPumpManager: PumpManager {
                 let status: StatusResponse
 
                 // if resuming scheduled basal delivery & an acknowledgement beep is needed, use the cancel TB beep
-                let beepType: BeepType = resumingScheduledBasal && acknowledgementBeep ? .beep : .noBeep
+                let beepType: BeepType = resumingScheduledBasal && acknowledgementBeep ? .beep : .noBeepCancel
                 let result = session.cancelDelivery(deliveryType: .tempBasal, beepType: beepType)
                 switch result {
                 case .certainFailure(let error):
