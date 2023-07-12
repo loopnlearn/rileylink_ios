@@ -119,7 +119,7 @@ extension DetailedStatus: CustomDebugStringConvertible {
             "* lastProgrammingMessageSeqNum: \(lastProgrammingMessageSeqNum)",
             "* totalInsulinDelivered: \(totalInsulinDelivered.twoDecimals) U",
             "* reservoirLevel: \(reservoirLevelString(reservoirLevel)) U",
-            "* timeActive: \(timeActive.stringValue)",
+            "* timeActive: \(timeActive.timeIntervalStr)",
             "* unacknowledgedAlerts: \(unacknowledgedAlerts)",
             "",
             ].joined(separator: "\n")
@@ -134,7 +134,7 @@ extension DetailedStatus: CustomDebugStringConvertible {
             result += [
                 "* faultEventCode: \(faultEventCode.description)",
                 "* faultAccessingTables: \(faultAccessingTables)",
-                "* faultEventTimeSinceActivation: \(faultEventTimeSinceActivation?.stringValue ?? "NA")",
+                "* faultEventTimeSinceActivation: \(faultEventTimeSinceActivation?.timeIntervalStr ?? "NA")",
                 "* errorEventInfo: \(errorEventInfo?.description ?? "NA")",
                 "* previousPodProgressStatus: \(previousPodProgressStatus?.description ?? "NA")",
                 "* possibleFaultCallingAddress: \(possibleFaultCallingAddress != nil ? String(format: "0x%04x", possibleFaultCallingAddress!) : "NA")",
@@ -160,21 +160,21 @@ extension DetailedStatus: RawRepresentable {
 }
 
 extension TimeInterval {
-    var stringValue: String {
-        let totalSeconds = self
-        let minutes = Int(totalSeconds / 60) % 60
-        let hours = Int(totalSeconds / 3600) - (Int(self / 3600)/24 * 24)
-        let days = Int((totalSeconds / 3600) / 24)
-        var pluralFormOfDays = "days"
-        if days == 1 {
-            pluralFormOfDays = "day"
+    var timeIntervalStr: String {
+        var str: String = ""
+        let hours = UInt(self / 3600)
+        let minutes = UInt(self / 60) % 60
+        let seconds = UInt(self) % 60
+        if hours != 0 {
+            str += String(format: "%uh", hours)
         }
-        let timeComponent = String(format: "%02d:%02d", hours, minutes)
-        if days > 0 {
-            return String(format: "%d \(pluralFormOfDays) plus %@", days, timeComponent)
-        } else {
-            return timeComponent
+        if minutes != 0 || hours != 0 {
+            str += String(format: "%um", minutes)
         }
+        if seconds != 0 || str.isEmpty {
+            str += String(format: "%us", seconds)
+        }
+        return str
     }
 }
 
@@ -227,16 +227,16 @@ public struct ErrorEventInfo: CustomStringConvertible, Equatable {
 //
 public func isValidReservoirLevelValue(_ reservoirLevel: Double?) -> Bool
 {
-	if let reservoirLevel = reservoirLevel, reservoirLevel <= Pod.maximumReservoirReading {
-		return true
-	}
-	return false
+    if let reservoirLevel = reservoirLevel, reservoirLevel <= Pod.maximumReservoirReading {
+        return true
+    }
+    return false
 }
 
 public func reservoirLevelString(_ reservoirLevel: Double?) -> String
 {
-	if isValidReservoirLevelValue(reservoirLevel) {
-		return reservoirLevel!.twoDecimals
-	}
-	return "50+"
+    if isValidReservoirLevelValue(reservoirLevel) {
+        return reservoirLevel!.twoDecimals
+    }
+    return "50+"
 }
