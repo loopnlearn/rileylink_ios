@@ -54,7 +54,10 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
     fileprivate var nonceState: NonceState
 
     public var activatedAt: Date?
-    public var expiresAt: Date?  // set based on StatusResponse timeActive and can change with Pod clock drift and/or system time change
+    public var expiresAt: Date? // set based on timeActive and can change with Pod clock drift and/or system time change
+
+    public var timeActive: TimeInterval // pod active time from each response, always whole minute values
+    public var timeActiveUpdated: Date? // time that timeActive value was last updated
 
     public var setupUnitsDelivered: Double?
 
@@ -62,7 +65,7 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
     public let piVersion: String
     public let lot: UInt32
     public let tid: UInt32
-    var activeAlertSlots: AlertSet
+    public var activeAlertSlots: AlertSet
     public var lastInsulinMeasurements: PodInsulinMeasurements?
 
     public var unfinalizedBolus: UnfinalizedDose?
@@ -91,16 +94,6 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
     public var setupProgress: SetupProgress
     public var configuredAlerts: [AlertSlot: PodAlert]
 
-    public var activeAlerts: [AlertSlot: PodAlert] {
-        var active = [AlertSlot: PodAlert]()
-        for slot in activeAlertSlots {
-            if let alert = configuredAlerts[slot] {
-                active[slot] = alert
-            }
-        }
-        return active
-    }
-    
     // the following two vars are not persistent across app restarts
     public var deliveryStatusVerified: Bool
     public var lastCommsOK: Bool
@@ -120,9 +113,10 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
         self.messageTransportState = MessageTransportState(packetNumber: packetNumber, messageNumber: messageNumber)
         self.primeFinishTime = nil
         self.setupProgress = .addressAssigned
-        self.configuredAlerts = [.slot7: .waitingForPairingReminder]
+        self.configuredAlerts = [.slot7Expired: .waitingForPairingReminder]
         self.deliveryStatusVerified = false
         self.lastCommsOK = false
+        self.timeActive = 0
     }
     
     public var unfinishedSetup: Bool {
@@ -162,13 +156,23 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
         let seed = UInt16(sum & 0xffff) ^ syncWord
         nonceState = NonceState(lot: lot, tid: tid, seed: seed)
     }
-    
+
+    // Saves the current pod timeActive and will initialize the activatedAtComputed at
+    // pod startup and updates the expiresAt value to account for pod clock differences.
     private mutating func updatePodTimes(timeActive: TimeInterval) -> Date {
         let now = Date()
+
+        // Don't use a zero timeActive value after a reset type pod fault
+        if timeActive != 0 || self.timeActiveUpdated == nil {
+            self.timeActive = timeActive
+            self.timeActiveUpdated = now
+        }
+
         let activatedAtComputed = now - timeActive
         if activatedAt == nil {
             self.activatedAt = activatedAtComputed
         }
+
         let expiresAtComputed = activatedAtComputed + Pod.nominalPodLife
         if expiresAt == nil {
             self.expiresAt = expiresAtComputed
@@ -331,6 +335,16 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
             }
         }
 
+        if let timeActive = rawValue["timeActive"] as? TimeInterval,
+            let timeActiveUpdated = rawValue["timeActiveUpdated"] as? Date
+        {
+            self.timeActive = timeActive
+            self.timeActiveUpdated = timeActiveUpdated
+        } else {
+            self.timeActive = 0
+            self.timeActiveUpdated = nil
+        }
+
         if let setupUnitsDelivered = rawValue["setupUnitsDelivered"] as? Double {
             self.setupUnitsDelivered = setupUnitsDelivered
         }
@@ -423,12 +437,12 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
         } else {
             // Assume migration, and set up with alerts that are normally configured
             self.configuredAlerts = [
-                .slot2: .shutdownImminent(0),
-                .slot3: .expirationReminder(0),
-                .slot4: .lowReservoir(0),
-                .slot5: .podSuspendedReminder(active: false, suspendTime: 0),
-                .slot6: .suspendTimeExpired(suspendTime: 0),
-                .slot7: .expired(alertTime: 0, duration: 0)
+                .slot2ShutdownImminent: .shutdownImminent(offset: 0, absAlertTime: 0),
+                .slot3ExpirationReminder: .expirationReminder(offset: 0, absAlertTime: 0),
+                .slot4LowReservoir: .lowReservoir(units: 0),
+                .slot5SuspendedReminder: .podSuspendedReminder(active: false, offset: 0, suspendTime: 0),
+                .slot6SuspendTimeExpired: .suspendTimeExpired(offset: 0, suspendTime: 0),
+                .slot7Expired: .expired(offset: 0, absAlertTime: 0, duration: 0)
             ]
         }
         
@@ -452,46 +466,19 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
             "messageTransportState": messageTransportState.rawValue,
             "setupProgress": setupProgress.rawValue
             ]
-        
-        if let unfinalizedBolus = self.unfinalizedBolus {
-            rawValue["unfinalizedBolus"] = unfinalizedBolus.rawValue
-        }
-        
-        if let unfinalizedTempBasal = self.unfinalizedTempBasal {
-            rawValue["unfinalizedTempBasal"] = unfinalizedTempBasal.rawValue
-        }
 
-        if let unfinalizedSuspend = self.unfinalizedSuspend {
-            rawValue["unfinalizedSuspend"] = unfinalizedSuspend.rawValue
-        }
-
-        if let unfinalizedResume = self.unfinalizedResume {
-            rawValue["unfinalizedResume"] = unfinalizedResume.rawValue
-        }
-
-        if let lastInsulinMeasurements = self.lastInsulinMeasurements {
-            rawValue["lastInsulinMeasurements"] = lastInsulinMeasurements.rawValue
-        }
-        
-        if let fault = self.fault {
-            rawValue["fault"] = fault.rawValue
-        }
-
-        if let primeFinishTime = primeFinishTime {
-            rawValue["primeFinishTime"] = primeFinishTime
-        }
-
-        if let activatedAt = activatedAt {
-            rawValue["activatedAt"] = activatedAt
-        }
-
-        if let expiresAt = expiresAt {
-            rawValue["expiresAt"] = expiresAt
-        }
-
-        if let setupUnitsDelivered = setupUnitsDelivered {
-            rawValue["setupUnitsDelivered"] = setupUnitsDelivered
-        }
+        rawValue["unfinalizedBolus"] = unfinalizedBolus?.rawValue
+        rawValue["unfinalizedTempBasal"] = unfinalizedTempBasal?.rawValue
+        rawValue["unfinalizedSuspend"] = unfinalizedSuspend?.rawValue
+        rawValue["unfinalizedResume"] = unfinalizedResume?.rawValue
+        rawValue["lastInsulinMeasurements"] = lastInsulinMeasurements?.rawValue
+        rawValue["fault"] = fault?.rawValue
+        rawValue["primeFinishTime"] = primeFinishTime
+        rawValue["activatedAt"] = activatedAt
+        rawValue["expiresAt"] = expiresAt
+        rawValue["timeActive"] = timeActive
+        rawValue["timeActiveUpdated"] = timeActiveUpdated
+        rawValue["setupUnitsDelivered"] = setupUnitsDelivered
 
         if configuredAlerts.count > 0 {
             let rawConfiguredAlerts = Dictionary(uniqueKeysWithValues:
@@ -510,6 +497,8 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
             "* address: \(String(format: "%04X", address))",
             "* activatedAt: \(String(reflecting: activatedAt))",
             "* expiresAt: \(String(reflecting: expiresAt))",
+            "* timeActive: \(timeActive.timeIntervalStr)",
+            "* timeActiveUpdated: \(String(reflecting: timeActiveUpdated))",
             "* setupUnitsDelivered: \(String(reflecting: setupUnitsDelivered))",
             "* piVersion: \(piVersion)",
             "* pmVersion: \(pmVersion)",
@@ -521,7 +510,7 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
             "* unfinalizedSuspend: \(String(describing: unfinalizedSuspend))",
             "* unfinalizedResume: \(String(describing: unfinalizedResume))",
             "* finalizedDoses: \(String(describing: finalizedDoses))",
-            "* activeAlerts: \(String(describing: activeAlerts))",
+            "* activeAlerts: \(alertString(alerts: activeAlertSlots))",
             "* messageTransportState: \(String(describing: messageTransportState))",
             "* setupProgress: \(setupProgress)",
             "* primeFinishTime: \(String(describing: primeFinishTime))",

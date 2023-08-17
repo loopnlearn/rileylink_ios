@@ -45,7 +45,7 @@ extension CommandResponseViewController {
         }
     }
     
-    private static func podStatusString(status: DetailedStatus, configuredAlerts: [AlertSlot: PodAlert]) -> String {
+    private static func podStatusString(status: DetailedStatus) -> String {
         var result, str: String
 
         let formatter = DateComponentsFormatter()
@@ -57,7 +57,7 @@ extension CommandResponseViewController {
         } else {
             str = String(format: LocalizedString("%1$@ minutes", comment: "The format string for minutes (1: number of minutes string)"), String(describing: Int(status.timeActive / 60)))
         }
-        result = String(format: LocalizedString("Pod Active Clock: %1$@\n", comment: "The format string for Pod Active Clock: (1: formatted time)"), str)
+        result = String(format: LocalizedString("Pod Active: %1$@\n", comment: "The format string for Pod Active: (1: formatted time)"), str)
 
         result += String(format: LocalizedString("Delivery Status: %1$@\n", comment: "The format string for Delivery Status: (1: delivery status string)"), String(describing: status.deliveryStatus))
 
@@ -67,19 +67,7 @@ extension CommandResponseViewController {
 
         result += String(format: LocalizedString("Last Bolus Not Delivered: %1$@ U\n", comment: "The format string for Last Bolus Not Delivered: (1: bolus not delivered string)"), status.bolusNotDelivered.twoDecimals)
 
-        let alertsDescription = status.unacknowledgedAlerts.map { (slot) -> String in
-            if let podAlert = configuredAlerts[slot] {
-                return String(describing: podAlert)
-            } else {
-                return String(describing: slot)
-            }
-        }
-        let alertString: String
-        if status.unacknowledgedAlerts.isEmpty {
-            alertString = String(describing: status.unacknowledgedAlerts)
-        } else {
-            alertString = alertsDescription.joined(separator: ", ")
-        }
+        let alertString = alertString(alerts: status.unacknowledgedAlerts)
         result += String(format: LocalizedString("Alerts: %1$@\n", comment: "The format string for Alerts: (1: the alerts string)"), alertString)
 
         result += String(format: LocalizedString("RSSI: %1$@\n", comment: "The format string for RSSI: (1: RSSI value)"), String(describing: status.radioRSSI))
@@ -109,8 +97,7 @@ extension CommandResponseViewController {
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let status):
-                        let configuredAlerts = pumpManager.state.podState!.configuredAlerts
-                        completionHandler(podStatusString(status: status, configuredAlerts: configuredAlerts))
+                        completionHandler(podStatusString(status: status))
                     case .failure(let error):
                         completionHandler(resultString(error: error))
                     }

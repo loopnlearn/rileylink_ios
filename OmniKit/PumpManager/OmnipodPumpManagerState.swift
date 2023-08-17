@@ -30,6 +30,8 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
 
     public var expirationReminderDate: Date?
 
+    public var silencePod: Bool
+
     public var confirmationBeeps: Bool
 
     public var extendedBeeps: Bool
@@ -62,6 +64,7 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
         self.basalSchedule = basalSchedule
         self.rileyLinkConnectionManagerState = rileyLinkConnectionManagerState
         self.unstoredDoses = []
+        self.silencePod = false
         self.confirmationBeeps = false
         self.extendedBeeps = false
     }
@@ -134,6 +137,8 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
             self.unstoredDoses = []
         }
 
+        self.silencePod = rawValue["silencePod"] as? Bool ?? false
+
         self.confirmationBeeps = rawValue["confirmationBeeps"] as? Bool ?? false
 
         self.extendedBeeps = rawValue["extendedBeeps"] as? Bool ?? rawValue["automaticBolusBeeps"] as? Bool ?? false
@@ -153,6 +158,7 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
             "timeZone": timeZone.secondsFromGMT(),
             "basalSchedule": basalSchedule.rawValue,
             "unstoredDoses": unstoredDoses.map { $0.rawValue },
+            "silencePod": silencePod,
             "confirmationBeeps": confirmationBeeps,
             "extendedBeeps": extendedBeeps,
         ]
@@ -198,6 +204,7 @@ extension OmnipodPumpManagerState: CustomDebugStringConvertible {
             "* tempBasalEngageState: \(String(describing: tempBasalEngageState))",
             "* lastPumpDataReportDate: \(String(describing: lastPumpDataReportDate))",
             "* isPumpDataStale: \(String(describing: isPumpDataStale))",
+            "* silencePod: \(String(describing: silencePod))",
             "* confirmationBeeps: \(String(describing: confirmationBeeps))",
             "* extendedBeeps: \(String(describing: extendedBeeps))",
             "* pairingAttemptAddress: \(String(describing: pairingAttemptAddress))",
