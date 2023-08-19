@@ -125,9 +125,6 @@ class InsertCannulaSetupViewController: SetupTableViewController {
                 // Check for a wrapped PodCommsError in the possible PumpManagerError types
                 case .communication(let error), .configuration(let error), .connection(let error), .deviceState(let error):
                     podCommsError = error as? PodCommsError
-                default:
-                    podCommsError = nil
-                    break
                 }
             } else {
                 // Check for a non PumpManagerError PodCommsError

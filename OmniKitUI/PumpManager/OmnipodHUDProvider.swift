@@ -76,8 +76,9 @@ internal class OmnipodHUDProvider: NSObject, HUDProvider, PodStateObserver {
             let reservoirLevel = reservoirVolume?.asReservoirPercentage()
 
             var reservoirAlertState: ReservoirAlertState = .ok
-            for (_, alert) in podState.activeAlerts {
-                if case .lowReservoir = alert {
+            let activeAlerts = podState.activeAlertSlots
+            for i in activeAlerts.startIndex..<activeAlerts.endIndex {
+                if activeAlerts[i] == .slot4LowReservoir {
                     reservoirAlertState = .lowReservoir
                     break
                 }
@@ -156,7 +157,7 @@ internal class OmnipodHUDProvider: NSObject, HUDProvider, PodStateObserver {
                 lifetime = 0
             }
             rawValue["lifetime"] = lifetime
-            rawValue["alerts"] = podState.activeAlerts.values.map { $0.rawValue }
+            rawValue["alerts"] = alertString(alerts: podState.activeAlertSlots)
         }
         
         if let lastInsulinMeasurements = podState?.lastInsulinMeasurements {
