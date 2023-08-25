@@ -1182,7 +1182,9 @@ extension OmnipodPumpManager {
                 return
             }
 
-            guard let configuredAlerts = self.state.podState?.configuredAlerts else {
+            guard let configuredAlerts = self.state.podState?.configuredAlerts,
+                let activeAlertSlots = self.state.podState?.activeAlertSlots else
+            {
                 self.log.error("No podState") // shouldn't happen
                 completion(OmnipodPumpManagerError.noPodPaired)
                 return
@@ -1204,7 +1206,7 @@ extension OmnipodPumpManager {
                 )
             }
 
-            let podAlerts = createPodAlerts(configuredAlerts: configuredAlerts, timeActive: self.timeActive, silent: silencePod)
+            let podAlerts = createPodAlerts(configuredAlerts: configuredAlerts, activeAlertSlots: activeAlertSlots, timeActive: self.timeActive, silent: silencePod)
 
             do {
                 try session.configureAlerts(podAlerts, beepBlock: beepBlock)

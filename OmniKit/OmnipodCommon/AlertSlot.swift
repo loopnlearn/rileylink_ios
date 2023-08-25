@@ -573,7 +573,7 @@ public func alertString(alerts: AlertSet) -> String {
 
 // Returns a proper set of PodAlerts based on the pod timeActive and silent boolean
 // for all the configuredAlerts that are still active and not expired
-func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], timeActive: TimeInterval, silent: Bool) -> [PodAlert] {
+func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], activeAlertSlots: AlertSet, timeActive: TimeInterval, silent: Bool) -> [PodAlert] {
 
     var podAlerts: [PodAlert] = []
 
@@ -616,7 +616,7 @@ func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], timeActive: TimeIn
             podAlerts.append(PodAlert.lowReservoir(units: units, silent: silent))
 
         case .podSuspendedReminder(let active, let offset, let suspendTime, _, _):
-            let timePassed: TimeInterval = max(timeActive - offset, .hours(2))
+            let timePassed: TimeInterval = min(timeActive - offset, .hours(2))
             // Pass along the computed time passed since alert was originally set so creation routine can
             // do all the grunt work dealing with varying reminder intervals and time passing scenarios.
             podAlerts.append(PodAlert.podSuspendedReminder(active: active, offset: offset, suspendTime: suspendTime, timePassed: timePassed, silent: silent))
@@ -625,8 +625,16 @@ func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], timeActive: TimeIn
             let absAlertTime = lastOffset + lastSuspendTime
             let suspendTime: TimeInterval
             if timeActive >= absAlertTime {
-                // alert trigger is not in the future, make inactive using a 0 value
-                suspendTime = 0
+                // alert trigger is no longer in the future
+                if activeAlertSlots.contains(where: { $0 == .slot6SuspendTimeExpired } ) {
+                    // The suspendTimeExpired alert has yet been acknowledged,
+                    // reconfigure this alert to trigger again in one minute.
+                    suspendTime = TimeInterval(minutes: 1)
+                } else {
+                    // The suspendTimeExpired alert was already been acknowleged,
+                    // so now make this alert inactive by using a 0 suspendTime.
+                    suspendTime = 0
+                }
             } else {
                 // recompute a new suspendTime based on the current pod time
                 suspendTime = absAlertTime - timeActive
