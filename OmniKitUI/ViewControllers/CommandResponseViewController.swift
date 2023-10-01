@@ -59,32 +59,41 @@ extension CommandResponseViewController {
         }
         result = String(format: LocalizedString("Pod Active: %1$@\n", comment: "The format string for Pod Active: (1: formatted time)"), str)
 
+        result += String(format: LocalizedString("Pod Progress Status: %1$@\n", comment: "The format string for Pod Progress Status: (1: pod progress string)"), String(describing: status.podProgressStatus))
+
         result += String(format: LocalizedString("Delivery Status: %1$@\n", comment: "The format string for Delivery Status: (1: delivery status string)"), String(describing: status.deliveryStatus))
+
+        result += String(format: LocalizedString("Last Programming Seq Num: %1$@\n", comment: "The format string for last programming sequence number: (1: last programming sequence number)"), String(describing: status.lastProgrammingMessageSeqNum))
+
+        result += String(format: LocalizedString("Bolus Not Delivered: %1$@ U\n", comment: "The format string for Bolus Not Delivered: (1: bolus not delivered string)"), status.bolusNotDelivered.twoDecimals)
 
         result += String(format: LocalizedString("Pulse Count: %1$d\n", comment: "The format string for Pulse Count (1: pulse count)"), Int(round(status.totalInsulinDelivered / Pod.pulseSize)))
 
-        result += String(format: LocalizedString("Reservoir Level: %1$@ U\n", comment: "The format string for Reservoir Level: (1: reservoir level string)"), reservoirLevelString(status.reservoirLevel))
+        result += String(format: LocalizedString("Reservoir Level: %1$@ U\n", comment: "The format string for Reservoir Level: (1: reservoir level string)"), status.reservoirLevel == Pod.reservoirLevelAboveThresholdMagicNumber ? "50+" : status.reservoirLevel.twoDecimals)
 
-        result += String(format: LocalizedString("Last Bolus Not Delivered: %1$@ U\n", comment: "The format string for Last Bolus Not Delivered: (1: bolus not delivered string)"), status.bolusNotDelivered.twoDecimals)
+        result += String(format: LocalizedString("Alerts: %1$@\n", comment: "The format string for Alerts: (1: the alerts string)"), alertString(alerts: status.unacknowledgedAlerts))
 
-        let alertString = alertString(alerts: status.unacknowledgedAlerts)
-        result += String(format: LocalizedString("Alerts: %1$@\n", comment: "The format string for Alerts: (1: the alerts string)"), alertString)
+        if status.radioRSSI != 0 {
+            result += String(format: LocalizedString("RSSI: %1$@\n", comment: "The format string for RSSI: (1: RSSI value)"), String(describing: status.radioRSSI))
+            result += String(format: LocalizedString("Receiver Low Gain: %1$@\n", comment: "The format string for receiverLowGain: (1: receiverLowGain)"), String(describing: status.receiverLowGain))
+        }
 
-        result += String(format: LocalizedString("RSSI: %1$@\n", comment: "The format string for RSSI: (1: RSSI value)"), String(describing: status.radioRSSI))
-
-        result += String(format: LocalizedString("Receiver Low Gain: %1$@\n", comment: "The format string for receiverLowGain: (1: receiverLowGain)"), String(describing: status.receiverLowGain))
-        
         if status.faultEventCode.faultType != .noFaults {
-            result += "\n" // since we have a fault, report the additional fault related information in a separate section
-            result += String(format: LocalizedString("Fault: %1$@\n", comment: "The format string for a fault: (1: The fault description)"), status.faultEventCode.localizedDescription)
-            if let refStr = status.pdmRef {
-                result += refStr + "\n" // add the PDM style Ref code info as a separate line
-            }
-            if let previousPodProgressStatus = status.previousPodProgressStatus {
-                result += String(format: LocalizedString("Previous pod progress: %1$@\n", comment: "The format string for previous pod progress: (1: previous pod progress string)"), String(describing: previousPodProgressStatus))
-            }
+            // report the additional fault related information in a separate section
+            result += String(format: LocalizedString("\n\nPod Fault Code %1$03d (0x%2$02X),", comment: "The format string for fault code in decimal and hex: (1: fault code for decimal display) (2: fault code for hex display)"), status.faultEventCode.rawValue, status.faultEventCode.rawValue)
+            result += String(format: LocalizedString("\n  %1$@", comment: "The format code for the fault description: (1: fault description)"), status.faultEventCode.faultDescription)
             if let faultEventTimeSinceActivation = status.faultEventTimeSinceActivation, let faultTimeStr = formatter.string(from: faultEventTimeSinceActivation) {
-                result += String(format: LocalizedString("Fault time: %1$@\n", comment: "The format string for fault time: (1: fault time string)"), faultTimeStr)
+                result += String(format: LocalizedString("\nFault Time: %1$@", comment: "The format string for fault time: (1: fault time string)"), faultTimeStr)
+            }
+            if let errorEventInfo = status.errorEventInfo {
+                result += String(format: LocalizedString("\nFault Event Info: %1$03d (0x%2$02X),", comment: "The format string for fault event info: (1: fault event info)"), errorEventInfo.rawValue, errorEventInfo.rawValue)
+                result += String(format: LocalizedString("\n  Insulin State Table Corrupted: %@", comment: "The format string for insulin state table corrupted: (1: insulin state corrupted)"), String(describing: errorEventInfo.insulinStateTableCorruption))
+                result += String(format: LocalizedString("\n  Occlusion Type: %1$@", comment: "The format string for occlusion type: (1: occlusion type)"), String(describing: errorEventInfo.occlusionType))
+                result += String(format: LocalizedString("\n  Immediate Bolus In Progress: %1$@", comment: "The format string for immediate bolus in progress: (1: immediate bolus in progress)"), String(describing: errorEventInfo.immediateBolusInProgress))
+                result += String(format: LocalizedString("\n  Previous Pod Progress Status: %1$@", comment: "The format string for previous pod progress status: (1: previous pod progress status)"), String(describing: errorEventInfo.podProgressStatus))
+            }
+            if let refStr = status.pdmRef {
+                result += String(format: "\nRef: %@", refStr) // add the PDM style Ref code info as a separate line
             }
         }
 

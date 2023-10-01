@@ -101,9 +101,11 @@ public enum PodAlert: CustomStringConvertible, RawRepresentable, Equatable {
     case notUsed
 
     // slot2ShutdownImminent: 79 hour alarm (1 hour before shutdown)
+    // 2 sets of beeps every 15 minutes for 1 hour
     case shutdownImminent(offset: TimeInterval, absAlertTime: TimeInterval, silent: Bool = false)
 
     // slot3ExpirationReminder: User configurable with PDM (1-24 hours before 72 hour expiration)
+    // 2 sets of beeps every minute for 3 minutes and repeat every 15 minutes
     // The PDM doesn't use a duration for this alert (presumably because it is limited to 2^9-1 minutes or 8h31m)
     case expirationReminder(offset: TimeInterval, absAlertTime: TimeInterval, duration: TimeInterval = 0, silent: Bool = false)
 
@@ -115,7 +117,7 @@ public enum PodAlert: CustomStringConvertible, RawRepresentable, Equatable {
     case podSuspendedReminder(active: Bool, offset: TimeInterval, suspendTime: TimeInterval, timePassed: TimeInterval = 0, silent: Bool = false)
 
     // slot6SuspendTimeExpired: pod suspend time expired alarm, after suspendTime;
-    // 2 sets of beeps every min for 3 minutes repeated every 15 minutes
+    // 2 sets of beeps every minute for 3 minutes repeated every 15 minutes
     case suspendTimeExpired(offset: TimeInterval, suspendTime: TimeInterval, silent: Bool = false)
 
     // slot7Expired: 2 hours long, time for user to start pairing process
@@ -132,32 +134,32 @@ public enum PodAlert: CustomStringConvertible, RawRepresentable, Equatable {
         switch self {
         // slot0AutoOff
         case .autoOff:
-            alertName = LocalizedString("Auto-off", comment: "Description for auto-off")
+            alertName = LocalizedString("Auto-off", comment: "Description for auto-off alert")
         // slot1NotUsed
         case .notUsed:
-            alertName = LocalizedString("Not used", comment: "Description for not used slot")
+            alertName = LocalizedString("Not used", comment: "Description for not used slot alert")
         // slot2ShutdownImminent
         case .shutdownImminent:
-            alertName = LocalizedString("Shutdown imminent", comment: "Description for shutdown imminent")
+            alertName = LocalizedString("Shutdown imminent", comment: "Description for shutdown imminent alert")
         // slot3ExpirationReminder
         case .expirationReminder:
-            alertName = LocalizedString("Expiration alert", comment: "Description for expiration alert")
+            alertName = LocalizedString("Expiration reminder", comment: "Description for expiration reminder alert")
         // slot4LowReservoir
         case .lowReservoir:
-            alertName = LocalizedString("Low reservoir advisory", comment: "Format string for description for low reservoir advisory")
+            alertName = LocalizedString("Low reservoir", comment: "Format string for description for low reservoir alert")
         // slot5SuspendedReminder
         case .podSuspendedReminder:
-            alertName = LocalizedString("Pod suspended reminder", comment: "Description for pod suspended reminder")
+            alertName = LocalizedString("Pod suspended reminder", comment: "Description for pod suspended reminder alert")
         // slot6SuspendTimeExpired
         case .suspendTimeExpired:
-            alertName = LocalizedString("Suspend time expired", comment: "Description for suspend time expired")
+            alertName = LocalizedString("Suspend time expired", comment: "Description for suspend time expired alert")
         // slot7Expired
         case .waitingForPairingReminder:
-            alertName = LocalizedString("Waiting for pairing reminder", comment: "Description waiting for pairing reminder")
+            alertName = LocalizedString("Waiting for pairing reminder", comment: "Description waiting for pairing reminder alert")
         case .finishSetupReminder:
-            alertName = LocalizedString("Finish setup reminder", comment: "Description for finish setup reminder")
+            alertName = LocalizedString("Finish setup reminder", comment: "Description for finish setup reminder alert")
         case .expired:
-            alertName = LocalizedString("Expiration advisory", comment: "Description for expiration advisory")
+            alertName = LocalizedString("Pod expired", comment: "Description for pod expired alert")
         }
         if self.configuration.active == false {
             alertName += LocalizedString(" (inactive)", comment: "Description for an inactive alert modifier")
@@ -278,6 +280,7 @@ public enum PodAlert: CustomStringConvertible, RawRepresentable, Equatable {
             return AlertConfiguration(alertType: .slot7Expired, duration: totalDuration - startOffset, trigger: .timeUntilAlert(startOffset), beepRepeat: .every5Minutes, beepType: .bipBeepBipBeepBipBeepBipBeep)
         case .expired(let offset, let absAlertTime, let duration, let silent):
             // Normally used to alert at Pod.nominalPodLife (72 hours) for Pod.expirationAdvisoryWindow (7 hours)
+            // 2 sets of beeps repeating every 60 minutes
             let active = absAlertTime != 0 // disable if absAlertTime is 0
             let triggerTime: TimeInterval
             if active {
