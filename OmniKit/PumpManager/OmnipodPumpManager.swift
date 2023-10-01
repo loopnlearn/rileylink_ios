@@ -447,22 +447,12 @@ extension OmnipodPumpManager {
         get {
             return state.silencePod
         }
-        set {
-            setState { (state) in
-                state.silencePod = newValue
-            }
-        }
     }
 
     // Thread-safe
     public var confirmationBeeps: Bool {
         get {
             return state.confirmationBeeps
-        }
-        set {
-            setState { (state) in
-                state.confirmationBeeps = newValue
-            }
         }
     }
 
@@ -1121,7 +1111,9 @@ extension OmnipodPumpManager {
     public func setConfirmationBeeps(enabled: Bool, completion: @escaping (Error?) -> Void) {
         self.log.default("Set Confirmation Beeps to %s", String(describing: enabled))
         guard self.hasActivePod else {
-            self.confirmationBeeps = enabled // set here to allow changes on a faulted Pod
+            setState { (state) in
+                state.confirmationBeeps = enabled // set here to allow changes on a faulted Pod
+            }
             completion(nil)
             return
         }
@@ -1130,7 +1122,9 @@ extension OmnipodPumpManager {
         if self.silencePod {
             // Already silenced, so no pod commands are needed,
             // just need to change the internal variable state
-            self.confirmationBeeps = enabled
+            setState { (state) in
+                state.confirmationBeeps = enabled
+            }
             completion(nil)
             return
         }
@@ -1830,15 +1824,15 @@ extension OmnipodPumpManager: PumpManager {
                 let result = session.setTempBasal(rate: rate, duration: duration, automatic: automatic, acknowledgementBeep: acknowledgementBeep, completionBeep: completionBeep)
                 let basalStart = Date()
                 let dose = DoseEntry(type: .tempBasal, startDate: basalStart, endDate: basalStart.addingTimeInterval(duration), value: rate, unit: .unitsPerHour)
-                session.dosesForStorage() { (doses) -> Bool in
-                    return self.store(doses: doses, in: session)
-                }
                 switch result {
                 case .success:
+                    session.dosesForStorage() { (doses) -> Bool in
+                        return self.store(doses: doses, in: session)
+                    }
                     completion(.success(dose))
                 case .uncertainFailure(let error):
                     // TODO: Return PumpManagerError.uncertainDelivery and implement recovery
-                    self.log.error("Temp basal uncertain error: %@", String(describing: error))
+                    self.log.error("Temp basal uncertain error: %{public}@", String(describing: error))
                     completion(.success(dose))
                 case .certainFailure(let error):
                     completion(.failure(error))

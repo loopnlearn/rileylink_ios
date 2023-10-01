@@ -191,11 +191,11 @@ extension Double {
 // dddd: Pod Progress at time of first logged fault event
 //
 public struct ErrorEventInfo: CustomStringConvertible, Equatable {
-    let rawValue: UInt8
-    let insulinStateTableCorruption: Bool // 'a' bit
-    let occlusionType: Int // 'bb' 2-bit occlusion type
-    let immediateBolusInProgress: Bool // 'c' bit
-    let podProgressStatus: PodProgressStatus // 'dddd' bits
+    public let rawValue: UInt8
+    public let insulinStateTableCorruption: Bool // 'a' bit
+    public let occlusionType: Int // 'bb' 2-bit occlusion type
+    public let immediateBolusInProgress: Bool // 'c' bit
+    public let podProgressStatus: PodProgressStatus // 'dddd' bits
 
     public var errorEventInfo: ErrorEventInfo? {
         return ErrorEventInfo(rawValue: rawValue)
