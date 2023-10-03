@@ -93,7 +93,7 @@ extension CommandResponseViewController {
                 result += String(format: LocalizedString("\n  Previous Pod Progress Status: %1$@", comment: "The format string for previous pod progress status: (1: previous pod progress status)"), String(describing: errorEventInfo.podProgressStatus))
             }
             if let refStr = status.pdmRef {
-                result += String(format: "\nRef: %@", refStr) // add the PDM style Ref code info as a separate line
+                result += "\n" + refStr
             }
         }
 
