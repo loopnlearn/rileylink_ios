@@ -9,8 +9,11 @@
 import Foundation
 
 fileprivate let defaultShutdownImminentTime = Pod.serviceDuration - Pod.endOfServiceImminentWindow
-fileprivate let defaultExpirationReminderTime = Pod.nominalPodLife - Pod.expirationAlertWindow
+fileprivate let defaultExpirationReminderTime = Pod.nominalPodLife - Pod.defaultExpirationReminderOffset
 fileprivate let defaultExpiredTime = Pod.nominalPodLife
+
+// PDM and pre-SwiftUI use every1MinuteFor3MinutesAndRepeatEvery15Minutes, but with SwiftUI use every15Minutes
+fileprivate let suspendTimeExpiredBeepRepeat = BeepRepeat.every1MinuteFor3MinutesAndRepeatEvery15Minutes
 
 public enum AlertTrigger {
     case unitsRemaining(Double)
@@ -117,7 +120,8 @@ public enum PodAlert: CustomStringConvertible, RawRepresentable, Equatable {
     case podSuspendedReminder(active: Bool, offset: TimeInterval, suspendTime: TimeInterval, timePassed: TimeInterval = 0, silent: Bool = false)
 
     // slot6SuspendTimeExpired: pod suspend time expired alarm, after suspendTime;
-    // 2 sets of beeps every minute for 3 minutes repeated every 15 minutes
+    // 2 sets of beeps every minute for 3 minutes repeated every 15 minutes (PDM & pre-SwiftUI implementations)
+    // 2 sets of beeps every 15 minutes (for SwiftUI PumpManagerAlerts implementations)
     case suspendTimeExpired(offset: TimeInterval, suspendTime: TimeInterval, silent: Bool = false)
 
     // slot7Expired: 2 hours long, time for user to start pairing process
@@ -258,7 +262,7 @@ public enum PodAlert: CustomStringConvertible, RawRepresentable, Equatable {
             let beepType: BeepType
             if active {
                 trigger = .timeUntilAlert(suspendTime)
-                beepRepeat = .every1MinuteFor3MinutesAndRepeatEvery15Minutes
+                beepRepeat = suspendTimeExpiredBeepRepeat
                 beepType = .bipBeepBipBeepBipBeepBipBeep
             } else {
                 trigger = .timeUntilAlert(.minutes(0))
@@ -478,28 +482,28 @@ public enum AlertSlot: UInt8 {
     }
 
     public typealias AllCases = [AlertSlot]
-    
+
     static var allCases: AllCases {
         return (0..<8).map { AlertSlot(rawValue: $0)! }
     }
 }
 
 public struct AlertSet: RawRepresentable, Collection, CustomStringConvertible, Equatable {
-    
+
     public typealias RawValue = UInt8
     public typealias Index = Int
-    
+
     public let startIndex: Int
     public let endIndex: Int
-    
+
     private let elements: [AlertSlot]
-    
+
     public static let none = AlertSet(rawValue: 0)
-    
+
     public var rawValue: UInt8 {
         return elements.reduce(0) { $0 | $1.bitMaskValue }
     }
-    
+
     public init(slots: [AlertSlot]) {
         self.elements = slots
         self.startIndex = 0
@@ -513,11 +517,11 @@ public struct AlertSet: RawRepresentable, Collection, CustomStringConvertible, E
     public subscript(index: Index) -> AlertSlot {
         return elements[index]
     }
-    
+
     public func index(after i: Int) -> Int {
         return i+1
     }
-    
+
     public var description: String {
         if elements.count == 0 {
             return LocalizedString("No alerts", comment: "Pod alert state when no alerts are active")
@@ -543,14 +547,15 @@ public func hasActiveSuspendAlert(configuredAlerts: [AlertSlot : PodAlert]) -> B
     return false
 }
 
-// Returns a descriptive string for alerts set in alerts
-public func alertString(alerts: AlertSet) -> String {
+// Returns a descriptive string for all the alerts in alertSet
+public func alertSetString(alertSet: AlertSet) -> String {
 
-    if alerts.isEmpty {
-        return String(describing: alerts)
+    if alertSet.isEmpty {
+        // Don't bother displaying any additional info for an inactive alert
+        return String(describing: alertSet)
     }
 
-    let alertDescription = alerts.map { (slot) -> String in
+    let alertDescription = alertSet.map { (slot) -> String in
         switch slot {
         case .slot0AutoOff:
             return PodAlert.autoOff(active: true, offset: 0, countdownDuration: 0).description
@@ -561,11 +566,11 @@ public func alertString(alerts: AlertSet) -> String {
         case .slot3ExpirationReminder:
             return PodAlert.expirationReminder(offset: 0, absAlertTime: defaultExpirationReminderTime).description
         case .slot4LowReservoir:
-            return PodAlert.lowReservoir(units: 1).description
+            return PodAlert.lowReservoir(units: Pod.maximumReservoirReading).description
         case .slot5SuspendedReminder:
             return PodAlert.podSuspendedReminder(active: true, offset: 0, suspendTime: .minutes(30)).description
         case .slot6SuspendTimeExpired:
-            return PodAlert.suspendTimeExpired(offset: 0, suspendTime: 1).description
+            return PodAlert.suspendTimeExpired(offset: 0, suspendTime: .minutes(30)).description
         case .slot7Expired:
             return PodAlert.expired(offset: 0, absAlertTime: defaultExpiredTime, duration: Pod.expirationAdvisoryWindow).description
         }
@@ -574,10 +579,44 @@ public func alertString(alerts: AlertSet) -> String {
     return alertDescription.joined(separator: ", ")
 }
 
-// Returns a proper set of PodAlerts based on the pod timeActive and silent boolean
-// for all the configuredAlerts that are still active and not expired
-func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], activeAlertSlots: AlertSet, timeActive: TimeInterval, silent: Bool) -> [PodAlert] {
+func configuredAlertsString(configuredAlerts: [AlertSlot : PodAlert]) -> String {
 
+    if configuredAlerts.isEmpty {
+        return String(describing: configuredAlerts)
+    }
+
+    let configuredAlertString = configuredAlerts.map { (configuredAlert) -> String in
+
+        let podAlert = configuredAlert.value
+        let description = podAlert.description
+        guard podAlert.configuration.active else {
+            return description
+        }
+
+        switch podAlert {
+        case .shutdownImminent(_, let absAlertTime, _):
+            return String(format: "%@ @ %@", description, absAlertTime.timeIntervalStr)
+        case .expirationReminder(_, let absAlertTime, _, _):
+            return String(format: "%@ @ %@", description, absAlertTime.timeIntervalStr)
+        case .lowReservoir(let unitTrigger, _):
+            return String(format: "%@ @ %dU", description, Int(unitTrigger))
+        case .podSuspendedReminder(_, let offset, let suspendTime, _, _):
+            return String(format: "%@ ending @ %@ after %@", description, (offset + suspendTime).timeIntervalStr, suspendTime.timeIntervalStr)
+        case .suspendTimeExpired(let offset, let suspendTime, _):
+            return String(format: "%@ @ %@ after %@", description, (offset + suspendTime).timeIntervalStr, suspendTime.timeIntervalStr)
+        case .expired(_, let absAlertTime, _, _):
+            return String(format: "%@ @ %@", description, absAlertTime.timeIntervalStr)
+        default:
+            return ""
+        }
+    }
+
+    return configuredAlertString.joined(separator: ", ")
+}
+
+// Returns an array of appropriate PodAlerts with the specified silent value
+// for all the configuredAlerts given all the current pod conditions.
+func regeneratePodAlerts(silent: Bool, configuredAlerts: [AlertSlot: PodAlert], activeAlertSlots: AlertSet, currentPodTime: TimeInterval, currentReservoirLevel: Double) -> [PodAlert] {
     var podAlerts: [PodAlert] = []
 
     for alert in configuredAlerts {
@@ -592,19 +631,19 @@ func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], activeAlertSlots: 
         case .shutdownImminent(let offset, let alertTime, _):
             // alertTime is absolute when offset is non-zero, otherwise use  default value
             var absAlertTime = offset != 0 ? alertTime : defaultShutdownImminentTime
-            if timeActive >= absAlertTime {
+            if currentPodTime >= absAlertTime {
                 // alert trigger is not in the future, make inactive using a 0 value
                 absAlertTime = 0
             }
             // create new shutdownImminent podAlert using the current timeActive and the original absolute alert time
-            podAlerts.append(PodAlert.shutdownImminent(offset: timeActive, absAlertTime: absAlertTime, silent: silent))
+            podAlerts.append(PodAlert.shutdownImminent(offset: currentPodTime, absAlertTime: absAlertTime, silent: silent))
 
         case .expirationReminder(let offset, let alertTime, let alertDuration, _):
             let duration: TimeInterval
 
             // alertTime is absolute when offset is non-zero, otherwise use default value
             var absAlertTime = offset != 0 ? alertTime : defaultExpirationReminderTime
-            if timeActive >= absAlertTime {
+            if currentPodTime >= absAlertTime {
                 // alert trigger is not in the future, make inactive using a 0 value
                 absAlertTime = 0
                 duration = 0
@@ -612,14 +651,20 @@ func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], activeAlertSlots: 
                 duration = alertDuration
             }
             // create new expirationReminder podAlert using the current active time and the original absolute alert time and duration
-            podAlerts.append(PodAlert.expirationReminder(offset: timeActive, absAlertTime: absAlertTime, duration: duration, silent: silent))
+            podAlerts.append(PodAlert.expirationReminder(offset: currentPodTime, absAlertTime: absAlertTime, duration: duration, silent: silent))
 
-        case .lowReservoir(let units, _):
-            // trivial with no time trigger issues to worry about
+        case .lowReservoir(let unitTrigger, _):
+            let units: Double
+            if currentReservoirLevel > unitTrigger {
+                units = unitTrigger
+            } else {
+                // reservoir is no longer more than the unitTrigger, make inactive using a 0 value
+                units = 0
+            }
             podAlerts.append(PodAlert.lowReservoir(units: units, silent: silent))
 
         case .podSuspendedReminder(let active, let offset, let suspendTime, _, _):
-            let timePassed: TimeInterval = min(timeActive - offset, .hours(2))
+            let timePassed: TimeInterval = min(currentPodTime - offset, .hours(2))
             // Pass along the computed time passed since alert was originally set so creation routine can
             // do all the grunt work dealing with varying reminder intervals and time passing scenarios.
             podAlerts.append(PodAlert.podSuspendedReminder(active: active, offset: offset, suspendTime: suspendTime, timePassed: timePassed, silent: silent))
@@ -627,30 +672,35 @@ func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], activeAlertSlots: 
         case .suspendTimeExpired(let lastOffset, let lastSuspendTime, _):
             let absAlertTime = lastOffset + lastSuspendTime
             let suspendTime: TimeInterval
-            if timeActive >= absAlertTime {
+            if currentPodTime >= absAlertTime {
                 // alert trigger is no longer in the future
                 if activeAlertSlots.contains(where: { $0 == .slot6SuspendTimeExpired } ) {
                     // The suspendTimeExpired alert has yet been acknowledged,
-                    // reconfigure this alert to trigger again in one minute.
-                    suspendTime = TimeInterval(minutes: 1)
+                    // set up a suspendTimeExpired alert for the next 15m interval.
+                    // Compute a new suspendTime that is a multiple of 15 minutes
+                    // from lastOffset which is at least one minute in the future.
+                    let newOffsetSuspendTime = ceil((currentPodTime - lastOffset) / .minutes(15)) * .minutes(15)
+                    let newAbsAlertTime = lastOffset + newOffsetSuspendTime
+                    suspendTime = max(newAbsAlertTime - currentPodTime, .minutes(1))
                 } else {
-                    // The suspendTimeExpired alert was already been acknowleged,
+                    // The suspendTimeExpired alert was already been acknowledged,
                     // so now make this alert inactive by using a 0 suspendTime.
                     suspendTime = 0
                 }
             } else {
                 // recompute a new suspendTime based on the current pod time
-                suspendTime = absAlertTime - timeActive
+                suspendTime = absAlertTime - currentPodTime
+                print("setting new suspendTimeExpired suspendTime of \(suspendTime) with currentPodTime\(currentPodTime) and absAlertTime=\(absAlertTime)")
             }
-            // create a new suspendTimeExpired PodAlert using the current active time and remaining suspend time (if any)
-            podAlerts.append(PodAlert.suspendTimeExpired(offset: timeActive, suspendTime: suspendTime, silent: silent))
+            // create a new suspendTimeExpired PodAlert using the current active time and the computed suspendTime (if any)
+            podAlerts.append(PodAlert.suspendTimeExpired(offset: currentPodTime, suspendTime: suspendTime, silent: silent))
 
         case .expired(let offset, let alertTime, let alertDuration, _):
             let duration: TimeInterval
 
             // alertTime is absolute when offset is non-zero, otherwise use default value
             var absAlertTime = offset != 0 ? alertTime : defaultExpiredTime
-            if timeActive >= absAlertTime {
+            if currentPodTime >= absAlertTime {
                 // alert trigger is not in the future, make inactive using a 0 value
                 absAlertTime = 0
                 duration = 0
@@ -658,7 +708,7 @@ func createPodAlerts(configuredAlerts: [AlertSlot: PodAlert], activeAlertSlots: 
                 duration = alertDuration
             }
             // create new expired podAlert using the current active time and the original absolute alert time and duration
-            podAlerts.append(PodAlert.expired(offset: timeActive, absAlertTime: absAlertTime, duration: duration, silent: silent))
+            podAlerts.append(PodAlert.expired(offset: currentPodTime, absAlertTime: absAlertTime, duration: duration, silent: silent))
 
         default:
             break
