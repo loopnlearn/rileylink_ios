@@ -128,7 +128,7 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
         if let expirationReminderDate = rawValue["expirationReminderDate"] as? Date {
             self.expirationReminderDate = expirationReminderDate
         } else if let expiresAt = podState?.expiresAt {
-            self.expirationReminderDate = expiresAt.addingTimeInterval(-Pod.expirationReminderAlertDefaultTimeBeforeExpiration)
+            self.expirationReminderDate = expiresAt.addingTimeInterval(-Pod.defaultExpirationReminderOffset)
         }
 
         if let rawUnstoredDoses = rawValue["unstoredDoses"] as? [UnfinalizedDose.RawValue] {
@@ -210,8 +210,8 @@ extension OmnipodPumpManagerState: CustomDebugStringConvertible {
             "* pairingAttemptAddress: \(String(describing: pairingAttemptAddress))",
             "* rileyLinkBatteryAlertLevel: \(String(describing: rileyLinkBatteryAlertLevel))",
             "* lastRileyLinkBatteryAlertDate \(String(describing: lastRileyLinkBatteryAlertDate))",
-            String(reflecting: podState),
-            String(reflecting: rileyLinkConnectionManagerState),
+            "* RileyLinkConnectionManagerState: " + (rileyLinkConnectionManagerState == nil ? "nil\n" : String(describing: rileyLinkConnectionManagerState!)),
+            "* PodState: " + (podState == nil ? "nil\n" : String(describing: podState!)),
         ].joined(separator: "\n")
     }
 }

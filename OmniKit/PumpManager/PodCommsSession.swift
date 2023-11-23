@@ -353,10 +353,16 @@ public class PodCommsSession {
     }
 
     @discardableResult
-    func configureAlerts(_ alerts: [PodAlert], beepBlock: MessageBlock? = nil) throws -> StatusResponse {
+    func configureAlerts(_ alerts: [PodAlert], acknowledgeAll: Bool = false, beepBlock: MessageBlock? = nil) throws -> StatusResponse {
         let configurations = alerts.map { $0.configuration }
         let configureAlerts = ConfigureAlertsCommand(nonce: podState.currentNonce, configurations: configurations)
-        let status: StatusResponse = try send([configureAlerts], beepBlock: beepBlock)
+        var blocksToSend: [MessageBlock] = [configureAlerts]
+        if acknowledgeAll {
+            // requested to acknowledge any possible pending pod alerts out of an abundnace of caution
+            let acknowledgeAll = AcknowledgeAlertCommand(nonce: podState.currentNonce, alerts: AlertSet(rawValue: ~0))
+            blocksToSend += [acknowledgeAll]
+        }
+        let status: StatusResponse = try send(blocksToSend, beepBlock: beepBlock)
         for alert in alerts {
             podState.registerConfiguredAlert(slot: alert.configuration.slot, alert: alert)
         }
@@ -413,12 +419,12 @@ public class PodCommsSession {
             }
             podState.updateFromStatusResponse(status)
         } else {
-            let elapsed: TimeInterval = -(podState.timeActiveUpdated?.timeIntervalSinceNow ?? 0)
-            let podActive = podState.timeActive + elapsed
+            let elapsed: TimeInterval = -(podState.podTimeUpdated?.timeIntervalSinceNow ?? 0)
+            let podTime = podState.podTime + elapsed
 
-            // Configure the Pod Alerts for end of service warning (79 hours) and pod expiration (72 hours)
-            let shutdownImminentAlarm = PodAlert.shutdownImminent(offset: podActive, absAlertTime: Pod.serviceDuration - Pod.endOfServiceImminentWindow, silent: silent)
-            let expirationAdvisoryAlarm = PodAlert.expired(offset: podActive, absAlertTime: Pod.nominalPodLife, duration: Pod.expirationAdvisoryWindow, silent: silent)
+            // Configure the Pod Alerts for shutdown imminent alert (79 hours) and pod expiration alert (72 hours)
+            let shutdownImminentAlarm = PodAlert.shutdownImminent(offset: podTime, absAlertTime: Pod.serviceDuration - Pod.endOfServiceImminentWindow, silent: silent)
+            let expirationAdvisoryAlarm = PodAlert.expired(offset: podTime, absAlertTime: Pod.nominalPodLife, duration: Pod.expirationAdvisoryWindow, silent: silent)
             try configureAlerts([shutdownImminentAlarm, expirationAdvisoryAlarm])
         }
         
@@ -589,9 +595,9 @@ public class PodCommsSession {
             var podSuspendedReminderAlert: PodAlert? = nil
             var suspendTimeExpiredAlert: PodAlert? = nil
             let suspendTime = suspendReminder ?? 0
-            let elapsed: TimeInterval = -(podState.timeActiveUpdated?.timeIntervalSinceNow ?? 0)
-            let podActiveTime = podState.timeActive + elapsed
-            log.debug("suspendDelivery: podState.timeActive=%@, elapsed=%.2fs, computed timeActive %@", podState.timeActive.timeIntervalStr, elapsed, podActiveTime.timeIntervalStr)
+            let elapsed: TimeInterval = -(podState.podTimeUpdated?.timeIntervalSinceNow ?? 0)
+            let podTime = podState.podTime + elapsed
+            log.debug("suspendDelivery: podState.podTime=%@, elapsed=%.2fs, computed podTime %@", podState.podTime.timeIntervalStr, elapsed, podTime.timeIntervalStr)
 
             let cancelDeliveryCommand = CancelDeliveryCommand(nonce: podState.currentNonce, deliveryType: .all, beepType: .noBeepCancel)
             var commandsToSend: [MessageBlock] = [cancelDeliveryCommand]
@@ -599,14 +605,14 @@ public class PodCommsSession {
             // podSuspendedReminder provides a periodic pod suspended reminder beep until the specified suspend time.
             if suspendReminder != nil && (suspendTime == 0 || suspendTime > .minutes(5)) {
                 // using reminder beeps for an untimed or long enough suspend time requiring pod suspended reminders
-                podSuspendedReminderAlert = PodAlert.podSuspendedReminder(active: true, offset: podActiveTime, suspendTime: suspendTime, silent: silent)
+                podSuspendedReminderAlert = PodAlert.podSuspendedReminder(active: true, offset: podTime, suspendTime: suspendTime, silent: silent)
                 alertConfigurations += [podSuspendedReminderAlert!.configuration]
             }
 
             // suspendTimeExpired provides suspend time expired alert beeping after the expected suspend time has passed.
             if suspendTime > 0 {
                 // a timed suspend using a suspend time expired alert
-                suspendTimeExpiredAlert = PodAlert.suspendTimeExpired(offset: podActiveTime, suspendTime: suspendTime, silent: silent)
+                suspendTimeExpiredAlert = PodAlert.suspendTimeExpired(offset: podTime, suspendTime: suspendTime, silent: silent)
                 alertConfigurations += [suspendTimeExpiredAlert!.configuration]
             }
 
