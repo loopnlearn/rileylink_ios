@@ -1013,30 +1013,6 @@ extension OmnipodPumpManager {
         }
     }
 
-    public func testingCommands(completion: @escaping (Error?) -> Void) {
-        // use hasSetupPod instead of self.hasActivePod so the user can see any fault info and post fault commands can be attempted
-        guard self.hasSetupPod else {
-            completion(OmnipodPumpManagerError.noPodPaired)
-            return
-        }
-
-        let rileyLinkSelector = self.rileyLinkDeviceProvider.firstConnectedDevice
-        self.podComms.runSession(withName: "Testing Commands", using: rileyLinkSelector) { (result) in
-            switch result {
-            case .success(let session):
-                do {
-                    let beepBlock = self.beepMessageBlock(beepType: .beepBeepBeep)
-                    try session.testingCommands(beepBlock: beepBlock)
-                    completion(nil)
-                } catch let error {
-                    completion(error)
-                }
-            case .failure(let error):
-                completion(error)
-            }
-        }
-    }
-
     public func playTestBeeps(completion: @escaping (Error?) -> Void) {
         guard self.hasActivePod else {
             completion(OmnipodPumpManagerError.noPodPaired)
@@ -1072,8 +1048,35 @@ extension OmnipodPumpManager {
         }
     }
 
+    public func readActivationTime(completion: @escaping (Result<String, Error>) -> Void) {
+        // use hasSetupPod here instead of hasActivePod as PodInfo can be read with a faulted Pod
+        guard self.hasSetupPod else {
+            completion(.failure(OmnipodPumpManagerError.noPodPaired))
+            return
+        }
+
+        let rileyLinkSelector = self.rileyLinkDeviceProvider.firstConnectedDevice
+        podComms.runSession(withName: "Read Activation Time", using: rileyLinkSelector) { (result) in
+            do {
+                switch result {
+                case .success(let session):
+                    let beepBlock = self.beepMessageBlock(beepType: .bipBip)
+                    let podInfoResponse = try session.readPodInfo(podInfoResponseSubType: .activationTime, beepBlock: beepBlock)
+                    let podInfoActivationTime = podInfoResponse.podInfo as! PodInfoActivationTime
+                    let str = activationTimeString(podInfoActivationTime: podInfoActivationTime)
+                    completion(.success(str))
+
+                case .failure(let error):
+                    throw error
+                }
+            } catch let error {
+                completion(.failure(error))
+            }
+        }
+    }
+
     public func readPulseLog(completion: @escaping (Result<String, Error>) -> Void) {
-        // use hasSetupPod to be able to read the pulse log from a faulted Pod
+        // use hasSetupPod here instead of hasActivePod as PodInfo can be read with a faulted Pod
         guard self.hasSetupPod else {
             completion(.failure(OmnipodPumpManagerError.noPodPaired))
             return
@@ -1106,6 +1109,90 @@ extension OmnipodPumpManager {
                 }
             case .failure(let error):
                 completion(.failure(error))
+            }
+        }
+    }
+
+    public func readPulseLogPlus(completion: @escaping (Result<String, Error>) -> Void) {
+        // use hasSetupPod here instead of hasActivePod as PodInfo can be read with a faulted Pod
+        guard self.hasSetupPod else {
+            completion(.failure(OmnipodPumpManagerError.noPodPaired))
+            return
+        }
+        guard state.podState?.isFaulted == true || state.podState?.unfinalizedBolus?.scheduledCertainty == .uncertain || state.podState?.unfinalizedBolus?.isFinished() != false else
+        {
+            self.log.info("Skipping Read Pulse Log Plus due to bolus still in progress.")
+            completion(.failure(PodCommsError.unfinalizedBolus))
+            return
+        }
+
+        let rileyLinkSelector = self.rileyLinkDeviceProvider.firstConnectedDevice
+        podComms.runSession(withName: "Read Pulse Log Plus", using: rileyLinkSelector) { (result) in
+            do {
+                switch result {
+                case .success(let session):
+                    let beepBlock = self.beepMessageBlock(beepType: .bipBeeeeep)
+                    let podInfoResponse = try session.readPodInfo(podInfoResponseSubType: .pulseLogPlus, beepBlock: beepBlock)
+                    let podInfoPulseLogPlus = podInfoResponse.podInfo as! PodInfoPulseLogPlus
+                    let str = pulseLogPlusString(podInfoPulseLogPlus: podInfoPulseLogPlus)
+                    completion(.success(str))
+
+                case .failure(let error):
+                    throw error
+                }
+            } catch let error {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func readTriggeredAlerts(completion: @escaping (Result<String, Error>) -> Void) {
+        // use hasSetupPod here instead of hasActivePod as PodInfo can be read with a faulted Pod
+        guard self.hasSetupPod else {
+            completion(.failure(OmnipodPumpManagerError.noPodPaired))
+            return
+        }
+
+        let rileyLinkSelector = self.rileyLinkDeviceProvider.firstConnectedDevice
+        podComms.runSession(withName: "Read Triggered Alerts", using: rileyLinkSelector) { (result) in
+            do {
+                switch result {
+                case .success(let session):
+                    let beepBlock = self.beepMessageBlock(beepType: .bipBip)
+                    let podInfoResponse = try session.readPodInfo(podInfoResponseSubType: .triggeredAlerts, beepBlock: beepBlock)
+                    let podInfoTriggeredAlerts = podInfoResponse.podInfo as! PodInfoTriggeredAlerts
+                    let str = triggeredAlertsString(podInfoTriggeredAlerts: podInfoTriggeredAlerts)
+                    completion(.success(str))
+
+                case .failure(let error):
+                    throw error
+                }
+            } catch let error {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func testingCommands(completion: @escaping (Error?) -> Void) {
+        // use hasSetupPod instead of self.hasActivePod so the user can see any fault info and post fault commands can be attempted
+        guard self.hasSetupPod else {
+            completion(OmnipodPumpManagerError.noPodPaired)
+            return
+        }
+
+        let rileyLinkSelector = self.rileyLinkDeviceProvider.firstConnectedDevice
+        self.podComms.runSession(withName: "Testing Commands", using: rileyLinkSelector) { (result) in
+            switch result {
+            case .success(let session):
+                do {
+                    let beepBlock = self.beepMessageBlock(beepType: .beepBeepBeep)
+                    try session.testingCommands(beepBlock: beepBlock)
+                    completion(nil)
+                } catch let error {
+                    completion(error)
+                }
+            case .failure(let error):
+                completion(error)
             }
         }
     }
@@ -1206,10 +1293,10 @@ extension OmnipodPumpManager {
             let podAlerts = regeneratePodAlerts(silent: silencePod, configuredAlerts: configuredAlerts, activeAlertSlots: activeAlertSlots, currentPodTime: self.podTime, currentReservoirLevel: reservoirLevel)
             do {
                 // Since non-responsive pod comms are currently only resolved for insulin related commands,
-                // it's possible that a previous pod alert was successfully configured will lose its response
-                // and thus the alert won't get reset when reconfiguring pod alerts with a new silence pod state.
-                // So acknowledge all alerts now to be absolutely sure that no triggered alert will be forgotten.
-                try session.configureAlerts(podAlerts, acknowledgeAll: true, beepBlock: beepBlock)
+                // it's possible that a response from a previous successful pod alert configuration can be lost
+                // and thus the alert won't get reset here when reconfiguring pod alerts with a new silence pod state.
+                let acknowledgeAll = true   // protect against lost alert configuration response related issues
+                try session.configureAlerts(podAlerts, acknowledgeAll: acknowledgeAll, beepBlock: beepBlock)
                 self.setState { (state) in
                     state.silencePod = silencePod
                 }
@@ -1243,11 +1330,13 @@ extension OmnipodPumpManager {
             var expirationReminderPodTime: TimeInterval = 0
             if let expirationReminderDate = expirationReminderDate, expirationReminderDate < expiresAt {
                 let timeUntilReminder = expirationReminderDate.timeIntervalSinceNow
-                expirationReminderPodTime = podTime + timeUntilReminder
-                self.log.debug("Update Expiration Reminder=%@, timeUntilReminder=%@, podTime=%@, expirationReminderPodTime=%@", String(describing: expirationReminderDate), timeUntilReminder.timeIntervalStr, podTime.timeIntervalStr, expirationReminderPodTime.timeIntervalStr)
-                if timeUntilReminder < 0 || expirationReminderPodTime < podTime {
-                    self.log.error("Time until reminder $@ is negative or expiration reminder time %@ is before current pod time %@, deactivating alert", timeUntilReminder.timeIntervalStr, expirationReminderPodTime.timeIntervalStr, podTime.timeIntervalStr)
-                    expirationReminderPodTime = 0 // deactivates expiration reminder alert
+                if timeUntilReminder > 0 {
+                    expirationReminderPodTime = podTime + timeUntilReminder
+                    self.log.debug("Update Expiration Reminder=%@, timeUntilReminder=%@, podTime=%@, expirationReminderPodTime=%@", String(describing: expirationReminderDate), timeUntilReminder.timeIntervalStr, podTime.timeIntervalStr, expirationReminderPodTime.timeIntervalStr)
+                    if timeUntilReminder < 0 || expirationReminderPodTime < podTime {
+                        self.log.error("Time until reminder $@ is negative or expiration reminder time %@ is before current pod time %@, deactivating alert", timeUntilReminder.timeIntervalStr, expirationReminderPodTime.timeIntervalStr, podTime.timeIntervalStr)
+                        expirationReminderPodTime = 0 // deactivates expiration reminder alert
+                    }
                 }
             }
 

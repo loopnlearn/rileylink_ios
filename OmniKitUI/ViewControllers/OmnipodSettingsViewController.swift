@@ -263,8 +263,8 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
         case status = 0
         case configuration
         case rileyLinks
-        case diagnostics
         case podDetails
+        case podDiagnostics
         case deletePumpManager
     }
     
@@ -273,7 +273,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             if podState.unfinishedSetup {
                 return [.configuration, .rileyLinks]
             } else {
-                return [.status, .configuration, .rileyLinks, .diagnostics, .podDetails]
+                return [.status, .configuration, .rileyLinks, .podDetails, .podDiagnostics]
             }
         } else {
             return [.configuration, .rileyLinks, .deletePumpManager]
@@ -290,13 +290,6 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
         case podTid
         case piVersion
         case pmVersion
-    }
-    
-    private enum Diagnostics: Int, CaseIterable {
-        case readPodStatus = 0
-        case playTestBeeps
-        case readPulseLog
-        case testCommand
     }
     
     private var configurationRows: [ConfigurationRow] {
@@ -335,16 +328,16 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sections[section] {
-        case .podDetails:
-            return PodDetailsRow.allCases.count
-        case .diagnostics:
-            return Diagnostics.allCases.count
-        case .configuration:
-            return configurationRows.count
         case .status:
             return StatusRow.allCases.count
+        case .configuration:
+            return configurationRows.count
         case .rileyLinks:
             return super.tableView(tableView, numberOfRowsInSection: section)
+        case .podDetails:
+            return PodDetailsRow.allCases.count
+        case .podDiagnostics:
+            return 1
         case .deletePumpManager:
             return 1
         }
@@ -358,10 +351,10 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             return LocalizedString("Configuration", comment: "The title of the configuration section in settings")
         case .rileyLinks:
             return super.tableView(tableView, titleForHeaderInSection: section)
-        case .diagnostics:
-            return LocalizedString("Diagnostics", comment: "The title of the diagnostics section in settings")
         case .podDetails:
             return LocalizedString("Pod Details", comment: "The title of the pod details section in settings")
+        case .podDiagnostics:
+            return nil // No title for the single button section
         case .deletePumpManager:
             return " "  // Use an empty string for more dramatic spacing
         }
@@ -371,7 +364,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
         switch sections[section] {
         case .rileyLinks:
             return super.tableView(tableView, viewForHeaderInSection: section)
-        case .podDetails, .diagnostics, .configuration, .status, .deletePumpManager:
+        case .status, .configuration, .podDetails, .podDiagnostics, .deletePumpManager:
             return nil
         }
     }
@@ -501,30 +494,6 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
         case .rileyLinks:
             return super.tableView(tableView, cellForRowAt: indexPath)
 
-        case .diagnostics:
-            switch Diagnostics(rawValue: indexPath.row)! {
-            case .readPodStatus:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath)
-                cell.textLabel?.text = LocalizedString("Read Pod Status", comment: "The title of the command to read the pod status")
-                cell.accessoryType = .disclosureIndicator
-                return cell
-            case .playTestBeeps:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath)
-                cell.textLabel?.text = LocalizedString("Play Test Beeps", comment: "The title of the command to play test beeps")
-                cell.accessoryType = .disclosureIndicator
-                return cell
-            case .readPulseLog:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath)
-                cell.textLabel?.text = LocalizedString("Read Pulse Log", comment: "The title of the command to read the pulse log")
-                cell.accessoryType = .disclosureIndicator
-                return cell
-            case .testCommand:
-                let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath)
-                cell.textLabel?.text = LocalizedString("Test Command", comment: "The title of the command to run the test command")
-                cell.accessoryType = .disclosureIndicator
-                return cell
-            }
-
         case .podDetails:
             let podState = self.podState!
             switch PodDetailsRow(rawValue: indexPath.row)! {
@@ -555,6 +524,12 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
                 return cell
             }
 
+        case .podDiagnostics:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath)
+            cell.textLabel?.text = LocalizedString("Pod Diagnostics", comment: "The title of the pod diagnostics view botton")
+            cell.accessoryType = .disclosureIndicator
+            return cell
+
         case .deletePumpManager:
             let cell = tableView.dequeueReusableCell(withIdentifier: TextButtonTableViewCell.className, for: indexPath) as! TextButtonTableViewCell
             
@@ -575,7 +550,7 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             default:
                 return false
             }
-        case .configuration, .rileyLinks, .diagnostics, .deletePumpManager:
+        case .configuration, .rileyLinks, .podDiagnostics, .deletePumpManager:
             return true
         case .podDetails:
             return false
@@ -670,27 +645,12 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             )
             
             self.show(vc, sender: sender)
-        case .diagnostics:
-            switch Diagnostics(rawValue: indexPath.row)! {
-            case .readPodStatus:
-                let vc = CommandResponseViewController.readPodStatus(pumpManager: pumpManager)
-                vc.title = sender?.textLabel?.text
-                show(vc, sender: indexPath)
-            case .playTestBeeps:
-                let vc = CommandResponseViewController.playTestBeeps(pumpManager: pumpManager)
-                vc.title = sender?.textLabel?.text
-                show(vc, sender: indexPath)
-            case .readPulseLog:
-                let vc = CommandResponseViewController.readPulseLog(pumpManager: pumpManager)
-                vc.title = sender?.textLabel?.text
-                show(vc, sender: indexPath)
-            case .testCommand:
-                let vc = CommandResponseViewController.testingCommands(pumpManager: pumpManager)
-                vc.title = sender?.textLabel?.text
-                show(vc, sender: indexPath)
-            }
         case .podDetails:
             break
+        case .podDiagnostics:
+            let vc = PodDiagnosticsViewController(pumpManager: pumpManager)
+            vc.title = sender?.textLabel?.text
+            show(vc, sender: indexPath)
         case .deletePumpManager:
             let confirmVC = UIAlertController(pumpManagerDeletionHandler: {
                 self.pumpManager.notifyDelegateOfDeactivation {
@@ -712,15 +672,13 @@ class OmnipodSettingsViewController: RileyLinkSettingsViewController {
             break
         case .configuration:
             switch configurationRows[indexPath.row] {
-            case .reminder, .suspendResume:
+            case .suspendResume, .reminder:
                 break
             case .silencePod, .enableDisableConfirmationBeeps, .enableDisableExtendedBeeps, .timeZoneOffset, .replacePod:
                 tableView.reloadRows(at: [indexPath], with: .fade)
             }
-        case .rileyLinks:
+        case .rileyLinks, .podDiagnostics:
             break
-        case .diagnostics:
-            tableView.reloadRows(at: [indexPath], with: .fade)
         case .podDetails, .deletePumpManager:
             break
         }
