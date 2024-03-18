@@ -341,6 +341,7 @@ public class PodCommsSession {
             podState.updateFromStatusResponse(status)
             if status.podProgressStatus == .basalInitialized {
                 podState.setupProgress = .initialBasalScheduleSet
+                podState.finalizedDoses.append(UnfinalizedDose(resumeStartTime: Date(), scheduledCertainty: .certain))
                 return
             }
         }

@@ -297,18 +297,18 @@ class MessageTests: XCTestCase {
     
     func testConfigureAlertsCommand() {
         // 020f 0000 0202
-        let alertConfig0 = AlertConfiguration(alertType: .slot0AutoOff, active: false, duration: .minutes(15), trigger: .timeUntilAlert(0), beepRepeat: .every1MinuteFor15Minutes, beepType: .bipBeepBipBeepBipBeepBipBeep, autoOffModifier: true)
+        let alertConfig0 = AlertConfiguration(alertType: .slot0AutoOff, active: false, duration: .minutes(15), trigger: .timeUntilAlert(0), beepRepeat: .every1MinuteFor15Minutes, beepType: .bipBeepBipBeepBipBeepBipBeep, silent: false, autoOffModifier: true)
         XCTAssertEqual("020f00000202", alertConfig0.data.hexadecimalString)
 
         // 2800 1283 0602
         let podHardExpirationTime = TimeInterval(hours:79) - TimeInterval(minutes:1)
-        let alertConfig2 = AlertConfiguration(alertType: .slot2ShutdownImminent, active: true, duration: .minutes(0), trigger: .timeUntilAlert(podHardExpirationTime), beepRepeat: .every15Minutes, beepType: .bipBeepBipBeepBipBeepBipBeep)
+        let alertConfig2 = AlertConfiguration(alertType: .slot2ShutdownImminent, active: true, duration: .minutes(0), trigger: .timeUntilAlert(podHardExpirationTime), beepRepeat: .every15Minutes, beepType: .bipBeepBipBeepBipBeepBipBeep, silent: false)
         XCTAssertEqual("280012830602", alertConfig2.data.hexadecimalString)
 
         // 79a4 10df 0502
         // Pod expires 1 minute short of 3 days
         let podSoftExpirationTime = TimeInterval(hours:72) - TimeInterval(minutes:1)
-        let alertConfig7 = AlertConfiguration(alertType: .slot7Expired, active: true, duration: .hours(7), trigger: .timeUntilAlert(podSoftExpirationTime), beepRepeat: .every60Minutes, beepType: .bipBeepBipBeepBipBeepBipBeep)
+        let alertConfig7 = AlertConfiguration(alertType: .slot7Expired, active: true, duration: .hours(7), trigger: .timeUntilAlert(podSoftExpirationTime), beepRepeat: .every60Minutes, beepType: .bipBeepBipBeepBipBeepBipBeep, silent: false)
         XCTAssertEqual("79a410df0502", alertConfig7.data.hexadecimalString)
 
         let configureAlerts = ConfigureAlertsCommand(nonce: 0xfeb6268b, configurations:[alertConfig0, alertConfig2, alertConfig7])
